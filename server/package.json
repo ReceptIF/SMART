@@ -1,0 +1,24 @@
+{
+  "name": "smart-receptif",
+  "version": "0.0.1",
+  "description": "On est pas venus ici pour souffrir OK!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ReceptIF/SMART.git"
+  },
+  "keywords": [
+    "swag",
+    "charisme",
+    "ah"
+  ],
+  "author": "Receptif",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ReceptIF/SMART/issues"
+  },
+  "homepage": "https://github.com/ReceptIF/SMART#readme"
+}

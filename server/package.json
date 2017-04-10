@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/ReceptIF/SMART/issues"
   },
-  "homepage": "https://github.com/ReceptIF/SMART#readme"
+  "homepage": "https://github.com/ReceptIF/SMART#readme",
+  "dependencies": {
+    "express": "^4.15.2"
+  }
 }

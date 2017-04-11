@@ -8,11 +8,11 @@ var Transaction = sequelize.define('Transaction', {
         },
         sellerOk: {
             type: Sequelize.BOOLEAN,
-            field: 'sellerOk'
+            field: 'seller_ok'
         },
          buyerOk: {
             type: Sequelize.BOOLEAN,
-            field: 'buyerOk'
+            field: 'buyer_ok'
         },
          code: {
             type: Sequelize.INTEGER,

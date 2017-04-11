@@ -12,7 +12,7 @@ var Comment = sequelize.define('user', {
         },
         note: {
             type: Sequelize.INTEGER,
-            field: 'content'
+            field: 'note'
         }
     }, {
         freezeTableName: true

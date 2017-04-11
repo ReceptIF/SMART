@@ -4,7 +4,7 @@ var sequelize = require('../orm');
 var City = sequelize.define('City', {
         name: {
             type: Sequelize.STRING,
-            field: 'type'
+            field: 'name'
         },
         postCode: {
             type: Sequelize.STRING,

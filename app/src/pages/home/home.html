@@ -9,9 +9,10 @@
 
 <ion-content>
   <ion-list>
+    <ion-list-header>À la une</ion-list-header>
     <ion-item class="home-annonce" *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-avatar item-left>
-        <img src="../../assets/icon/service-type/tinkering.png">
+        <img [src]="'../../assets/icon/service-type/'+item.type.icon+'.png'">
       </ion-avatar>
       <h1>{{item.title}}</h1>
       <h2>{{item.price}} AH!</h2>

@@ -29,4 +29,13 @@ module.exports = function (server) {
         });
     });
 
+    // DELETE
+    server.delete('/user/:id', function (request, response) {
+        User.destroy({where: {id: request.params.id}}).then(function (data) {
+            response.send({status: data});
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
 };

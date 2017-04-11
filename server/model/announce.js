@@ -16,15 +16,15 @@ var Announce = sequelize.define('announce', {
         },
         estimatedTime: {
             type: Sequelize.INTEGER,
-            field: 'estimatedTime'
+            field: 'estimated_time'
         },
         startTime: {
             type: Sequelize.DATE,
-            field: 'startTime'
+            field: 'start_time'
         },
         endTime: {
             type: Sequelize.DATE,
-            field: 'endTime'
+            field: 'end_time'
         },
         address: {
             type: Sequelize.STRING,
@@ -32,14 +32,14 @@ var Announce = sequelize.define('announce', {
         },
         coordX: {
             type: Sequelize.FLOAT,
-            field: 'coordX'
+            field: 'coord_x'
         },
         coordY: {
             type: Sequelize.FLOAT,
-            field: 'coordY'
+            field: 'coord_y'
         },
         sale: {
-            field: Sequelize.BOOLEAN,
+            type: Sequelize.BOOLEAN,
             field: 'sale'
         }
     }, {
@@ -52,13 +52,13 @@ Announce.sync({force: true}).then(function () {
         price: 500,
         title: 'Aide Plomberie',
         description: 'J\'ai un problème de tuyaux',
-        estimatedTime: 30
-        startTime: new Date(2017, 6, 20)
-        endTime: new Date(2017, 6, 25)
-        address: 'Rue Einstein, Villeurbanne'
-        coordX: 45.782530
-        coordY: 4.878155
-        sale: TRUE
+        estimatedTime: 30,
+        startTime: new Date(2017, 6, 20),
+        endTime: new Date(2017, 6, 25),
+        address: 'Rue Einstein, Villeurbanne',
+        coordX: 45.782530,
+        coordY: 4.878155,
+        sale: true
     });
 });
 

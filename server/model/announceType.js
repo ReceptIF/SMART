@@ -1,0 +1,25 @@
+var Sequelize = require('sequelize');
+var sequelize = require('../orm');
+
+var AnnounceType = sequelize.define('announce_type', {
+        name: {
+            type: Sequelize.STRING,
+            field: 'name'
+        },
+        icon: {
+            type: Sequelize.STRING,
+            field: 'icon'
+        }
+    }, {
+        freezeTableName: true
+    }
+);
+
+AnnounceType.sync({force: true}).then(function () {
+    return AnnounceType.create({
+        name: 'Plomberie',
+        firstName: 'pipe'
+    });
+});
+
+module.exports = AnnounceType;

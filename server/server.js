@@ -9,12 +9,16 @@ var server = express();
 server.use('/resources', express.static(path.resolve('../ihm/resources')));
 
 server.get('/', function (request, response) {
-    Model.User.findAll().then(function (data) {
-        response.send(data);
-    }, function (data) {
-        response.send({ah: 'AH !', error: data});
-    });
+    response.send('AH !');
 });
+
+require('./controller/userController')(server);
+require('./controller/transactionController')(server);
+require('./controller/announceController')(server);
+require('./controller/announceTypeController')(server);
+require('./controller/cityController')(server);
+require('./controller/commentController')(server);
+
 
 
 http.createServer(server).listen(8080, function () {

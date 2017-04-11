@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../orm');
+City = require('./city');
 
 var User = sequelize.define('user', {
         email: {
@@ -37,11 +38,18 @@ var User = sequelize.define('user', {
         coordY: {
             type: Sequelize.FLOAT,
             field: 'coord_y'
+        },
+       cityId: {
+        	type: Sequelize.INTEGER,
+        	model: 'city', // <<< Note, its table's name, not object name
+            key: 'id' 
         }
     }, {
         freezeTableName: true
     }
 );
+
+City.hasMany(User);
 
 User.sync({force: true}).then(function () {
     return User.create({

@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../orm');
 
-var City = sequelize.define('City', {
+var City = sequelize.define('city', {
         name: {
             type: Sequelize.STRING,
             field: 'name'

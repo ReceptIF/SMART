@@ -19,7 +19,7 @@ City.sync({force: true}).then(function () {
     return City.create({
         name: 'Jean-Michel Villeurbanne',
         postCode: 69100
-            });
+    });
 });
 
 module.exports = City;

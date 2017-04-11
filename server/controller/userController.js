@@ -20,4 +20,13 @@ module.exports = function (server) {
         });
     });
 
+    // PUT
+    server.put('/user', function (request, response) {
+        User.update(request.body, {where: {id: request.body.id}}).then(function (data) {
+            response.send(data);
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
 };

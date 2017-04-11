@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
   selector: 'page-annonce',
@@ -14,22 +14,8 @@ export class AnnoncePage {
 	estimatedTime: string;
 	creationTime: string;
 
-	constructor(public navCtrl: NavController) {
-		this.service= {	
-			id:0, 
-			price:12, 
-			title:'Refaire la plomberie', 
-			address:'Lyon 2ème',
-			estimatedTime: 1440,
-			endTime: "12/04/2017",
-			creationTime: "12/02/2017",
-			description:'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-			type:{
-				id:0,
-				name:'Bricolage',
-				icon:'build'
-			}
-		};
+	constructor(public navCtrl: NavController, public params:NavParams) {
+		this.service= params.get("item");
 		this.price = this.service.price + " AH !";
 		
 		if(this.service.startTime != null) {

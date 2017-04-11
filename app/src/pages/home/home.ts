@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { AnnoncePage } from '../annonce/annonce';
 
 @Component({
   selector: 'page-home',
@@ -18,7 +19,7 @@ export class HomePage {
   }
 
   itemTapped(event, item) {
-    this.navCtrl.push(HomePage, {
+    this.navCtrl.push(AnnoncePage, {
       item: item
     });
   }

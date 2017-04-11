@@ -8,11 +8,30 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Titre de l'annonce</h3>
+	<img src="/../../assets/logo-grand-lyon.png">
+	<h3>Titre de l'annonce</h3>
+	<div>
+		<div style="float: left; width: 50%;" id="price">
+			<p>25 AH!</p>
+		</div>
+		<div style="float: right; width: 50%;" id="location">
+			<p>INSA Lyon</p>
+		</div>
+	</div>
+	<p id="annonce-description">
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</p>
+	
+	<div id="limit-date">
+	</div>
+	
+	<div id="duration">
+	</div>
+	
+	<div id="publication-date">
+	</div>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+	<ion-fab right bottom>
+		<button ion-fab color="light"><ion-icon name="arrow-forward"></ion-icon></button>
+	</ion-fab>
 </ion-content>

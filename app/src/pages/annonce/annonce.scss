@@ -2,7 +2,7 @@ page-annonce {
 
 }
 
-h3 {
+h2 {
     text-align: center;
 }
 
@@ -20,4 +20,16 @@ h3 {
 
 #answer-button {
 	float: right;
+}
+
+#publication-date {
+    color: grey;
+    font-style: italic;
+}
+
+#logo {
+    height: 20%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }

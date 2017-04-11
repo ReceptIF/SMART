@@ -8,27 +8,33 @@
 </ion-header>
 
 <ion-content padding>
-	<img src="/../../assets/logo-grand-lyon.png">
-	<h3>Titre de l'annonce</h3>
+	<img src="../../assets/unknown.png" id="logo">
+	<h2>{{service.title}}</h2>
 	<div>
 		<div style="float: left; width: 50%;" id="price">
-			<p>25 AH!</p>
+			<h4>{{price}}</h4>
 		</div>
 		<div style="float: right; width: 50%;" id="location">
-			<p>INSA Lyon</p>
+			<h4>{{service.address}}</h4>
 		</div>
 	</div>
-	<p id="annonce-description">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-	</p>
+	<p id="annonce-description">{{service.description}}</p>
 	
-	<div id="limit-date">
+	<div id="start-time">
+		{{startTime}}
+	</div>
+	
+	<div id="end-time">
+		{{endTime}}
 	</div>
 	
 	<div id="duration">
+		{{estimatedTime}}
 	</div>
 	
+	<br/>
 	<div id="publication-date">
+		{{creationTime}}
 	</div>
 
 	<ion-fab right bottom>

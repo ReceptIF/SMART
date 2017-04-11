@@ -7,8 +7,9 @@ import { NavController } from 'ionic-angular';
 })
 export class RecherchePage {
 
+  fromDate : any;
   constructor(public navCtrl: NavController) {
-
+    this.fromDate = new Date().toISOString();
   }
 
 }

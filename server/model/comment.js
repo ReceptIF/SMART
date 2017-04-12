@@ -20,8 +20,8 @@ var Comment = sequelize.define('comment', {
     }
 );
 
-User.hasOne(Comment, {as: 'authorId', foreignKey : 'authorIdkey'});
-User.hasOne(Comment, {as: 'targetId', foreignKey : 'targetIdkey'});
+User.hasOne(Comment, {as: 'authorId_fk', foreignKey : 'authorId'});
+User.hasOne(Comment, {as: 'targetId_fk', foreignKey : 'targetId'});
 
 Comment.sync({force: true}).then(function () {
     return Comment.create({

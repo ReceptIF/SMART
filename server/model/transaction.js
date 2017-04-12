@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../orm');
+User = require('./user');
 
 var Transaction = sequelize.define('Transaction', {
         transactionDate: {
@@ -26,6 +27,9 @@ var Transaction = sequelize.define('Transaction', {
         freezeTableName: true
     }
 );
+
+User.hasMany(Transaction, {as: 'sellerId_fk', foreignKey : 'sellerId'});
+User.hasMany(Transaction, {as: 'buyerId_fk', foreignKey : 'buyerId'});
 
 Transaction.sync({force: true}).then(function () {
     return Transaction.create({

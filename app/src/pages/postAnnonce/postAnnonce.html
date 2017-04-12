@@ -20,9 +20,57 @@
       </ion-grid>
     </ion-item>
     
+    <h2><ion-icon name="chatbubbles"></ion-icon> Description</h2>
     <ion-item>
       <ion-label stacked>Titre de l'annonce</ion-label>
       <ion-input type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Description de l'annonce</ion-label>
+      <ion-textarea></ion-textarea>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Catégorie</ion-label>
+      <ion-select [(ngModel)]="categorie">
+        <ion-option value="0">Bricolage</ion-option>
+        <ion-option value="1">Courses</ion-option>
+        <ion-option value="2">Garde d'enfants</ion-option>
+        <ion-option value="3">Soutien scolaire</ion-option>
+      </ion-select>
+    </ion-item>
+    
+    <h2><ion-icon name="cash"></ion-icon> Tarification</h2>
+    <ion-item>
+      <ion-label>Nombre de AH! :</ion-label>
+      <ion-input type="number" min="0" max="100"></ion-input>
+    </ion-item>
+    
+    <h2><ion-icon name="home"></ion-icon> Adresse</h2>
+    <ion-list radio-group>
+      <ion-item>
+        <ion-label>Domicile</ion-label>
+        <ion-radio checked="true" value="0"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Chez Marcus</ion-label>
+        <ion-radio value="1"></ion-radio>
+      </ion-item>
+    </ion-list>
+    
+    <h2><ion-icon name="time"></ion-icon> Période</h2>
+    <ion-item>
+      <ion-label>Date de début</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY"></ion-datetime>
+    </ion-item>
+    
+    <ion-item>
+      <ion-label>Date de fin</ion-label>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label>Durée estimée (min)</ion-label>
+      <ion-input type="number" min="0" max="5000"></ion-input>
     </ion-item>
     
   </ion-list>

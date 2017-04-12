@@ -38,16 +38,12 @@ var User = sequelize.define('user', {
         coordY: {
             type: Sequelize.FLOAT,
             field: 'coord_y'
-        },
-       cityId: {
-        	type: Sequelize.INTEGER,
-        	model: 'city', // <<< Note, its table's name, not object name
-            key: 'id' 
         }
     }, {
         freezeTableName: true
     }
 );
+City.hasOne(User, {as: 'cityId_fk', foreignKey: 'cityId'});
 
 User.sync({force: true}).then(function () {
     return User.create({

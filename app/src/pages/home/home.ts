@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AnnoncePage } from '../annonce/annonce';
+import { PostAnnoncePage } from '../postAnnonce/postAnnonce';
 import { AnnounceProvider } from '../../providers/announces.provider';
 
 @Component({
@@ -25,6 +26,10 @@ export class HomePage {
     this.navCtrl.push(AnnoncePage, {
       item: item
     });
+  }
+
+  goToPost(event) {
+    this.navCtrl.push(PostAnnoncePage);
   }
 
   getItem() {

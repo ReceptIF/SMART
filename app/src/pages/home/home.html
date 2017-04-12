@@ -19,7 +19,11 @@
       <h3>{{item.address}}</h3>
     </ion-item>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+  
+  <ion-fab right bottom>
+		<button ion-fab color="light" (click)="goToPost($event)">
+      <ion-icon name="send"></ion-icon>
+    </button>
+	</ion-fab>
+  
 </ion-content>

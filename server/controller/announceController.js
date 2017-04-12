@@ -19,6 +19,30 @@ module.exports = function (server) {
         });
     });
 
+    server.get('/announce/category/:category/sale', function (request, response) {
+        Announce.findAll({where: {category: request.params.category, sale: true}}).then(function (data) {
+            response.send(data);
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
+    server.get('/announce/category/:category/purchase', function (request, response) {
+        Announce.findAll({where: {category: request.params.category, sale: false}}).then(function (data) {
+            response.send(data);
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
+    server.get('/announce/:category/sale', function (request, response) {
+        Announce.findAll({where: {category: request.params.category, sale: true}}).then(function (data) {
+            response.send(data);
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
     // POST
     server.post('/announce', function (request, response) {
         Announce.create(request.body).then(function (data) {

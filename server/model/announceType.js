@@ -15,7 +15,7 @@ var AnnounceType = sequelize.define('announce_type', {
     }
 );
 
-AnnounceType.sync({force: true}).then(function () {
+AnnounceType.sync().then(function () {
     return AnnounceType.create({
         name: 'Plomberie',
         icon: 'pipe'

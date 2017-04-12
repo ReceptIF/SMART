@@ -45,7 +45,7 @@ var User = sequelize.define('user', {
 );
 City.hasOne(User, {as: 'cityId_fk', foreignKey: 'cityId'});
 
-User.sync({force: true}).then(function () {
+User.sync().then(function () {
     return User.create({
         email: 'jm.be@smart.pld',
         firstName: 'Jean-Michel',

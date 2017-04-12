@@ -33,7 +33,7 @@ User.hasMany(Transaction, {as: 'sellerId_fk', foreignKey : 'sellerId'});
 User.hasMany(Transaction, {as: 'buyerId_fk', foreignKey : 'buyerId'});
 Announce.hasOne(Transaction, {as: 'announceId_fk', foreignKey: 'announceId'});
 
-Transaction.sync({force: true}).then(function () {
+Transaction.sync().then(function () {
     return Transaction.create({
         transactionDate:'05-05-2015 15:12',
         sellerOk:false,

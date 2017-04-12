@@ -15,7 +15,7 @@ var City = sequelize.define('city', {
     }
 );
 
-City.sync({force: true}).then(function () {
+City.sync().then(function () {
     return City.create({
         name: 'Jean-Michel Villeurbanne',
         postCode: 69100

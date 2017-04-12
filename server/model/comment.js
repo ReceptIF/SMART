@@ -24,7 +24,7 @@ User.hasOne(Comment, {as: 'authorId_fk', foreignKey : 'authorId'});
 User.hasOne(Comment, {as: 'targetId_fk', foreignKey : 'targetId'});
 
 
-Comment.sync({force: true}).then(function () {
+Comment.sync().then(function () {
     return Comment.create({
         title:'Ah! Titre',
         content:'Ah! Very Interesting!',

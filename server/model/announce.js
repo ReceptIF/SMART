@@ -52,7 +52,7 @@ var Announce = sequelize.define('announce', {
 User.hasOne(Announce, {as: 'authorId_fk', foreignKey : 'authorId'});
 AnnounceType.hasOne(Announce, {as: 'typeId_fk', foreignKey: 'typeId'});
 
-Announce.sync({force: true}).then(function () {
+Announce.sync().then(function () {
     return Announce.create({
         price: 500,
         title: 'Aide Plomberie',

@@ -1,5 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../orm');
+User = require('./user');
+AnnounceType = require('./announceType');
 
 var Announce = sequelize.define('announce', {
         price: {
@@ -46,6 +48,9 @@ var Announce = sequelize.define('announce', {
         freezeTableName: true
     }
 );
+
+User.hasOne(Announce, {as: 'authorId_fk', foreignKey : 'authorId'});
+AnnounceType.hasOne(Announce, {as: 'typeId_fk', foreignKey: 'typeId'});
 
 Announce.sync({force: true}).then(function () {
     return Announce.create({

@@ -1,6 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../orm');
 User = require('./user');
+Announce = require('./announce');
 
 var Transaction = sequelize.define('Transaction', {
         transactionDate: {
@@ -30,6 +31,7 @@ var Transaction = sequelize.define('Transaction', {
 
 User.hasMany(Transaction, {as: 'sellerId_fk', foreignKey : 'sellerId'});
 User.hasMany(Transaction, {as: 'buyerId_fk', foreignKey : 'buyerId'});
+Announce.hasOne(Transaction, {as: 'announceId_fk', foreignKey: 'announceId'});
 
 Transaction.sync({force: true}).then(function () {
     return Transaction.create({

@@ -8,6 +8,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { PostAnnoncePage } from '../pages/postAnnonce/postAnnonce';
 import { AnnoncePage } from '../pages/annonce/annonce';
+import { MyAnnoncesPage } from '../pages/myAnnonces/myAnnonces';
 import { AnswerPage } from '../pages/answer/answer';
 import { RecherchePage } from '../pages/recherche/recherche';
 import { LoginPage } from '../pages/login/login';
@@ -22,6 +23,7 @@ import { AnnounceProvider } from '../providers/announces.provider';
     HomePage,
     AnnoncePage,
     AnswerPage,
+	MyAnnoncesPage,
     LoginPage,
     AnnoncePage,
     RecherchePage,
@@ -37,8 +39,9 @@ import { AnnounceProvider } from '../providers/announces.provider';
     MyApp,
     HomePage,
     AnnoncePage,
+	MyAnnoncesPage,
     AnswerPage,
-	  RecherchePage,
+	RecherchePage,
     AnnoncePage,
     LoginPage,
     PostAnnoncePage

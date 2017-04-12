@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AnnoncePage } from '../annonce/annonce';
-import { PostAnnoncePage } from '../postAnnonce/postAnnonce';
 import { AnnounceProvider } from '../../providers/announces.provider';
 
 @Component({
-  selector: 'page-home',
-  templateUrl: 'home.html',
+  selector: 'page-myAnnonces',
+  templateUrl: 'myAnnonces.html',
   providers: [AnnounceProvider]
 })
-export class HomePage {
+export class MyAnnoncesPage {
 
   selectedItem: any;
   items: Array<Service>;
@@ -26,10 +25,6 @@ export class HomePage {
     this.navCtrl.push(AnnoncePage, {
       item: item
     });
-  }
-
-  goToPost(event) {
-    this.navCtrl.push(PostAnnoncePage);
   }
 
   getItem() {

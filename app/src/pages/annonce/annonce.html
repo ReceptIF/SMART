@@ -8,27 +8,20 @@
 </ion-header>
 
 <ion-content padding>
-	<img src="../../assets/unknown.png" id="logo">
-	<h2>{{service.title}}</h2>
-	<div>
-		<div style="float: left; width: 50%;" id="price">
-			<h4>{{price}}</h4>
-		</div>
-		<div style="float: right; width: 50%;" id="location">
-			<h4>{{service.address}}</h4>
-		</div>
-	</div>
+    <img id="logo" [src]="'../../assets/icon/service-type/'+service.type.icon+'.png'">
+	<h1 id="annonce-title">{{service.title}}</h1>
+	<h4 id="price">{{price}}</h4>
+	<h4 id="address">{{service.address}}</h4>
 	<p id="annonce-description">{{service.description}}</p>
 	
 	<div id="start-time">
-		{{startTime}}
-	</div>
-	
-	<div id="end-time">
-		{{endTime}}
+		<ion-icon name="calendar"></ion-icon> De 
+		{{service.startTime}} à 
+		{{service.endTime}}
 	</div>
 	
 	<div id="duration">
+		<ion-icon name="alarm"></ion-icon>
 		{{estimatedTime}}
 	</div>
 	
@@ -38,6 +31,6 @@
 	</div>
 
 	<ion-fab right bottom>
-		<button ion-fab color="light"><ion-icon name="arrow-forward"></ion-icon></button>
+		<button ion-fab color="light" (click)="answerAnnonce($event, service)"><ion-icon name="arrow-forward"></ion-icon></button>
 	</ion-fab>
 </ion-content>

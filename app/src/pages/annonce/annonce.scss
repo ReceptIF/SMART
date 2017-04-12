@@ -1,8 +1,4 @@
-page-annonce {
-
-}
-
-h2 {
+#annonce-title {
     text-align: center;
 }
 
@@ -32,4 +28,13 @@ h2 {
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+#address {
+    color: grey;
+    font-style: italic;
+}
+
+#price {
+    text-align: center;
 }

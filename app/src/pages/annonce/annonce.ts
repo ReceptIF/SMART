@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { AnswerPage } from '../answer/answer';
 
 @Component({
   selector: 'page-annonce',
@@ -54,12 +55,16 @@ export class AnnoncePage {
 			else {
 				this.estimatedTime = minutes+" min";
 			}
-			
-			this.estimatedTime = "Durée : " + this.estimatedTime;
 		}
 
 		if(this.service.creationTime != null) {
 			this.creationTime = "Date de publication : "+this.service.creationTime;			
 		}
-	}	
+	}
+
+	answerAnnonce(event, service) {
+		this.navCtrl.push(AnswerPage, {
+		  service: service
+		});
+	}
 }

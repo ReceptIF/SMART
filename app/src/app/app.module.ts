@@ -4,6 +4,7 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { PostAnnoncePage } from '../pages/postAnnonce/postAnnonce';
 import { AnnoncePage } from '../pages/annonce/annonce';
 import { AnswerPage } from '../pages/answer/answer';
 import { RecherchePage } from '../pages/recherche/recherche';
@@ -17,9 +18,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     AnnoncePage,
-	AnswerPage,
+    AnswerPage,
     LoginPage,
-	RecherchePage
+    AnnoncePage,
+    RecherchePage,
+    PostAnnoncePage
   ],
   imports: [
     BrowserModule,
@@ -30,9 +33,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
     MyApp,
     HomePage,
     AnnoncePage,
-	AnswerPage,
+    AnswerPage,
 	  RecherchePage,
-    LoginPage
+    AnnoncePage,
+    LoginPage,
+    PostAnnoncePage
   ],
   providers: [
     StatusBar,

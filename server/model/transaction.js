@@ -3,7 +3,7 @@ var sequelize = require('../orm');
 User = require('./user');
 Announce = require('./announce');
 
-var Transaction = sequelize.define('Transaction', {
+var Transaction = sequelize.define('transaction', {
         transactionDate: {
             type: Sequelize.DATE,
             field: 'transaction_date'

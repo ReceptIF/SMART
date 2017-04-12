@@ -1,4 +1,5 @@
 var Transaction = require('../model/transaction');
+var Announce = require('../model/announce');
 
 module.exports = function (server) {
 
@@ -21,7 +22,22 @@ module.exports = function (server) {
 
     // POST
     server.post('/transaction', function (request, response) {
-        Transaction.create(request.body).then(function (data) {
+        var body = request.body;
+        var announce = Announce.findById(body.announceId);
+        if (announce.sale) {
+            body.sellerId = announce.authorId;
+            body.buyerId = body.accepterId;
+            body.buyerOk = true;
+            body.sellerOk = false;
+        } else {
+            body.buyerId = announce.authorId;
+            body.sellerId = body.accepterId;
+            body.sellerOk = true;
+            body.buyerOk = false;
+        }
+        body.transactionDate = (new Date()).getTime();
+        body.status = 0;
+        Transaction.create(body).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});

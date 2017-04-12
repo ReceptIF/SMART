@@ -49,7 +49,6 @@ var User = sequelize.define('user', {
     }
 );
 
-City.hasMany(User);
 
 User.sync({force: true}).then(function () {
     return User.create({

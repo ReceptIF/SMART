@@ -3,10 +3,42 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Annonce</ion-title>
+    <ion-title>Réponse</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-	<h1>AH !</h1>
+
+	<ion-item>
+      <ion-avatar item-left>
+        <img [src]="'../../assets/icon/service-type/'+service.type.icon+'.png'">
+      </ion-avatar>
+      <h1>{{service.title}}</h1>
+      <h2>{{service.price}} AH !</h2>
+      <h3>{{service.address}}</h3>
+    </ion-item>
+	
+	<ion-item>
+		<ion-label floating>Nom*</ion-label>
+		<ion-input type="text"></ion-input>
+	</ion-item>
+	
+	<ion-item>
+		<ion-label floating>Mail*</ion-label>
+		<ion-input type="text"></ion-input>
+	</ion-item>
+	
+	<ion-item>
+		<ion-label floating>Téléphone</ion-label>
+		<ion-input type="text"></ion-input>
+	</ion-item>
+	
+	<ion-item>
+		<ion-label floating>Commentaire</ion-label>
+		<ion-textarea rows=5></ion-textarea>
+	</ion-item>
+	
+	<ion-fab right bottom>
+		<button ion-fab color="light" (click)="sendAnswer($event)"><ion-icon name="arrow-forward"></ion-icon></button>
+	</ion-fab>
 </ion-content>

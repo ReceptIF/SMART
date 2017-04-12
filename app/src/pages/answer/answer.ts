@@ -10,7 +10,7 @@ export class AnswerPage {
 	service: Service;
 
 	constructor(public navCtrl: NavController, public params:NavParams) {
-		this.service= params.get("item");
-		
+		console.log("ah");
+		this.service= params.get("service");
 	}
 }

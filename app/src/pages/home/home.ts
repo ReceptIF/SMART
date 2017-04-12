@@ -16,7 +16,8 @@ export class HomePage {
   constructor(public navCtrl: NavController, public navParams: NavParams, private announceProvider : AnnounceProvider) {
 
     this.selectedItem = navParams.get('item');
-    this.announceProvider.getAnnounces().then(announces => {this.items = announces; console.log(announces)});
+	this.items = this.getItem();
+    //this.announceProvider.getAnnounces().then(announces => {this.items = announces; console.log(announces)});
 
   }
 

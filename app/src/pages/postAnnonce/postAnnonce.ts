@@ -7,8 +7,16 @@ import { NavController } from 'ionic-angular';
 })
 export class PostAnnoncePage {
 
+  annonceType : boolean;
+
   constructor(public navCtrl: NavController) {
+    
+    this.annonceType = false;
+    
+  }
   
+  changeType(type) {
+    this.annonceType = type;
   }
 
 }

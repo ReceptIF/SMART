@@ -49,7 +49,6 @@ var User = sequelize.define('user', {
     }
 );
 
-
 User.sync({force: true}).then(function () {
     return User.create({
         email: 'jm.be@smart.pld',

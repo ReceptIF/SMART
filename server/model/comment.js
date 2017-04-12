@@ -14,17 +14,7 @@ var Comment = sequelize.define('comment', {
         note: {
             type: Sequelize.INTEGER,
             field: 'note'
-        }/*,
-        authorId: {
-            type: Sequelize.INTEGER,
-            model: 'user',
-            key:   'id'
-        },
-        targetId: {
-            type: Sequelize.INTEGER,
-            model: 'user',
-            key:   'id'
-    }*/
+        }
     }, {
         freezeTableName: true
     }

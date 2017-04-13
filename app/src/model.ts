@@ -21,3 +21,16 @@
     name: string;
     icon: string;
   }
+
+  interface User {
+    id: number;
+    email : string;
+    firstName : string;
+    lastName : string;
+    cellphone? : string;
+    address? : string;
+    ahAmont : number;
+    coordX? : number;
+    coordY? : number;
+    cityId? : number;
+  }

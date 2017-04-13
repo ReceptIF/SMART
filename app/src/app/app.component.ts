@@ -15,18 +15,20 @@ import { RecherchePage } from '../pages/recherche/recherche';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
-
+  rootPage: any = HomePage
   pages: Array<{title: string, component: any}>;
+  
+  connectedUser : User;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
+    this.connectedUser = { id:1, email:'denis.brogniard@gmail.com', firstName:'Denis', lastName : 'BROGNIART', ahAmont: 42 };
 
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: HomePage },
-	  { title: 'Recherche', component: RecherchePage },
-	  { title: 'Mes Annonces', component: MyAnnoncesPage },
+	    { title: 'Recherche', component: RecherchePage },
+	    { title: 'Mes Annonces', component: MyAnnoncesPage },
       { title: 'Login', component: LoginPage },
       { title: 'Poster une annonce', component: PostAnnoncePage }
     ];

@@ -9,8 +9,11 @@ import { PostAnnoncePage } from '../pages/postAnnonce/postAnnonce';
 import { LoginPage } from '../pages/login/login';
 import { RecherchePage } from '../pages/recherche/recherche';
 
+import { UserProvider } from '../providers/users.provider';
+
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  providers: [UserProvider]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -20,9 +23,10 @@ export class MyApp {
   
   connectedUser : User;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private userProvider : UserProvider) {
     this.initializeApp();
     this.connectedUser = { id:1, email:'denis.brogniard@gmail.com', firstName:'Denis', lastName : 'BROGNIART', ahAmont: 42 };
+    //this.userProvider.getUser(1).then(user => {this.connectedUser = user; console.log(user)});
 
     // used for an example of ngFor and navigation
     this.pages = [

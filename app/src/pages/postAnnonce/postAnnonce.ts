@@ -47,7 +47,9 @@ export class PostAnnoncePage {
                   startTime : this.startAt,
                   endTime : this.endAt,
                   address : this.address,
-                  sale : false
+                  sale : false,
+                  typeId : this.categorie,
+                  authorId : 1
                 };
                 
                 this.announceProvider.postAnnounce(annonce);

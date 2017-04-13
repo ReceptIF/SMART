@@ -12,29 +12,29 @@
 	<h1 id="annonce-title">{{service.title}}</h1>
 	<h4 id="price">{{price}}</h4>
 	<h4 id="address">{{service.address}}</h4>
-	
+
 	<hr/>
 	<p id="annonce-description">{{service.description}}</p>
 	<hr/>
-	
+
 	<div id="start-time">
-		<ion-icon name="calendar"></ion-icon> De 
-		{{service.startTime}} à 
-		{{service.endTime}}
+		<ion-icon name="calendar"></ion-icon> De
+		{{service.startTime | date:'dd/MM/yyyy hh:mm'}} à
+		{{service.endTime | date:'dd/MM/yyyy hh:mm'}}
 	</div>
-	
+
 	<div id="duration">
 		<ion-icon name="alarm"></ion-icon>
 		{{estimatedTime}}
 	</div>
-	
+
 	<br/>
 	<div id="publication-date">
 		{{creationTime}}
 	</div>
-  
+
   <hr/>
-  
+
 
 	<ion-fab right bottom>
 		<button ion-fab color="light" (click)="answerAnnonce($event, service)"><ion-icon name="send"></ion-icon></button>

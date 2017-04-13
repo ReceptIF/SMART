@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import { GlobalConstants } from '../app/app.constants';
 import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AnnounceProvider {
   cachedAnnounces : any;
+  headers : Headers;
+  options : RequestOptions;
 
   constructor(private http: Http) {
     this.cachedAnnounces = this.getAnnounces();
+    this.headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    this.options = new RequestOptions({ headers: this.headers });
   }
 
   getAnnounces() {
@@ -36,7 +40,7 @@ export class AnnounceProvider {
 
   postAnnounce(announce) {
     return new Promise(resolve => {
-      this.http.post(GlobalConstants.urlServer + '/announce', announce)
+      this.http.post(GlobalConstants.urlServer + '/announce', announce, this.options)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

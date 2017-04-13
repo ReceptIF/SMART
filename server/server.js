@@ -7,7 +7,8 @@ var Model = require('./model');
 
 // Load resources to be accessed without specific services
 var server = express();
-server.use(bodyParser.json());
+server.use(bodyParser.json());                          // to support JSON-encoded bodies
+server.use(bodyParser.urlencoded({extended: true}));       // to support URL-encoded bodies
 server.use('/resources', express.static(path.resolve('../ihm/resources')));
 
 server.get('/', function (request, response) {

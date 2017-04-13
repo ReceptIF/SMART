@@ -14,8 +14,8 @@
     <ion-item>
       <ion-grid>
         <ion-row>
-          <ion-col col-6 class="buttonNeed"><button ion-button [outline]="annonceType" (click)="changeType(false);">Demander<br/>un service</button></ion-col>
-          <ion-col col-6 class="buttonWork"><button ion-button [outline]="!annonceType" (click)="changeType(true);">Proposer<br/>un service</button></ion-col>
+          <ion-col col-6><button ion-button [outline]="annonceType" (click)="changeType(false);">Demander<br/>un service</button></ion-col>
+          <ion-col col-6><button ion-button [outline]="!annonceType" (click)="changeType(true);">Proposer<br/>un service</button></ion-col>
         </ion-row>
       </ion-grid>
     </ion-item>
@@ -23,11 +23,11 @@
     <h2><ion-icon name="chatbubbles"></ion-icon> Description</h2>
     <ion-item>
       <ion-label stacked>Titre de l'annonce</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="title"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label stacked>Description de l'annonce</ion-label>
-      <ion-textarea rows="5"></ion-textarea>
+      <ion-textarea rows="5" [(ngModel)]="description"></ion-textarea>
     </ion-item>
     
     <ion-item>
@@ -43,11 +43,11 @@
     <h2><ion-icon name="cash"></ion-icon> Tarification</h2>
     <ion-item>
       <ion-label>Nombre de AH! :</ion-label>
-      <ion-input type="number" min="0" max="100"></ion-input>
+      <ion-input type="number" min="0" max="100" [(ngModel)]="price"></ion-input>
     </ion-item>
     
     <h2><ion-icon name="home"></ion-icon> Adresse</h2>
-    <ion-list radio-group>
+    <ion-list radio-group [(ngModel)]="address">
       <ion-item>
         <ion-label>Domicile</ion-label>
         <ion-radio checked="true" value="0"></ion-radio>
@@ -61,21 +61,21 @@
     <h2><ion-icon name="time"></ion-icon> Période</h2>
     <ion-item>
       <ion-label>Date de début</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="startAt"></ion-datetime>
     </ion-item>
     
     <ion-item>
       <ion-label>Date de fin</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="endAt"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Durée estimée (min)</ion-label>
-      <ion-input type="number" min="0" max="5000"></ion-input>
+      <ion-input type="number" min="0" max="5000" [(ngModel)]="estimatedTime"></ion-input>
     </ion-item>
     
   </ion-list>
 
-  <button ion-button block>Poster l'annonce</button>
+  <button ion-button block (click)="sendAnnonce();">Poster l'annonce</button>
 
 </ion-content>
 

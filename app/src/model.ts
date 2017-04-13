@@ -7,7 +7,7 @@
     estimatedTime?: number;
     startTime?: string;
     endTime?: string;
-    creationTime?: string;
+    createdAt?: string;
     address: string;
     coordX?: number;
     coordY?: number;

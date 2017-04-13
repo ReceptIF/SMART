@@ -13,7 +13,7 @@ export class AnnoncePage {
 	startTime: string;
 	endTime: string;
 	estimatedTime: string;
-	creationTime: string;
+	createdAt: string;
 
 	constructor(public navCtrl: NavController, public params:NavParams) {
 		this.service= params.get("item");
@@ -57,8 +57,8 @@ export class AnnoncePage {
 			}
 		}
 
-		if(this.service.creationTime != null) {
-			this.creationTime = "Date de publication : "+this.service.creationTime;			
+		if(this.service.createdAt != null) {
+			this.createdAt = "Date de publication : "+this.service.createdAt;			
 		}
 	}
 

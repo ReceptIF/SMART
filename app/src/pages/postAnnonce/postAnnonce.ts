@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
+import { AnnounceProvider } from '../../providers/announces.provider';
 
 @Component({
   selector: 'page-postAnnonce',
-  templateUrl: 'postAnnonce.html'
+  templateUrl: 'postAnnonce.html',
+  providers: [AnnounceProvider]
 })
 export class PostAnnoncePage {
 
@@ -19,7 +21,7 @@ export class PostAnnoncePage {
   endAt : string;
   estimatedTime : number;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, private announceProvider : AnnounceProvider) {
     
     this.annonceType = false;
     
@@ -48,6 +50,7 @@ export class PostAnnoncePage {
                   sale : false
                 };
                 
+                this.announceProvider.postAnnounce(annonce);
                 console.log(annonce);
                 
               } else { this.showToast("Vous devez indiquer à combien de temps vous estimez la réalisation de la tâche."); }

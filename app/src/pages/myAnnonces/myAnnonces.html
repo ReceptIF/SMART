@@ -3,12 +3,13 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Page d'accueil</ion-title>
+    <ion-title>Mes annonces</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
+    <ion-list-header>Annonces en cours</ion-list-header>
     <ion-item class="myAnnonces-annonce" *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-avatar item-left>
         <img [src]="'../../assets/icon/service-type/shop.png'">
@@ -16,9 +17,19 @@
       <h1>{{item.title}}</h1>
       <h2>{{item.price}} AH!</h2>
       <h3>En cours</h3>
+      <p class="anwser-nb"><ion-icon name="chatbubbles"></ion-icon> 5</p>
     </ion-item>
   </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+  
+  <ion-list>
+    <ion-list-header>Annonces terminées</ion-list-header>
+    <ion-item class="myAnnonces-annonce" *ngFor="let item of itemsClosed" (click)="itemTapped($event, item)">
+      <ion-avatar item-left>
+        <img [src]="'../../assets/icon/service-type/shop.png'">
+      </ion-avatar>
+      <h1>{{item.title}}</h1>
+      <h2>{{item.price}} AH!</h2>
+      <h3>Terminée</h3>
+    </ion-item>
+  </ion-list>
 </ion-content>

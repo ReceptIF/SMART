@@ -25,5 +25,18 @@ export class AnnounceProvider {
         });
     });
   }
+  
+  postAnnounce(announce) {
+    
+    var ret;
+  
+    this.http.post(GlobalConstants.urlServer + '/announce',announce)
+      .map(res => res.json())
+      .subscribe(
+          data => ret = data
+    );
+    
+  }
+  
 }
 

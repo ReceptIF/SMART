@@ -12,12 +12,18 @@ export class MyAnnoncesPage {
 
   selectedItem: any;
   items: Array<Service>;
+  itemsClosed: Array<Service>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private announceProvider : AnnounceProvider) {
 
     this.selectedItem = navParams.get('item');
-	//this.items = this.getItem();
-    this.announceProvider.getAnnounces().then(announces => {this.items = announces; console.log(announces)});
+    
+    this.items = [];
+    this.itemsClosed = [];
+    this.items.push(this.getItem(0));
+    this.itemsClosed.push(this.getItem(1));
+    
+    //this.announceProvider.getAnnounces().then(announces => {this.items = announces; console.log(announces)});
 
   }
 
@@ -27,7 +33,7 @@ export class MyAnnoncesPage {
     });
   }
 
-  getItem() {
+  getItem(id) {
 
     var ret = [
       {
@@ -103,7 +109,7 @@ export class MyAnnoncesPage {
       }
     ];
 
-    return ret;
+    return ret[id];
 
   }
 

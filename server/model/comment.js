@@ -5,24 +5,28 @@ User = require('./user');
 var Comment = sequelize.define('comment', {
         title: {
             type: Sequelize.STRING,
-            field: 'title'
+            field: 'title',
+            allowNull: false
         },
         content: {
-            type: Sequelize.STRING,
-            field: 'content'
+            type: Sequelize.TEXT,
+            field: 'content',
+            allowNull: false
         },
         note: {
             type: Sequelize.INTEGER,
-            field: 'note'
+            field: 'note',
+            allowNull: false
         }
     }, {
         freezeTableName: true
     }
 );
 
-User.hasOne(Comment, {as: 'authorId_fk', foreignKey : 'authorId'});
-User.hasOne(Comment, {as: 'targetId_fk', foreignKey : 'targetId'});
-
+User.hasMany(Comment, {as: 'authorId_fk', foreignKey : 'authorId'});
+Comment.belongsTo(User, {foreignKey : 'authorId'});
+User.hasMany(Comment, {as: 'targetId_fk', foreignKey : 'targetId'});
+Comment.belongsTo(User, {foreignKey : 'targetId'});
 
 Comment.sync().then(function () {
     return Comment.create({

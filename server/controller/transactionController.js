@@ -1,11 +1,12 @@
 var Transaction = require('../model/transaction');
 var Announce = require('../model/announce');
+var User = require('../model/user');
 
 module.exports = function (server) {
 
     // GET
     server.get('/transactions', function (request, response) {
-        Transaction.findAll().then(function (data) {
+        Transaction.findAll({include: [Announce, User]}).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});
@@ -13,7 +14,7 @@ module.exports = function (server) {
     });
 
     server.get('/transaction/:id', function (request, response) {
-        Transaction.findById(request.params.id).then(function (data) {
+        Transaction.findById(request.params.id, {include: [Announce, User]}).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});

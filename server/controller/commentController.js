@@ -1,10 +1,11 @@
 var Comment = require('../model/comment');
+var User = require('../model/user');
 
 module.exports = function (server) {
 
     // GET
     server.get('/comments', function (request, response) {
-        Comment.findAll().then(function (data) {
+        Comment.findAll({include: [User]}).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});
@@ -12,7 +13,7 @@ module.exports = function (server) {
     });
 
     server.get('/comment/:id', function (request, response) {
-        Comment.findById(request.params.id).then(function (data) {
+        Comment.findById(request.params.id, {include: [User]}).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});

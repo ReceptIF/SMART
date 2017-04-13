@@ -5,45 +5,54 @@ City = require('./city');
 var User = sequelize.define('user', {
         email: {
             type: Sequelize.STRING,
-            field: 'email'
+            field: 'email',
+            allowNull: false,
+            unique: true
         },
         firstName: {
             type: Sequelize.STRING,
-            field: 'first_name'
+            field: 'firstName',
+            allowNull: false
         },
         lastName: {
             type: Sequelize.STRING,
-            field: 'last_name'
+            field: 'lastName',
+            allowNull: false
         },
         cellPhone: {
             type: Sequelize.STRING(10),
-            field: 'cell_phone'
+            field: 'cellPhone',
+            allowNull: false
         },
         address: {
             type: Sequelize.STRING,
-            field: 'address'
+            field: 'address',
+            allowNull: false
         },
         ahAmount: {
             type: Sequelize.INTEGER,
-            field: 'ah_amount'
+            field: 'ahAmount',
+            allowNull: false
         },
         password: {
             type: Sequelize.STRING,
-            field: 'password'
+            field: 'password',
+            allowNull: false
         },
         coordX: {
             type: Sequelize.FLOAT,
-            field: 'coord_x'
+            field: 'coordX'
         },
         coordY: {
             type: Sequelize.FLOAT,
-            field: 'coord_y'
+            field: 'coordY'
         }
     }, {
         freezeTableName: true
     }
 );
-City.hasOne(User, {as: 'cityId_fk', foreignKey: 'cityId'});
+City.hasMany(User, {as: 'cityId_fk', foreignKey: 'cityId'});
+User.belongsTo(City, {foreignKey: 'cityId'});
 
 User.sync().then(function () {
     return User.create({

@@ -4,7 +4,8 @@ var sequelize = require('../orm');
 var AnnounceType = sequelize.define('announce_type', {
         name: {
             type: Sequelize.STRING,
-            field: 'name'
+            field: 'name',
+            allowNull: false
         },
         icon: {
             type: Sequelize.STRING,

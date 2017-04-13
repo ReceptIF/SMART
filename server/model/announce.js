@@ -6,51 +6,58 @@ AnnounceType = require('./announceType');
 var Announce = sequelize.define('announce', {
         price: {
             type: Sequelize.INTEGER,
-            field: 'price'
+            field: 'price',
+            allowNull: false
         },
         title: {
             type: Sequelize.STRING,
-            field: 'title'
+            field: 'title',
+            allowNull: false
         },
         description: {
-            type: Sequelize.STRING,
-            field: 'description'
+            type: Sequelize.TEXT,
+            field: 'description',
+            allowNull: false
         },
         estimatedTime: {
             type: Sequelize.INTEGER,
-            field: 'estimated_time'
+            field: 'estimatedTime'
         },
         startTime: {
             type: Sequelize.DATE,
-            field: 'start_time'
+            field: 'startTime'
         },
         endTime: {
             type: Sequelize.DATE,
-            field: 'end_time'
+            field: 'endTime'
         },
         address: {
             type: Sequelize.STRING,
-            field: 'address'
+            field: 'address',
+            allowNull: false
         },
         coordX: {
             type: Sequelize.FLOAT,
-            field: 'coord_x'
+            field: 'coordX'
         },
         coordY: {
             type: Sequelize.FLOAT,
-            field: 'coord_y'
+            field: 'coordY'
         },
         sale: {
             type: Sequelize.BOOLEAN,
-            field: 'sale'
+            field: 'sale',
+            allowNull: false
         }
     }, {
         freezeTableName: true
     }
 );
 
-User.hasOne(Announce, {as: 'authorId_fk', foreignKey : 'authorId'});
-AnnounceType.hasOne(Announce, {as: 'typeId_fk', foreignKey: 'typeId'});
+User.hasMany(Announce, {as: 'authorId_fk', foreignKey: 'authorId'});
+Announce.belongsTo(User, {foreignKey: 'authorId'});
+AnnounceType.hasMany(Announce, {as: 'typeId_fk', foreignKey: 'typeId'});
+Announce.belongsTo(AnnounceType, {foreignKey: 'typeId'});
 
 Announce.sync().then(function () {
     return Announce.create({

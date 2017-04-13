@@ -4,11 +4,14 @@ var sequelize = require('../orm');
 var City = sequelize.define('city', {
         name: {
             type: Sequelize.STRING,
-            field: 'name'
+            field: 'name',
+            allowNull: false,
+            unique: true
         },
         postCode: {
             type: Sequelize.STRING,
-            field: 'postcode'
+            field: 'postCode',
+            allowNull: false
         }
     }, {
         freezeTableName: true

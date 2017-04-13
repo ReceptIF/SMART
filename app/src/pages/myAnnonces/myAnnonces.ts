@@ -49,7 +49,7 @@ export class MyAnnoncesPage {
         coordX:45.7831199,
         coordY:4.87103,
         bool:false,
-        type:{id:0,name:'Bricolage',icon:'tinkering'}
+        announce_type:{id:0,name:'Bricolage',icon:'tinkering'}
       },{
         id:1,
         price:5,
@@ -63,7 +63,7 @@ export class MyAnnoncesPage {
         coordX:45.765501,
         coordY:4.8275544,
         bool:false,
-        type:{id:1,name:'Soutien scolaire',icon:'study'}
+        announce_type:{id:1,name:'Soutien scolaire',icon:'study'}
       },{
         id:2,
         price:13,
@@ -77,7 +77,7 @@ export class MyAnnoncesPage {
         coordX:45.7324045,
         coordY:4.8635009,
         bool:false,
-        type:{id:2,name:'Courses',icon:'shop'}
+        announce_type:{id:2,name:'Courses',icon:'shop'}
       },{
         id:3,
         price:17,
@@ -91,7 +91,7 @@ export class MyAnnoncesPage {
         coordX:45.7687207,
         coordY:4.9622913,
         bool:false,
-        type:{id:0,name:'Bricolage',icon:'tinkering'}
+        announce_type:{id:0,name:'Bricolage',icon:'tinkering'}
       },{
         id:4,
         price:7,
@@ -105,7 +105,7 @@ export class MyAnnoncesPage {
         coordX:45.7538855,
         coordY:4.8763748,
         bool:false,
-        type:{id:3,name:'Garde d\enfants',icon:'child'}
+        announce_type:{id:3,name:'Garde d\enfants',icon:'child'}
       }
     ];
 

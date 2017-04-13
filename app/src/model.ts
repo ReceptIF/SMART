@@ -12,7 +12,8 @@
     coordX?: number;
     coordY?: number;
     sale?: boolean;
-    type: ServiceType;
+    announce_type: ServiceType;
+    typeId?: number;
   }
 
   interface ServiceType {

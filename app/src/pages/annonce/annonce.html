@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content padding>
-    <img id="logo" [src]="'../../assets/icon/service-type/shop.png'">
+    <img id="logo" [src]="'../../assets/icon/service-type/'+service.announce_type.icon+'.png'">
 	<h1 id="annonce-title">{{service.title}}</h1>
 	<h4 id="price">{{price}}</h4>
 	<h4 id="address">{{service.address}}</h4>
@@ -32,8 +32,11 @@
 	<div id="publication-date">
 		{{creationTime}}
 	</div>
+  
+  <hr/>
+  
 
 	<ion-fab right bottom>
-		<button ion-fab color="light" (click)="answerAnnonce($event, service)"><ion-icon name="arrow-forward"></ion-icon></button>
+		<button ion-fab color="light" (click)="answerAnnonce($event, service)"><ion-icon name="send"></ion-icon></button>
 	</ion-fab>
 </ion-content>

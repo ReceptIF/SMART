@@ -25,18 +25,38 @@ export class AnnounceProvider {
         });
     });
   }
-  
-  postAnnounce(announce) {
-    
-    var ret;
-  
-    this.http.post(GlobalConstants.urlServer + '/announce',announce)
-      .map(res => res.json())
-      .subscribe(
-          data => ret = data
-    );
-    
+
+  getAnnounce(announceId) {
+    return new Promise(resolve => {
+      this.http.get(GlobalConstants.urlServer + '/announce/' + announceId)
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
   }
-  
+
+  postAnnounce(announce) {
+    return new Promise(resolve => {
+      this.http.post(GlobalConstants.urlServer + '/announce', announce)
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
+
+  putAnnounce(announce) {
+    return new Promise(resolve => {
+      this.http.put(GlobalConstants.urlServer + '/announce', announce)
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
+
+  deleteAnnounce(announceId) {
+    return new Promise(resolve => {
+      this.http.delete(GlobalConstants.urlServer + '/announce/' + announceId)
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
+
 }
 

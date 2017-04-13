@@ -6,12 +6,12 @@
   </ion-header>
 
   <ion-content>
-    <ion-item>
+    <ion-item *ngIf="connectedUser">
       <ion-avatar item-left>
         <img src="../../assets/ahDenis.jpg">
       </ion-avatar>
       <h2>{{connectedUser.firstName}} {{connectedUser.lastName}}</h2>
-      <p><ion-icon name="cash"></ion-icon> {{connectedUser.ahAmont}} AH!</p>
+      <p><ion-icon name="cash"></ion-icon> {{connectedUser.ahAmount}} AH!</p>
     </ion-item>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">

@@ -18,15 +18,16 @@ import { UserProvider } from '../providers/users.provider';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage
+  rootPage: any = HomePage;
   pages: Array<{title: string, component: any}>;
-  
-  connectedUser : User;
+
+  //connectedUser : User; TODO MAJ Interface to fit
+  connectedUser : any;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private userProvider : UserProvider) {
     this.initializeApp();
-    this.connectedUser = { id:1, email:'denis.brogniard@gmail.com', firstName:'Denis', lastName : 'BROGNIART', ahAmont: 42 };
-    //this.userProvider.getUser(1).then(user => {this.connectedUser = user; console.log(user)});
+    //this.connectedUser = { id:1, email:'denis.brogniard@gmail.com', firstName:'Denis', lastName : 'BROGNIART', ahAmont: 42 };
+    this.userProvider.getUser(1).then(user => {this.connectedUser = user; console.log(user)});
 
     // used for an example of ngFor and navigation
     this.pages = [

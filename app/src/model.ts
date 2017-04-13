@@ -29,7 +29,7 @@
     lastName : string;
     cellphone? : string;
     address? : string;
-    ahAmont : number;
+    ahAmount : number;
     coordX? : number;
     coordY? : number;
     cityId? : number;

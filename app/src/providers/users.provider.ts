@@ -7,19 +7,16 @@ import 'rxjs/add/operator/map';
 export class UserProvider {
 
   constructor(private http: Http) {
-  
+
   }
 
   getUser(userId) {
-    
-    var ret;
-    
-    this.http.get(GlobalConstants.urlServer + '/user/' + userId)
+    return new Promise(resolve => {
+      this.http.get(GlobalConstants.urlServer + '/user/' + userId)
         .map(res => res.json())
-        .subscribe(data => ret = data);
-        
-    return ret;
+        .subscribe(data => resolve(data));
+    });
   }
-  
+
 }
 

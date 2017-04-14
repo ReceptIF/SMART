@@ -36,14 +36,14 @@ export class AnnoncePage {
 		}
 
 		if(this.service.estimatedTime != null) {
-			var minutes = this.service.estimatedTime;
 			var time: number;
 			var days;
-			var hours;
-			time = Math.trunc(minutes/60);
+			time = Math.trunc(this.service.estimatedTime/60);
+			var minutes = time*60 - this.service.estimatedTime;
+			var hours = time % 24;
+			console.log(time)
 			if(time >= 24) {
 				days = Math.trunc(time/24);
-				hours = time % 24;
 				if(days == 1) {
 					this.estimatedTime = days + " jour";
 				}
@@ -58,7 +58,11 @@ export class AnnoncePage {
 				}
 			}
 			else if(time > 0) {
-				this.estimatedTime = hours+"h"+minutes
+				if(minutes < 10) {
+					this.estimatedTime = hours+" h 0"+minutes
+				} else {
+					this.estimatedTime = hours+" h "+minutes				
+				}
 			}
 			else {
 				this.estimatedTime = minutes+" min";

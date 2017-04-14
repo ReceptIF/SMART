@@ -10,15 +10,15 @@
 <ion-content>
   <ion-list>
     <ion-list-header>Annonces en cours</ion-list-header>
-    <ion-item class="myAnnonces-annonce" *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-avatar item-left>
-        <img [src]="'../../assets/icon/service-type/'+item.announce_type.icon+'.png'">
-      </ion-avatar>
-      <h1>{{item.title}}</h1>
-      <h2>{{item.price}} AH!</h2>
-      <h3>En cours</h3>
-      <p class="anwser-nb"><ion-icon name="chatbubbles"></ion-icon> 5</p>
-    </ion-item>
+      <ion-item *ngFor="let item of itemsOpen" class="myAnnonces-annonce" (click)="itemTapped($event, item)">
+        <ion-avatar item-left>
+          <img [src]="'../../assets/icon/service-type/'+item.announce_type.icon+'.png'">
+        </ion-avatar>
+        <h1>{{item.title}}</h1>
+        <h2>{{item.price}} AH!</h2>
+        <h3>En cours</h3>
+        <p class="anwser-nb"><ion-icon name="chatbubbles"></ion-icon> 5</p>
+      </ion-item>
   </ion-list>
   
   <ion-list>

@@ -13,19 +13,30 @@ export class MyAnnoncesPage {
 
   selectedItem: any;
   connectedUser: any;
-  items: Array<Service>;
-  itemsClosed: Array<Service>;
+  items: any;
+  itemsOpen: any;
+  itemsClosed: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private announceProvider : AnnounceProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+      private announceProvider : AnnounceProvider, private userProvider: UserProvider) {
 
     this.selectedItem = navParams.get('item');
-    
     this.items = [];
+    this.itemsOpen = [];
     this.itemsClosed = [];
-    this.items.push(this.getItem(0));
-    this.itemsClosed.push(this.getItem(1));
     
-    //this.announceProvider.getAnnounceByUser().then(announces => {this.items = announces; console.log(announces)});
+    this.userProvider.getConnectedUser().then( user => {
+	    this.connectedUser = user;
+      this.announceProvider.getAnnounceByUser(this.connectedUser.id).then(
+        announces => {
+          this.items = announces;
+          for(var i=0; i < this.items.length; i++) {
+            if(this.items[i].closed) { this.itemsClosed.push(this.items[i]); 
+            } else { this.itemsOpen.push(this.items[i]);  }
+          }
+        }
+      );
+    });
 
   }
 
@@ -33,91 +44,6 @@ export class MyAnnoncesPage {
     this.navCtrl.push(AnnoncePage, {
       item: item
     });
-  }
-
-  getItem(id) {
-
-    var ret = [
-      {
-        id:0,
-        price:12,
-        title:'Refaire la plomberie',
-        description:'J\'ai quelques tuyaux bouchés',
-        estimatedTime:35,
-        startTime:'01/04/2017',
-        endTime:'01/05/2017',
-        creationTime:'01/04/2017',
-        address:'Campus de la Doua, Villeurbanne',
-        coordX:45.7831199,
-        coordY:4.87103,
-        bool:false,
-        announce_type:{id:0,name:'Bricolage',icon:'tinkering', createdAt:'12-05-2017', updatedAt:'12-06-2017'},
-        user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
-      },{
-        id:1,
-        price:5,
-        title:'Cours de français 3ème',
-        description:'Mon fils est sur le point de rater son brevet, il ne connaît pas les anaphores.',
-        estimatedTime:120,
-        startTime:'01/04/2017',
-        endTime:'01/05/2017',
-        creationTime:'01/04/2017',
-        address:'Les Terreaux, Lyon',
-        coordX:45.765501,
-        coordY:4.8275544,
-        bool:false,
-        announce_type:{id:1,name:'Soutien scolaire',icon:'study', createdAt:'12-05-2017', updatedAt:'12-06-2017'},
-        user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
-      },{
-        id:2,
-        price:13,
-        title:'Me ramener une baguette',
-        description:'Je me suis cassée la hanche. J\'ai donc besoin que quelqu\'un aille me chercher du pain à ma place pour mes tartines de fromage fondu.',
-        estimatedTime:30,
-        startTime:'01/04/2017',
-        endTime:'01/05/2017',
-        creationTime:'01/04/2017',
-        address:'Etats-Unis, Lyon',
-        coordX:45.7324045,
-        coordY:4.8635009,
-        bool:false,
-        announce_type:{id:2,name:'Courses',icon:'shop', createdAt:'12-05-2017', updatedAt:'12-06-2017'},
-        user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
-      },{
-        id:3,
-        price:17,
-        title:'Peindre la chambre de mon fils John',
-        description:'Mon fils John va bientôt naître mais je n\'ai pas les capacités techniques pour réaliser cette tâche. Il n\'y a que 24m² à peindre.',
-        estimatedTime:360,
-        startTime:'01/04/2017',
-        endTime:'01/05/2017',
-        creationTime:'01/04/2017',
-        address:'Le Mollard, Décines-Charpieu',
-        coordX:45.7687207,
-        coordY:4.9622913,
-        bool:false,
-        announce_type:{id:0,name:'Bricolage',icon:'tinkering', createdAt:'12-05-2017', updatedAt:'12-06-2017'},
-        user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
-      },{
-        id:4,
-        price:7,
-        title:'Recherche clown pour anniversaire',
-        description:'Ma fille aînée Mélissa va bientôt fêter ses 4 ans et elle a décidé d\'inviter toutes ses copines à son anniversaire !. Il me faudrait quelqu\'un de confiance pour animer les enfants. Pédophiles s\'abstenir.',
-        estimatedTime:340,
-        startTime:'01/04/2017',
-        endTime:'01/05/2017',
-        creationTime:'01/04/2017',
-        address:'Montchat, Lyon',
-        coordX:45.7538855,
-        coordY:4.8763748,
-        bool:false,
-        announce_type:{id:3,name:'Garde d\enfants',icon:'child', createdAt:'12-05-2017', updatedAt:'12-06-2017'},
-        user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
-      }
-    ];
-
-    return ret[id];
-
   }
 
 }

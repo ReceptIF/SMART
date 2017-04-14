@@ -40,7 +40,7 @@ export class AnnounceProvider {
 
   getAnnounceByUser(userId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announce/by/' + userId)
+      this.http.get(GlobalConstants.urlServer + '/announces/by/' + userId)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

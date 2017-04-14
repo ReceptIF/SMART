@@ -49,7 +49,8 @@ export class MyAnnoncesPage {
         coordX:45.7831199,
         coordY:4.87103,
         bool:false,
-        announce_type:{id:0,name:'Bricolage',icon:'tinkering'}
+        announce_type:{id:0,name:'Bricolage',icon:'tinkering'},
+        user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
       },{
         id:1,
         price:5,

@@ -38,6 +38,14 @@ export class AnnounceProvider {
     });
   }
 
+  getAnnounceByUser(userId) {
+    return new Promise(resolve => {
+      this.http.get(GlobalConstants.urlServer + '/announce/by/' + userId)
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
+
   postAnnounce(announce) {
     return new Promise(resolve => {
       this.http.post(GlobalConstants.urlServer + '/announce', announce)

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AnnoncePage } from '../annonce/annonce';
 import { AnnounceProvider } from '../../providers/announces.provider';
+import { UserProvider } from '../../providers/users.provider';
 
 @Component({
   selector: 'page-myAnnonces',
@@ -11,6 +12,7 @@ import { AnnounceProvider } from '../../providers/announces.provider';
 export class MyAnnoncesPage {
 
   selectedItem: any;
+  connectedUser: any;
   items: Array<Service>;
   itemsClosed: Array<Service>;
 
@@ -23,7 +25,7 @@ export class MyAnnoncesPage {
     this.items.push(this.getItem(0));
     this.itemsClosed.push(this.getItem(1));
     
-    //this.announceProvider.getAnnounces().then(announces => {this.items = announces; console.log(announces)});
+    //this.announceProvider.getAnnounceByUser().then(announces => {this.items = announces; console.log(announces)});
 
   }
 

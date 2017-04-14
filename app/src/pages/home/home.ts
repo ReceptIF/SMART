@@ -22,7 +22,7 @@ export class HomePage {
     this.items = [];
 	  this.userProvider.getConnectedUser().then( user => {
 	    this.connectedUser = user;
-      this.announceProvider.getAnnounceByUser(this.connectedUser.id).then(
+      this.announceProvider.getAnnounces().then(
         announces => {
           this.items = announces;
         }

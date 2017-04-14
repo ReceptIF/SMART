@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AnswerPage } from '../answer/answer';
+import { CheckTransactionPage } from '../checkTransaction/checkTransaction';
 import { UserProvider } from '../../providers/users.provider';
 
 @Component({
@@ -71,6 +72,12 @@ export class AnnoncePage {
 
 	answerAnnonce(event, service) {
 		this.navCtrl.push(AnswerPage, {
+		  service: service
+		});
+	}
+
+	checkTransaction(event, service) {
+		this.navCtrl.push(CheckTransactionPage, {
 		  service: service
 		});
 	}

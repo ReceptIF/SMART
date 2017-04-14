@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Réponse à votre annonce
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-card>
+      <ion-card-content>
+        <p>Bonjour monsieur, <br/> Je suis expert en plomberie (je suis titulaire d'un bac pro plomberie). Je devrais donc pouvoir déboucher tout ça lol. <br/> Au plaisir !</p>
+      </ion-card-content>
+    </ion-card>
+    <ion-item>
+      <ion-avatar item-left>
+        <img src="../../assets/jm.png">
+      </ion-avatar>
+      <h2>Jean-Michel Réponse</h2>
+      <p><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon> 4,5/5</p>
+    </ion-item>
+    <ion-item>
+      <button ion-button block icon-left><ion-icon name="checkmark"></ion-icon> Choisir cette réponse</button>
+      <button ion-button block icon-left><ion-icon name="trash"></ion-icon> Refuser cette réponse</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

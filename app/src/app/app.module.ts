@@ -12,6 +12,8 @@ import { MyAnnoncesPage } from '../pages/myAnnonces/myAnnonces';
 import { AnswerPage } from '../pages/answer/answer';
 import { RecherchePage } from '../pages/recherche/recherche';
 import { LoginPage } from '../pages/login/login';
+import { CheckTransactionPage } from '../pages/checkTransaction/checkTransaction';
+import { TransactionModal } from '../pages/checkTransaction/checkTransaction';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -23,11 +25,13 @@ import { AnnounceProvider } from '../providers/announces.provider';
     HomePage,
     AnnoncePage,
     AnswerPage,
-	MyAnnoncesPage,
+    MyAnnoncesPage,
     LoginPage,
     AnnoncePage,
     RecherchePage,
-    PostAnnoncePage
+    PostAnnoncePage,
+    CheckTransactionPage,
+    TransactionModal
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,9 @@ import { AnnounceProvider } from '../providers/announces.provider';
 	RecherchePage,
     AnnoncePage,
     LoginPage,
-    PostAnnoncePage
+    PostAnnoncePage,
+    CheckTransactionPage,
+    TransactionModal
   ],
   providers: [
     StatusBar,

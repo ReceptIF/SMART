@@ -14,6 +14,7 @@
     sale?: boolean;
     announce_type: ServiceType;
     typeId?: number;
+    authorId?: number;
   }
 
   interface ServiceType {

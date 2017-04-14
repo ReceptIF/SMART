@@ -18,6 +18,8 @@ import { TransactionModal } from '../pages/checkTransaction/checkTransaction';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AnnounceProvider } from '../providers/announces.provider';
+import { UserProvider } from '../providers/users.provider';
+import { TransactionProvider } from '../providers/transactions.provider';
 
 @NgModule({
   declarations: [
@@ -43,9 +45,9 @@ import { AnnounceProvider } from '../providers/announces.provider';
     MyApp,
     HomePage,
     AnnoncePage,
-	MyAnnoncesPage,
+	  MyAnnoncesPage,
     AnswerPage,
-	RecherchePage,
+	  RecherchePage,
     AnnoncePage,
     LoginPage,
     PostAnnoncePage,
@@ -56,6 +58,8 @@ import { AnnounceProvider } from '../providers/announces.provider';
     StatusBar,
     SplashScreen,
     AnnounceProvider,
+    UserProvider,
+    TransactionProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

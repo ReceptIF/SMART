@@ -1,12 +1,25 @@
 var Announce = require('../model/announce');
 var AnnounceType = require('../model/announceType');
 var User = require('../model/user');
+var Address = require('../model/address');
 
 module.exports = function (server) {
 
     // GET
     server.get('/announces', function (request, response) {
         Announce.findAll({include: [AnnounceType, User]}).then(function (data) {
+            response.send(data);
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
+    // GET announces by clientID
+    server.get('/announces/by/:authorId', function (request, response) {
+        Announce.findAll({
+            where: {authorId: request.params.authorId},
+            include: [AnnounceType, User]
+        }).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});

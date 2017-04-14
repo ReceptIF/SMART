@@ -49,6 +49,12 @@ var Announce = sequelize.define('announce', {
             type: Sequelize.BOOLEAN,
             field: 'sale',
             allowNull: false
+        },
+        closed: {
+            type: Sequelize.BOOLEAN,
+            field: 'closed',
+            allowNull: false
+
         }
     }, {
         freezeTableName: true
@@ -76,7 +82,8 @@ Announce.sync().then(function () {
         address: 'Rue Einstein, Villeurbanne',
         coordX: 45.782530,
         coordY: 4.878155,
-        sale: true
+        sale: true,
+        closed: false
     });
 });
 

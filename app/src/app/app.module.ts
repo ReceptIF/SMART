@@ -10,6 +10,7 @@ import { PostAnnoncePage } from '../pages/postAnnonce/postAnnonce';
 import { AnnoncePage } from '../pages/annonce/annonce';
 import { MyAnnoncesPage } from '../pages/myAnnonces/myAnnonces';
 import { AnswerPage } from '../pages/answer/answer';
+import { SearchedAnnouncesPage } from '../pages/searchedAnnounces/searchedAnnounces';
 import { RecherchePage } from '../pages/recherche/recherche';
 import { LoginPage } from '../pages/login/login';
 import { CheckTransactionPage } from '../pages/checkTransaction/checkTransaction';
@@ -30,6 +31,7 @@ import { TransactionProvider } from '../providers/transactions.provider';
     AnnoncePage,
     AnswerPage,
     MyAnnoncesPage,
+	SearchedAnnouncesPage,
     LoginPage,
     AnnoncePage,
     RecherchePage,
@@ -48,9 +50,10 @@ import { TransactionProvider } from '../providers/transactions.provider';
     MyApp,
     HomePage,
     AnnoncePage,
-	  MyAnnoncesPage,
+	MyAnnoncesPage,
     AnswerPage,
-	  RecherchePage,
+	RecherchePage,
+	SearchedAnnouncesPage,
     AnnoncePage,
     LoginPage,
     PostAnnoncePage,

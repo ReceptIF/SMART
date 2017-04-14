@@ -28,8 +28,8 @@
 	
     <ion-item>
 		<ion-label color="primary" stacked>Categorie</ion-label>
-		<ion-select [(ngModel)]="categorie" multiple="true">
-			<ion-option *ngFor="let serviceType of announceTypes">
+		<ion-select okText="OK" cancelText="Annuler" [(ngModel)]="category">
+			<ion-option value={{serviceType.id}} *ngFor="let serviceType of announceTypes">
 				<h1>{{serviceType.name}}</h1>
 			</ion-option>
 		</ion-select>
@@ -57,6 +57,6 @@
 
   </ion-list>
 
-  <button ion-button block>Lancer la recherche</button>
+  <button ion-button block (click)="buttonClicked($event)">Lancer la recherche</button>
 
 </ion-content>

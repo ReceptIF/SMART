@@ -10,20 +10,20 @@
 <ion-content>
   <ion-list>
     <ion-list-header>À la une</ion-list-header>
-    <ion-item class="home-annonce" *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-avatar item-left>
-        <img [src]="'../../assets/icon/service-type/'+item.announce_type.icon+'.png'">
-      </ion-avatar>
-      <h1>{{item.title}}</h1>
-      <h2>{{item.price}} AH!</h2>
-      <h3>{{item.address}}</h3>
-    </ion-item>
-  </ion-list>
+		<ion-item class="home-annonce" *ngFor="let item of items" (click)="itemTapped($event, item)">
+		<ion-avatar item-left>
+			<img [src]="'../../assets/icon/service-type/'+item.announce_type.icon+'.png'">
+		</ion-avatar>
+			<h1>{{item.title}}</h1>
+			<h2>{{item.price}} AH!</h2>
+			<h3>{{item.address}}</h3>
+		</ion-item>
+	</ion-list>
   
-  <ion-fab right bottom>
+	<ion-fab right bottom>
 		<button ion-fab color="light" (click)="goToPost($event)">
-      <ion-icon name="add"></ion-icon>
-    </button>
+			<ion-icon name="add"></ion-icon>
+		</button>
 	</ion-fab>
   
 </ion-content>

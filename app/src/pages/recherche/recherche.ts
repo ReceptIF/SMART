@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AnnounceTypeProvider } from '../../providers/announceTypes.provider';
+import { SearchedAnnouncesPage } from '../searchedAnnounces/searchedAnnounces';
 
 @Component({
   selector: 'page-recherche',
@@ -10,6 +11,7 @@ import { AnnounceTypeProvider } from '../../providers/announceTypes.provider';
 export class RecherchePage {
 	
   announceTypes: Array<ServiceType>;
+  category: ServiceType;
 
   fromDate : any;
   constructor(public navCtrl: NavController, private announceTypeProvider : AnnounceTypeProvider) {
@@ -17,4 +19,10 @@ export class RecherchePage {
 	this.announceTypeProvider.getAnnounceTypes().then( announceTypes => { this.announceTypes = announceTypes; console.log(this.announceTypes);});
 	
   }
+  
+	buttonClicked(event) {
+		this.navCtrl.push(SearchedAnnouncesPage, {
+		  category: this.category
+		});
+	}
 }

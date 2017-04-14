@@ -2,6 +2,7 @@ var Sequelize = require('sequelize');
 var sequelize = require('../orm');
 User = require('./user');
 AnnounceType = require('./announceType');
+Address = require('./address');
 
 var Announce = sequelize.define('announce', {
         price: {
@@ -58,6 +59,11 @@ User.hasMany(Announce, {as: 'authorId_fk', foreignKey: 'authorId'});
 Announce.belongsTo(User, {foreignKey: 'authorId'});
 AnnounceType.hasMany(Announce, {as: 'typeId_fk', foreignKey: 'typeId'});
 Announce.belongsTo(AnnounceType, {foreignKey: 'typeId'});
+
+Address.hasMany(Announce, {as: 'addressId_fk', foreignKey: 'addressId'});
+/*
+Announce.belongsTo(Address, {foreignKey: 'addressId'});
+*/
 
 Announce.sync().then(function () {
     return Announce.create({

@@ -64,7 +64,8 @@ export class MyAnnoncesPage {
         coordX:45.765501,
         coordY:4.8275544,
         bool:false,
-        announce_type:{id:1,name:'Soutien scolaire',icon:'study'}
+        announce_type:{id:1,name:'Soutien scolaire',icon:'study'},
+        user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
       },{
         id:2,
         price:13,
@@ -78,7 +79,8 @@ export class MyAnnoncesPage {
         coordX:45.7324045,
         coordY:4.8635009,
         bool:false,
-        announce_type:{id:2,name:'Courses',icon:'shop'}
+        announce_type:{id:2,name:'Courses',icon:'shop'},
+        user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
       },{
         id:3,
         price:17,
@@ -92,7 +94,8 @@ export class MyAnnoncesPage {
         coordX:45.7687207,
         coordY:4.9622913,
         bool:false,
-        announce_type:{id:0,name:'Bricolage',icon:'tinkering'}
+        announce_type:{id:0,name:'Bricolage',icon:'tinkering'},
+        user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
       },{
         id:4,
         price:7,
@@ -106,7 +109,8 @@ export class MyAnnoncesPage {
         coordX:45.7538855,
         coordY:4.8763748,
         bool:false,
-        announce_type:{id:3,name:'Garde d\enfants',icon:'child'}
+        announce_type:{id:3,name:'Garde d\enfants',icon:'child'},
+        user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
       }
     ];
 

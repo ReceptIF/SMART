@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { AnnounceProvider } from '../../providers/announces.provider';
+import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-postAnnonce',
@@ -21,7 +22,7 @@ export class PostAnnoncePage {
   endAt : string;
   estimatedTime : number;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, private announceProvider : AnnounceProvider) {
+  constructor(public navCtrl: NavController, public toastCtrl: ToastController, private announceProvider : AnnounceProvider, private alertCtrl: AlertController) {
 
     this.annonceType = false;
 
@@ -53,6 +54,14 @@ export class PostAnnoncePage {
                 };
 
                 this.announceProvider.postAnnounce(annonce).then(response => {console.log(response)});
+                
+                let alert = this.alertCtrl.create({
+                  title: 'Votre annonce a bien été enregistrée. Vous pouvez la consulter dans la rubrique "Mes Annonces".',
+                  buttons: ['Ok']
+                });
+                alert.present();
+                this.navCtrl.pop();
+                
                 console.log(annonce);
 
               } else { this.showToast("Vous devez indiquer à combien de temps vous estimez la réalisation de la tâche."); }

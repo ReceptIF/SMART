@@ -4,7 +4,6 @@ import { AnnoncePage } from '../annonce/annonce';
 import { PostAnnoncePage } from '../postAnnonce/postAnnonce';
 import { AnnounceProvider } from '../../providers/announces.provider';
 import { UserProvider } from '../../providers/users.provider';
-import _ from "lodash";
 
 @Component({
   selector: 'page-home',
@@ -16,16 +15,16 @@ export class HomePage {
   selectedItem: any;
   connectedUser: any;
 
-  items: Array<Service>;
+  items: any; //TODO fix type
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private announceProvider : AnnounceProvider,
               private userProvider: UserProvider) {
     this.items = [];
 	  this.userProvider.getConnectedUser().then( user => {
 	    this.connectedUser = user;
-      this.announceProvider.getAnnounces().then(
+      this.announceProvider.getAnnounceByUser(this.connectedUser.id).then(
         announces => {
-          this.items = _.filter(announces, o => {return o.authorId != this.connectedUser.id});
+          this.items = announces;
         }
       );
     });

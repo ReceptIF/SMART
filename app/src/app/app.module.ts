@@ -14,6 +14,7 @@ import { RecherchePage } from '../pages/recherche/recherche';
 import { LoginPage } from '../pages/login/login';
 import { CheckTransactionPage } from '../pages/checkTransaction/checkTransaction';
 import { TransactionModal } from '../pages/checkTransaction/transactionModal';
+import { PinCodePage } from '../pages/pinCode/pinCode';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -34,7 +35,8 @@ import { TransactionProvider } from '../providers/transactions.provider';
     RecherchePage,
     PostAnnoncePage,
     CheckTransactionPage,
-    TransactionModal
+    TransactionModal,
+    PinCodePage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { TransactionProvider } from '../providers/transactions.provider';
     LoginPage,
     PostAnnoncePage,
     CheckTransactionPage,
-    TransactionModal
+    TransactionModal,
+    PinCodePage
   ],
   providers: [
     StatusBar,

@@ -6,7 +6,28 @@ Announce = require('./announce');
 var Transaction = sequelize.define('transaction', {
         transactionDate: {
             type: Sequelize.DATE,
-            field: 'transactionDate'
+            field: 'transactionDate',
+            allowNull: false
+        },
+        name: {
+            type: Sequelize.STRING,
+            field: 'name',
+            allowNull: false
+        },
+        email: {
+            type: Sequelize.STRING,
+            field: 'email',
+            allowNull: false
+        },
+        phoneNumber: {
+            type: Sequelize.STRING,
+            field: 'phone_number',
+            allowNull: false
+        },
+        commentary: {
+            type: Sequelize.TEXT,
+            field: 'commentary',
+            allowNull: false
         },
         sellerOk: {
             type: Sequelize.BOOLEAN,
@@ -40,6 +61,10 @@ Transaction.belongsTo(Announce, {foreignKey: 'announceId'});
 Transaction.sync().then(function () {
     return Transaction.create({
         transactionDate: '05-05-2015 15:12',
+        name: 'Jean-Michel Transaction',
+        email: 'Jm@Forever.com',
+        phoneNumber: '0607080907',
+        commentary: 'Ceci est un Jean-Michel Commentaire !',
         sellerOk: false,
         buyerOk: true,
         status: 1

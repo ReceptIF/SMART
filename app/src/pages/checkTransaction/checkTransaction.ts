@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ModalController, Platform, ViewController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
+import { TransactionModal } from './transactionModal';
 
 @Component({
   selector: 'page-checkTransaction',
@@ -17,24 +18,5 @@ export class CheckTransactionPage {
   openModal() {
     let modal = this.modalCtrl.create(TransactionModal);
     modal.present();
-  }
-}
-
-@Component({
-  templateUrl: 'transactionModal.html'
-})
-export class TransactionModal {
-  character;
-
-  constructor(
-    private platform: Platform,
-    public params: NavParams,
-    private viewCtrl: ViewController
-  ) {
-  
-  }
-
-  dismiss() {
-    this.viewCtrl.dismiss();
   }
 }

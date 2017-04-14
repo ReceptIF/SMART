@@ -13,7 +13,7 @@ import { AnswerPage } from '../pages/answer/answer';
 import { RecherchePage } from '../pages/recherche/recherche';
 import { LoginPage } from '../pages/login/login';
 import { CheckTransactionPage } from '../pages/checkTransaction/checkTransaction';
-import { TransactionModal } from '../pages/checkTransaction/checkTransaction';
+import { TransactionModal } from '../pages/checkTransaction/transactionModal';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';

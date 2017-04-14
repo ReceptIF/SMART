@@ -34,9 +34,20 @@
 	</div>
 
   <hr/>
+  
+  <ion-item>
+    <ion-avatar item-left>
+      <img src="../../assets/ahDenis.jpg">
+    </ion-avatar>
+    <p>Postée par</p>
+    <h2>{{service.user.firstName}} {{service.user.lastName}}</h2>
+  </ion-item>
 
 
-	<ion-fab right bottom>
+	<ion-fab right bottom *ngIf="connectedUser && (connectedUser.id != service.user.id)">
 		<button ion-fab color="light" (click)="answerAnnonce($event, service)"><ion-icon name="send"></ion-icon></button>
+	</ion-fab>
+	<ion-fab right bottom *ngIf="connectedUser && (connectedUser.id == service.user.id)">
+		<button ion-fab color="light" (click)="answerAnnonce($event, service)"><ion-icon name="chatbubbles"></ion-icon></button>
 	</ion-fab>
 </ion-content>

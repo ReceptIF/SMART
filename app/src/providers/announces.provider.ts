@@ -40,7 +40,7 @@ export class AnnounceProvider {
 
   postAnnounce(announce) {
     return new Promise(resolve => {
-      this.http.post(GlobalConstants.urlServer + '/announce', announce, this.options)
+      this.http.post(GlobalConstants.urlServer + '/announce', announce)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

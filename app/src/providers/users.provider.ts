@@ -26,6 +26,10 @@ export class UserProvider {
     });
   }
 
+  getConnectedUser() {
+    return this.getUser(1);
+  }
+
   postUser(user) {
     return new Promise(resolve => {
       this.http.post(GlobalConstants.urlServer + '/user', user)

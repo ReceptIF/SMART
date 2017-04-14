@@ -41,7 +41,6 @@ export class AnnoncePage {
 			time = Math.trunc(this.service.estimatedTime/60);
 			var minutes = time*60 - this.service.estimatedTime;
 			var hours = time % 24;
-			console.log(time)
 			if(time >= 24) {
 				days = Math.trunc(time/24);
 				if(days == 1) {

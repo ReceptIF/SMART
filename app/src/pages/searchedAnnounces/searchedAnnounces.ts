@@ -33,7 +33,10 @@ export class SearchedAnnouncesPage {
 			this.announceProvider.getAnnounces().then(
 				announces => {
 					this.searchedAnnounces = announces.filter(searchedAnnounce => {
-						return searchedAnnounce.announce_type.id == this.category;
+						if(this.category != null) {
+							return searchedAnnounce.announce_type.id == this.category;
+						}
+						return searchedAnnounce.announce_type.id;
 					});
 				}
 			);

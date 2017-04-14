@@ -17,19 +17,22 @@ export class HomePage {
 
   items: any; //TODO fix type
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private announceProvider : AnnounceProvider,
+	constructor(public navCtrl: NavController, public navParams: NavParams, private announceProvider : AnnounceProvider,
               private userProvider: UserProvider) {
-    this.items = [];
-	  this.userProvider.getConnectedUser().then( user => {
-	    this.connectedUser = user;
-      this.announceProvider.getAnnounces().then(
-        announces => {
-          this.items = announces;
-        }
-      );
-    });
+		this.items = [];
+		this.userProvider.getConnectedUser().then( user => {
+			this.connectedUser = user;
+			this.announceProvider.getAnnounces().then(
+				announces => {
+					this.items = announces.filter( announce => {
+						return announce.user.id != this.connectedUser.id;
+						
+					});
+				}
+			);
+		});
 
-  }
+	}
 
   itemTapped(event, item) {
     this.navCtrl.push(AnnoncePage, {

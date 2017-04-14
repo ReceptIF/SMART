@@ -15,6 +15,7 @@
       <ion-input placeholder="Entrez ici des mots-clés"></ion-input>
     </ion-item>
 
+	<!--
     <ion-item>
       <ion-label color="primary" stacked>Categorie</ion-label>
       <ion-select [(ngModel)]="categorie" multiple="true">
@@ -22,6 +23,16 @@
         <ion-option value="n">Nettoyage</ion-option>
         <ion-option value="r">Réparation</ion-option>
       </ion-select>
+    </ion-item>
+		-->
+	
+    <ion-item>
+		<ion-label color="primary" stacked>Categorie</ion-label>
+		<ion-select [(ngModel)]="categorie" multiple="true">
+			<ion-option *ngFor="let serviceType of announceTypes">
+				<h1>{{serviceType.name}}</h1>
+			</ion-option>
+		</ion-select>
     </ion-item>
 
     <ion-item>

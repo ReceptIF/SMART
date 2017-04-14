@@ -14,7 +14,7 @@ export class RecherchePage {
   fromDate : any;
   constructor(public navCtrl: NavController, private announceTypeProvider : AnnounceTypeProvider) {
     this.fromDate = new Date().toISOString();
-	this.announceTypeProvider.getAnnounceTypes().then( announceTypes => { this.announceTypes = announceTypes});
-	console.log(this.announceTypes)
+	this.announceTypeProvider.getAnnounceTypes().then( announceTypes => { this.announceTypes = announceTypes; console.log(this.announceTypes);});
+	
   }
 }

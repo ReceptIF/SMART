@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { AnnounceProvider } from '../../providers/announces.provider';
+import { AnnounceTypeProvider } from '../../providers/announceTypes.provider';
 import { AlertController } from 'ionic-angular';
 
 @Component({
@@ -12,6 +13,7 @@ import { AlertController } from 'ionic-angular';
 export class PostAnnoncePage {
 
   annonceType : boolean;
+  announceTypes: Array<ServiceType>;
 
   title : string;
   description : string;
@@ -22,9 +24,10 @@ export class PostAnnoncePage {
   endAt : string;
   estimatedTime : number;
 
-  constructor(public navCtrl: NavController, public toastCtrl: ToastController, private announceProvider : AnnounceProvider, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, private announceTypeProvider : AnnounceTypeProvider, public toastCtrl: ToastController, private announceProvider : AnnounceProvider, private alertCtrl: AlertController) {
 
     this.annonceType = false;
+	this.announceTypeProvider.getAnnounceTypes().then( announceTypes => { this.announceTypes = announceTypes; console.log(this.announceTypes);});
 
   }
 

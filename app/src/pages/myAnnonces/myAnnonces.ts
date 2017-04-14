@@ -49,7 +49,7 @@ export class MyAnnoncesPage {
         coordX:45.7831199,
         coordY:4.87103,
         bool:false,
-        announce_type:{id:0,name:'Bricolage',icon:'tinkering'},
+        announce_type:{id:0,name:'Bricolage',icon:'tinkering', createdAt:'12-05-2017', updatedAt:'12-06-2017'},
         user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
       },{
         id:1,
@@ -64,7 +64,7 @@ export class MyAnnoncesPage {
         coordX:45.765501,
         coordY:4.8275544,
         bool:false,
-        announce_type:{id:1,name:'Soutien scolaire',icon:'study'},
+        announce_type:{id:1,name:'Soutien scolaire',icon:'study', createdAt:'12-05-2017', updatedAt:'12-06-2017'},
         user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
       },{
         id:2,
@@ -79,7 +79,7 @@ export class MyAnnoncesPage {
         coordX:45.7324045,
         coordY:4.8635009,
         bool:false,
-        announce_type:{id:2,name:'Courses',icon:'shop'},
+        announce_type:{id:2,name:'Courses',icon:'shop', createdAt:'12-05-2017', updatedAt:'12-06-2017'},
         user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
       },{
         id:3,
@@ -94,7 +94,7 @@ export class MyAnnoncesPage {
         coordX:45.7687207,
         coordY:4.9622913,
         bool:false,
-        announce_type:{id:0,name:'Bricolage',icon:'tinkering'},
+        announce_type:{id:0,name:'Bricolage',icon:'tinkering', createdAt:'12-05-2017', updatedAt:'12-06-2017'},
         user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
       },{
         id:4,
@@ -109,7 +109,7 @@ export class MyAnnoncesPage {
         coordX:45.7538855,
         coordY:4.8763748,
         bool:false,
-        announce_type:{id:3,name:'Garde d\enfants',icon:'child'},
+        announce_type:{id:3,name:'Garde d\enfants',icon:'child', createdAt:'12-05-2017', updatedAt:'12-06-2017'},
         user:{id:1, firstName: 'Jean-Michel', lastName:'Back-End' }
       }
     ];

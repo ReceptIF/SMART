@@ -18,6 +18,7 @@ import { TransactionModal } from '../pages/checkTransaction/transactionModal';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AnnounceProvider } from '../providers/announces.provider';
+import { AnnounceTypeProvider } from '../providers/announceTypes.provider';
 import { UserProvider } from '../providers/users.provider';
 import { TransactionProvider } from '../providers/transactions.provider';
 
@@ -58,6 +59,7 @@ import { TransactionProvider } from '../providers/transactions.provider';
     StatusBar,
     SplashScreen,
     AnnounceProvider,
+    AnnounceTypeProvider,
     UserProvider,
     TransactionProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}

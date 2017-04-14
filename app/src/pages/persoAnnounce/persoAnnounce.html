@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>PersoAnnounce</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <img id="logo" [src]="'../../assets/icon/service-type/shop.png'">
+	<h1 id="persoAnnounce-title">{{service.title}}</h1>
+	<h4 id="price">{{price}}</h4>
+	<h4 id="address">{{service.address}}</h4>
+	
+	<hr/>
+	<p id="persoAnnounce-description">{{service.description}}</p>
+	<hr/>
+	
+	<div id="start-time">
+		<ion-icon name="calendar"></ion-icon> De 
+		{{service.startTime}} à 
+		{{service.endTime}}
+	</div>
+	
+	<div id="duration">
+		<ion-icon name="alarm"></ion-icon>
+		{{estimatedTime}}
+	</div>
+	
+	<br/>
+	<div id="publication-date">
+		{{creationTime}}
+	</div>
+
+	<ion-fab right bottom>
+		<button ion-fab color="light" (click)="answerPersoAnnounce($event, service)"><ion-icon name="close"></ion-icon></button>
+	</ion-fab>
+</ion-content>

@@ -11,7 +11,7 @@
         <img src="../../assets/ahDenis.jpg">
       </ion-avatar>
       <h2>{{connectedUser.firstName}} {{connectedUser.lastName}}</h2>
-      <p><ion-icon name="cash"></ion-icon> {{connectedUser.ahAmount}} AH!</p>
+      <p><img [src]="'../../assets/ahPiece_small.png'" class="ah-icon" /> {{connectedUser.ahAmount}} AH!</p>
     </ion-item>
     <ion-list>
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">

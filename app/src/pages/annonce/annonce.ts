@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AnswerPage } from '../answer/answer';
+import { ProfilePage } from '../profile/profile';
 import { CheckTransactionPage } from '../checkTransaction/checkTransaction';
 import { UserProvider } from '../../providers/users.provider';
 
@@ -76,6 +77,12 @@ export class AnnoncePage {
 	answerAnnonce(event, service) {
 		this.navCtrl.push(AnswerPage, {
 		  service: service
+		});
+	}
+  
+  openProfile(event, service) {
+    this.navCtrl.push(ProfilePage, {
+		  profileId: service.user.id
 		});
 	}
 

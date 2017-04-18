@@ -37,10 +37,10 @@
   
   <ion-item>
     <ion-avatar item-left>
-      <img src="../../assets/ahDenis.jpg">
+      <img src="../../assets/ahDenis.jpg" (click)="openProfile($event, service)">
     </ion-avatar>
     <p>Postée par</p>
-    <h2>{{service.user.firstName}} {{service.user.lastName}}</h2>
+    <h2 (click)="openProfile($event, service)">{{service.user.firstName}} {{service.user.lastName}}</h2>
   </ion-item>
 
 

@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profil</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item id="profile-pct">
+      <img [src]="'../../assets/ahDenis.jpg'"/><br/>
+      <h1>{{profileUser.firstName}} {{profileUser.lastName}}</h1>
+      <h3>4 services proposés - 6 services rendus</h3>
+      <p><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon> 4,5/5</p>
+    </ion-item>
+	</ion-list>
+  
+  <ion-list>
+    <ion-list-header>Services en attente</ion-list-header>
+		<ion-item class="home-annonce" *ngFor="let item of services" (click)="itemTapped($event, item)">
+		<ion-avatar item-left>
+			<img [src]="'../../assets/icon/service-type/'+item.announce_type.icon+'.png'">
+		</ion-avatar>
+			<h1>{{item.title}}</h1>
+			<h2><img [src]="'../../assets/ahPiece_small.png'" class="ah-icon" />  {{item.price}} AH!</h2>
+			<h3>{{item.address}}</h3>
+		</ion-item>
+	</ion-list>
+  
+  <ion-list>
+    <ion-list-header>Commentaires sur {{profileUser.firstName}}</ion-list-header>
+    <ion-card class="comment-card">
+      <ion-card-content>
+        <h2>De son mieux ...</h2>
+        <p>{{profileUser.firstName}} se donne vraiment à fond lorsqu'il rend ses services, et ça fait plaisir à voir ! Dommage qu'il ne soit pas un peu plus doué !</p>
+        <hr/>
+        <h3><img src="../../assets/jm.png"/> Jean-Michel Commentaire</h3>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+  
+</ion-content>

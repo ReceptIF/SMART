@@ -8,6 +8,7 @@ import { MyAnnoncesPage } from '../pages/myAnnonces/myAnnonces';
 import { PostAnnoncePage } from '../pages/postAnnonce/postAnnonce';
 import { LoginPage } from '../pages/login/login';
 import { RecherchePage } from '../pages/recherche/recherche';
+import { ProfilePage } from '../pages/profile/profile';
 
 import { UserProvider } from '../providers/users.provider';
 
@@ -38,6 +39,10 @@ export class MyApp {
       { title: 'Poster une annonce', component: PostAnnoncePage }
     ];
 
+  }
+  
+  goToPersonalProfile() {
+    this.nav.setRoot(ProfilePage);
   }
 
   initializeApp() {

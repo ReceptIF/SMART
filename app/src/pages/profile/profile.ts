@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { UserProvider } from '../../providers/users.provider';
 import { AnnounceProvider } from '../../providers/announces.provider';
+import { AnnoncePage } from '../annonce/annonce';
 
 @Component({
   selector: 'page-profile',
@@ -51,5 +52,11 @@ export class ProfilePage {
 		});
 
 	}
+
+  itemTapped(event, item) {
+    this.navCtrl.push(AnnoncePage, {
+      item: item
+    });
+  }
 
 }

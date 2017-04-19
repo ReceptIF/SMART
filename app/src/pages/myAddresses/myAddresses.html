@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Mes adresses</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item text-wrap class="address-description">
+      Les adresses favorites sont celles que vous allez pouvoir utiliser pour poster ou répondre à une annonce. 
+      Votre adresse ne sera communiquée qu'une fois que vous aurez accepté un service. Le reste du temps, seul le quartier sera communiqué.
+    </ion-item>
+	</ion-list>
+  
+  
+  <ion-list>
+    <ion-item-sliding class="address-item">
+      <ion-item>
+        <h1>Maison</h1>
+        <p>95 rue Mazenod<br/>69003 Lyon</p>
+      </ion-item>
+      <ion-item-options side="right">
+      <button ion-button color="secondary" (click)="editAddress()">
+        <ion-icon name="clipboard"></ion-icon>
+        Modifier
+      </button>
+      <button ion-button color="red">
+        <ion-icon name="trash"></ion-icon>
+        Supprimer
+      </button>
+    </ion-item-options>
+    </ion-item-sliding>
+    
+    <ion-item-sliding class="address-item">
+      <ion-item>
+        <h1>Boulot</h1>
+        <p>57 boulevard Marius Vivier Merle<br/>69003 Lyon</p>
+      </ion-item>
+      <ion-item-options side="right">
+      <button ion-button color="secondary" (click)="editAddress()">
+        <ion-icon name="clipboard"></ion-icon>
+        Modifier
+      </button>
+      <button ion-button color="red">
+        <ion-icon name="trash"></ion-icon>
+        Supprimer
+      </button>
+    </ion-item-options>
+    </ion-item-sliding>
+    
+	</ion-list>
+  
+  <ion-fab right bottom>
+		<button ion-fab color="light" (click)="createAddress()">
+			<ion-icon name="add"></ion-icon>
+		</button>
+	</ion-fab>
+  
+</ion-content>

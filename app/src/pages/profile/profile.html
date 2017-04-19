@@ -11,13 +11,14 @@
   <ion-list>
     <ion-item id="profile-pct">
       <img [src]="'../../assets/ahDenis.jpg'"/><br/>
+      <span *ngIf="profileUser.id == connectedUser.id"><ion-badge color="primary">C'est vous !</ion-badge><br/></span>
       <h1>{{profileUser.firstName}} {{profileUser.lastName}}</h1>
       <h3>4 services proposés - 6 services rendus</h3>
       <p><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon> 4,5/5</p>
     </ion-item>
 	</ion-list>
   
-  <ion-list>
+  <ion-list *ngIf="profileUser.id != connectedUser.id">
     <ion-list-header>Services en attente</ion-list-header>
 		<ion-item class="home-annonce" *ngFor="let item of services" (click)="itemTapped($event, item)">
 		<ion-avatar item-left>
@@ -27,6 +28,13 @@
 			<h2><img [src]="'../../assets/ahPiece_small.png'" class="ah-icon" />  {{item.price}} AH!</h2>
 			<h3>{{item.address}}</h3>
 		</ion-item>
+	</ion-list>
+  
+  <ion-list *ngIf="profileUser.id == connectedUser.id">
+    <ion-list-header>Mes actions</ion-list-header>
+    <button ion-item (click)="showMyAnnounces()">Consulter mes annonces</button>  
+    <button ion-item (click)="editProfile()">Modifier mon profil</button>    
+    <button ion-item (click)="editAddresses()">Modifier mes adresses</button>  
 	</ion-list>
   
   <ion-list>

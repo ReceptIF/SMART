@@ -17,6 +17,8 @@ import { CheckTransactionPage } from '../pages/checkTransaction/checkTransaction
 import { TransactionModal } from '../pages/checkTransaction/transactionModal';
 import { PinCodePage } from '../pages/pinCode/pinCode';
 import { ProfilePage } from '../pages/profile/profile';
+import { MyAddressesPage } from '../pages/myAddresses/myAddresses';
+import { AddressModal } from '../pages/myAddresses/addressModal';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -40,7 +42,9 @@ import { TransactionProvider } from '../providers/transactions.provider';
     CheckTransactionPage,
     TransactionModal,
     PinCodePage,
-    ProfilePage
+    ProfilePage,
+    MyAddressesPage,
+    AddressModal
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,9 @@ import { TransactionProvider } from '../providers/transactions.provider';
     CheckTransactionPage,
     TransactionModal,
     PinCodePage,
-    ProfilePage
+    ProfilePage,
+    MyAddressesPage,
+    AddressModal
   ],
   providers: [
     StatusBar,

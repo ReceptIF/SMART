@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { UserProvider } from '../../providers/users.provider';
 import { AnnounceProvider } from '../../providers/announces.provider';
 import { AnnoncePage } from '../annonce/annonce';
+import { MyAnnoncesPage } from '../myAnnonces/myAnnonces';
+import { MyAddressesPage } from '../myAddresses/myAddresses';
 
 @Component({
   selector: 'page-profile',
@@ -57,6 +59,14 @@ export class ProfilePage {
     this.navCtrl.push(AnnoncePage, {
       item: item
     });
+  }
+
+  showMyAnnounces() {
+    this.navCtrl.push(MyAnnoncesPage);
+  }
+
+  editAddresses() {
+    this.navCtrl.push(MyAddressesPage);
   }
 
 }

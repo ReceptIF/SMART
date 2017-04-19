@@ -20,6 +20,32 @@ module.exports = function (server) {
         });
     });
 
+    server.get('/comments/target/:id', function (request, response) {
+        Comment.findAll({
+            where: {
+                targetId: request.params.id
+            },
+            include: [User]
+        }).then(function (data) {
+            response.send(data);
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
+    server.get('/comments/author/:id', function (request, response) {
+        Comment.findAll({
+            where: {
+                authorId: request.params.id
+            },
+            include: [User]
+        }).then(function (data) {
+            response.send(data);
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
     // POST
     server.post('/comment', function (request, response) {
         Comment.create(request.body).then(function (data) {

@@ -7,6 +7,7 @@ import { Platform, ViewController } from 'ionic-angular';
 })
 export class AddressModal {
   character;
+  cities : Array<any>;
 
   constructor(
     private platform: Platform,
@@ -14,6 +15,8 @@ export class AddressModal {
     private viewCtrl: ViewController,
     public navCtrl: NavController
   ) {
+  
+    this.cities = [{id:1, name: 'Lyon'}, {id:2, name: 'Villeurbanne'}];
   
   }
 

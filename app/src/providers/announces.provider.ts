@@ -32,7 +32,7 @@ export class AnnounceProvider {
 
   getAnnounce(announceId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announces/' + announceId)
+      this.http.get(GlobalConstants.urlServer + '/announce/' + announceId)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

@@ -32,14 +32,6 @@ var User = sequelize.define('user', {
             type: Sequelize.STRING,
             field: 'password',
             allowNull: false
-        },
-        coordX: {
-            type: Sequelize.FLOAT,
-            field: 'coordX'
-        },
-        coordY: {
-            type: Sequelize.FLOAT,
-            field: 'coordY'
         }
     }, {
         freezeTableName: true

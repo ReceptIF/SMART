@@ -32,14 +32,6 @@ var Announce = sequelize.define('announce', {
             type: Sequelize.DATE,
             field: 'endTime'
         },
-        coordX: {
-            type: Sequelize.FLOAT,
-            field: 'coordX'
-        },
-        coordY: {
-            type: Sequelize.FLOAT,
-            field: 'coordY'
-        },
         sale: {
             type: Sequelize.BOOLEAN,
             field: 'sale',

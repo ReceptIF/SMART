@@ -1,5 +1,6 @@
 var Sequelize = require('sequelize');
-var sequelize = require('../orm');;
+var sequelize = require('../orm');
+;
 var City = require('./city');
 var User = require('./user');
 
@@ -13,6 +14,14 @@ var Address = sequelize.define('address', {
             type: Sequelize.STRING,
             field: 'complement',
             allowNull: false
+        },
+        coordX: {
+            type: Sequelize.FLOAT,
+            field: 'coordX'
+        },
+        coordY: {
+            type: Sequelize.FLOAT,
+            field: 'coordY'
         }
     }, {
         freezeTableName: true
@@ -27,7 +36,9 @@ Address.belongsTo(User, {as: 'owner', foreignKey: 'ownerId'});
 Address.sync().then(function () {
     return Address.create({
         address: '1 rue de l\'olive',
-        complement: 'Batiment Alphonse Brown'
+        complement: 'Batiment Alphonse Brown',
+        coordX: '69.69',
+        coordY: '69.69'
     });
 });
 

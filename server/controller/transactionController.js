@@ -20,11 +20,30 @@ module.exports = function (server) {
     });
 
     server.get('/transaction/:id', function (request, response) {
-        Transaction.findById(request.params.id, {include: [
-            {model: Announce, as: 'announce'},
-            {model: User, as: 'seller'},
-            {model: User, as: 'buyer'}
-        ]}).then(function (data) {
+        Transaction.findById(request.params.id, {
+            include: [
+                {model: Announce, as: 'announce'},
+                {model: User, as: 'seller'},
+                {model: User, as: 'buyer'}
+            ]
+        }).then(function (data) {
+            response.send(data);
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
+    server.get('/transactions/announce/:id', function (request, response) {
+        Transaction.findAll({
+            where: {
+                announceId: request.params.id
+            },
+            include: [
+                {model: Announce, as: 'announce'},
+                {model: User, as: 'seller'},
+                {model: User, as: 'buyer'}
+            ]
+        }).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});

@@ -1,11 +1,10 @@
 var User = require('../model/user');
-var City = require('../model/city');
 
 module.exports = function (server) {
 
     // GET
     server.get('/users', function (request, response) {
-        User.findAll({include: [City]}).then(function (data) {
+        User.findAll().then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});
@@ -13,7 +12,7 @@ module.exports = function (server) {
     });
 
     server.get('/user/:id', function (request, response) {
-        User.findById(request.params.id, {include: [City]}).then(function (data) {
+        User.findById(request.params.id).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});

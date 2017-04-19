@@ -1,7 +1,7 @@
 var Sequelize = require('sequelize');
-var sequelize = require('../orm');
-User = require('./user');
-City = require('./city');
+var sequelize = require('../orm');;
+var City = require('./city');
+var User = require('./user');
 
 var Address = sequelize.define('address', {
         address: {
@@ -19,13 +19,15 @@ var Address = sequelize.define('address', {
     }
 );
 
-User.hasOne(Address, {as: 'userId_fk', foreignKey : 'userId'});
-City.hasOne(Address, {as: 'cityId_fk', foreignKey : 'cityId'});
+City.hasMany(Address, {as: 'cityId_fk', foreignKey: 'cityId'});
+Address.belongsTo(City, {as: 'city', foreignKey: 'cityId'});
+User.hasMany(Address, {as: 'ownerId_fk', foreignKey: 'ownerId'});
+Address.belongsTo(User, {as: 'owner', foreignKey: 'ownerId'});
 
 Address.sync().then(function () {
     return Address.create({
-        address:'1 rue de l\'olive',
-        complement:'Batiment Alphonse Brown'
+        address: '1 rue de l\'olive',
+        complement: 'Batiment Alphonse Brown'
     });
 });
 

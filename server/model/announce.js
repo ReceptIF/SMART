@@ -1,8 +1,8 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../orm');
-User = require('./user');
-AnnounceType = require('./announceType');
-Address = require('./address');
+var User = require('./user');
+var AnnounceType = require('./announceType');
+var Address = require('./address');
 
 var Announce = sequelize.define('announce', {
         price: {
@@ -32,11 +32,6 @@ var Announce = sequelize.define('announce', {
             type: Sequelize.DATE,
             field: 'endTime'
         },
-        address: {
-            type: Sequelize.STRING,
-            field: 'address',
-            allowNull: false
-        },
         coordX: {
             type: Sequelize.FLOAT,
             field: 'coordX'
@@ -65,6 +60,8 @@ User.hasMany(Announce, {as: 'authorId_fk', foreignKey: 'authorId'});
 Announce.belongsTo(User, {as: 'author', foreignKey: 'authorId'});
 AnnounceType.hasMany(Announce, {as: 'typeId_fk', foreignKey: 'typeId'});
 Announce.belongsTo(AnnounceType, {as: 'type', foreignKey: 'typeId'});
+Address.hasMany(Announce, {as: 'addressId_fk', foreignKey: 'addressId'});
+Announce.belongsTo(Address, {as: 'address', foreignKey: 'addressId'});
 
 Address.hasMany(Announce, {as: 'addressId_fk', foreignKey: 'addressId'});
 /*

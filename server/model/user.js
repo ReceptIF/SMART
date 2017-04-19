@@ -1,6 +1,5 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../orm');
-City = require('./city');
 
 var User = sequelize.define('user', {
         email: {
@@ -22,11 +21,6 @@ var User = sequelize.define('user', {
         cellPhone: {
             type: Sequelize.STRING(10),
             field: 'cellPhone',
-            allowNull: false
-        },
-        address: {
-            type: Sequelize.STRING,
-            field: 'address',
             allowNull: false
         },
         ahAmount: {
@@ -51,8 +45,6 @@ var User = sequelize.define('user', {
         freezeTableName: true
     }
 );
-City.hasMany(User, {as: 'cityId_fk', foreignKey: 'cityId'});
-User.belongsTo(City, {foreignKey: 'cityId'});
 
 User.sync().then(function () {
     return User.create({

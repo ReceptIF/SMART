@@ -7,7 +7,7 @@ module.exports = function (server) {
 
     // GET
     server.get('/announces', function (request, response) {
-        Announce.findAll({include: [AnnounceType, User]}).then(function (data) {
+        Announce.findAll({include: [{model: AnnounceType, as: 'type'},{model: User, as: 'author'}]}).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});
@@ -18,7 +18,7 @@ module.exports = function (server) {
     server.get('/announces/by/:authorId', function (request, response) {
         Announce.findAll({
             where: {authorId: request.params.authorId},
-            include: [AnnounceType, User]
+            include: [{model: AnnounceType, as: 'type'},{model: User, as: 'author'}]
         }).then(function (data) {
             response.send(data);
         }, function (data) {
@@ -27,7 +27,7 @@ module.exports = function (server) {
     });
 
     server.get('/announce/:id', function (request, response) {
-        Announce.findById(request.params.id, {include: [AnnounceType, User]}).then(function (data) {
+        Announce.findById(request.params.id, {include: [{model: AnnounceType, as: 'type'},{model: User, as: 'author'}]}).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});
@@ -37,7 +37,7 @@ module.exports = function (server) {
     server.get('/announce/type/:type/sale', function (request, response) {
         Announce.findAll({
             where: {typeId: request.params.type, sale: true},
-            include: [AnnounceType, User]
+            include: [{model: AnnounceType, as: 'type'},{model: User, as: 'author'}]
         }).then(function (data) {
             response.send(data);
         }, function (data) {
@@ -48,7 +48,7 @@ module.exports = function (server) {
     server.get('/announce/type/:type/purchase', function (request, response) {
         Announce.findAll({
             where: {typeId: request.params.type, sale: false},
-            include: [AnnounceType, User]
+            include: [{model: AnnounceType, as: 'type'},{model: User, as: 'author'}]
         }).then(function (data) {
             response.send(data);
         }, function (data) {

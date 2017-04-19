@@ -6,7 +6,13 @@ module.exports = function (server) {
 
     // GET
     server.get('/transactions', function (request, response) {
-        Transaction.findAll({include: [Announce, User]}).then(function (data) {
+        Transaction.findAll({
+            include: [
+                {model: Announce, as: 'announce'},
+                {model: User, as: 'seller'},
+                {model: User, as: 'buyer'}
+            ]
+        }).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});
@@ -14,7 +20,11 @@ module.exports = function (server) {
     });
 
     server.get('/transaction/:id', function (request, response) {
-        Transaction.findById(request.params.id, {include: [Announce, User]}).then(function (data) {
+        Transaction.findById(request.params.id, {include: [
+            {model: Announce, as: 'announce'},
+            {model: User, as: 'seller'},
+            {model: User, as: 'buyer'}
+        ]}).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});

@@ -5,7 +5,7 @@ module.exports = function (server) {
 
     // GET
     server.get('/comments', function (request, response) {
-        Comment.findAll({include: [User]}).then(function (data) {
+        Comment.findAll({include: [{model: User, as: 'author'},{model: User, as: 'target'}]}).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});
@@ -13,7 +13,7 @@ module.exports = function (server) {
     });
 
     server.get('/comment/:id', function (request, response) {
-        Comment.findById(request.params.id, {include: [User]}).then(function (data) {
+        Comment.findById(request.params.id, {include: [{model: User, as: 'author'},{model: User, as: 'target'}]}).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});
@@ -25,7 +25,7 @@ module.exports = function (server) {
             where: {
                 targetId: request.params.id
             },
-            include: [User]
+            include: [{model: User, as: 'author'},{model: User, as: 'target'}]
         }).then(function (data) {
             response.send(data);
         }, function (data) {
@@ -38,7 +38,7 @@ module.exports = function (server) {
             where: {
                 authorId: request.params.id
             },
-            include: [User]
+            include: [{model: User, as: 'author'},{model: User, as: 'target'}]
         }).then(function (data) {
             response.send(data);
         }, function (data) {

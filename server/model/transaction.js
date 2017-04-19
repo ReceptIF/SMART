@@ -52,11 +52,11 @@ var Transaction = sequelize.define('transaction', {
 );
 
 User.hasMany(Transaction, {as: 'sellerId_fk', foreignKey: 'sellerId'});
-Transaction.belongsTo(User, {foreignKey: 'sellerId'});
+Transaction.belongsTo(User, {as: 'seller',foreignKey: 'sellerId'});
 User.hasMany(Transaction, {as: 'buyerId_fk', foreignKey: 'buyerId'});
-Transaction.belongsTo(User, {foreignKey: 'buyerId'});
+Transaction.belongsTo(User, {as: 'buyer', foreignKey: 'buyerId'});
 Announce.hasOne(Transaction, {as: 'announceId_fk', foreignKey: 'announceId'});
-Transaction.belongsTo(Announce, {foreignKey: 'announceId'});
+Transaction.belongsTo(Announce, {as: 'announce', foreignKey: 'announceId'});
 
 Transaction.sync().then(function () {
     return Transaction.create({

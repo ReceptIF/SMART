@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content padding>
-    <img id="logo" [src]="'../../assets/icon/service-type/'+service.announce_type.icon+'.png'">
+    <img id="logo" [src]="'../../assets/icon/service-type/'+service.type.icon+'.png'">
 	<h1 id="annonce-title">{{service.title}}</h1>
 	<h4 id="price">{{price}}</h4>
 	<h4 id="address">{{service.address}}</h4>
@@ -40,14 +40,14 @@
       <img src="../../assets/ahDenis.jpg" (click)="openProfile($event, service)">
     </ion-avatar>
     <p>Postée par</p>
-    <h2 (click)="openProfile($event, service)">{{service.user.firstName}} {{service.user.lastName}}</h2>
+    <h2 (click)="openProfile($event, service)">{{service.author.firstName}} {{service.author.lastName}}</h2>
   </ion-item>
 
 
-	<ion-fab right bottom *ngIf="!service.closed && connectedUser && (connectedUser.id != service.user.id)">
+	<ion-fab right bottom *ngIf="!service.closed && connectedUser && (connectedUser.id != service.author.id)">
 		<button ion-fab color="light" (click)="answerAnnonce($event, service)"><ion-icon name="send"></ion-icon></button>
 	</ion-fab>
-	<ion-fab right bottom *ngIf="!service.closed && connectedUser && (connectedUser.id == service.user.id)">
+	<ion-fab right bottom *ngIf="!service.closed && connectedUser && (connectedUser.id == service.author.id)">
 		<button ion-fab color="light" (click)="checkTransaction($event, service)"><ion-icon name="chatbubbles"></ion-icon></button>
 	</ion-fab>
 </ion-content>

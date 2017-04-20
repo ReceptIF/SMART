@@ -34,9 +34,9 @@ export class SearchedAnnouncesPage {
 				announces => {
 					this.searchedAnnounces = announces.filter(searchedAnnounce => {
 						if(this.category != null) {
-							return searchedAnnounce.announce_type.id == this.category;
+							return searchedAnnounce.type.id == this.category;
 						}
-						return searchedAnnounce.announce_type.id;
+						return searchedAnnounce.type.id;
 					});
 				}
 			);

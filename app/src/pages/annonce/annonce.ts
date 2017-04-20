@@ -82,7 +82,7 @@ export class AnnoncePage {
   
   openProfile(event, service) {
     this.navCtrl.push(ProfilePage, {
-		  profileId: service.user.id
+		  profileId: service.author.id
 		});
 	}
 

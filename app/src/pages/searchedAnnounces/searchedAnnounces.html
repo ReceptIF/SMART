@@ -12,7 +12,7 @@
     <ion-list-header>Résultat de la recherche</ion-list-header>
     <ion-item *ngFor="let item of searchedAnnounces" (click)="itemTapped($event, item)">
       <ion-avatar item-left>
-        <img [src]="'../../assets/icon/service-type/'+item.announce_type.icon+'.png'">
+        <img [src]="'../../assets/icon/service-type/'+item.type.icon+'.png'">
       </ion-avatar>
       <h1>{{item.title}}</h1>
       <h2>{{item.price}} AH!</h2>

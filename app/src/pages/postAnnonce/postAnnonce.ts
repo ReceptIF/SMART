@@ -2,13 +2,14 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { AnnounceProvider } from '../../providers/announces.provider';
+import { UserProvider } from '../../providers/users.provider';
 import { AnnounceTypeProvider } from '../../providers/announceTypes.provider';
 import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-postAnnonce',
   templateUrl: 'postAnnonce.html',
-  providers: [AnnounceProvider]
+  providers: [AnnounceProvider, UserProvider]
 })
 export class PostAnnoncePage {
 
@@ -23,11 +24,14 @@ export class PostAnnoncePage {
   startAt : string;
   endAt : string;
   estimatedTime : number;
+  
+  connectedUser : any;
 
-  constructor(public navCtrl: NavController, private announceTypeProvider : AnnounceTypeProvider, public toastCtrl: ToastController, private announceProvider : AnnounceProvider, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, private announceTypeProvider : AnnounceTypeProvider, private userProvider : UserProvider, public toastCtrl: ToastController, private announceProvider : AnnounceProvider, private alertCtrl: AlertController) {
 
     this.annonceType = false;
-	this.announceTypeProvider.getAnnounceTypes().then( announceTypes => { this.announceTypes = announceTypes; console.log(this.announceTypes);});
+    this.announceTypeProvider.getAnnounceTypes().then( announceTypes => { this.announceTypes = announceTypes; console.log(this.announceTypes);});
+    this.userProvider.getConnectedUser().then( user => { this.connectedUser = user; });
 
   }
 
@@ -54,7 +58,7 @@ export class PostAnnoncePage {
                   sale : this.annonceType,
                   closed: false,
                   typeId : this.categorie,
-                  authorId : 1
+                  authorId : this.connectedUser.id
                 };
 
                 this.announceProvider.postAnnounce(annonce).then(response => {console.log(response)});

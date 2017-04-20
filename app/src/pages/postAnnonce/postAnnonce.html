@@ -33,9 +33,9 @@
     <ion-item>
       <ion-label>Catégorie</ion-label>
       <ion-select [(ngModel)]="categorie">
-		<ion-option *ngFor="let serviceType of announceTypes">
-			<h1>{{serviceType.name}}</h1>
-		</ion-option>
+        <ion-option *ngFor="let serviceType of announceTypes" [value] = "serviceType.id">
+          <h1>{{serviceType.name}}</h1>
+        </ion-option>
       </ion-select>
     </ion-item>
     

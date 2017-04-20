@@ -39,12 +39,12 @@
   
   <ion-list>
     <ion-list-header>Commentaires sur {{profileUser.firstName}}</ion-list-header>
-    <ion-card class="comment-card">
+    <ion-card class="comment-card" *ngFor="let comment of comments">
       <ion-card-content>
-        <h2>De son mieux ...</h2>
-        <p>{{profileUser.firstName}} se donne vraiment à fond lorsqu'il rend ses services, et ça fait plaisir à voir ! Dommage qu'il ne soit pas un peu plus doué !</p>
+        <h2>{{comment.title}}</h2>
+        <p>{{comment.content}}</p>
         <hr/>
-        <h3><img src="../../assets/jm.png"/> Jean-Michel Commentaire</h3>
+        <h3 (click)="goToProfile(comment.authorId)"><img src="../../assets/jm.png"/> <span class="comment-rank">{{comment.note}}/5 -</span> {{comment.author.firstName}} {{comment.author.lastName}}</h3>
       </ion-card-content>
     </ion-card>
   </ion-list>

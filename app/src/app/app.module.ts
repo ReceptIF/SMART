@@ -26,6 +26,7 @@ import { AnnounceProvider } from '../providers/announces.provider';
 import { AnnounceTypeProvider } from '../providers/announceTypes.provider';
 import { UserProvider } from '../providers/users.provider';
 import { TransactionProvider } from '../providers/transactions.provider';
+import { CommentProvider } from '../providers/comments.provider';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { TransactionProvider } from '../providers/transactions.provider';
     AnnounceProvider,
     AnnounceTypeProvider,
     UserProvider,
-    TransactionProvider,
+    TransactionProvider,,
+    CommentProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { UserProvider } from '../../providers/users.provider';
 import { AnnounceProvider } from '../../providers/announces.provider';
+import { CommentProvider } from '../../providers/comments.provider';
 import { AnnoncePage } from '../annonce/annonce';
 import { MyAnnoncesPage } from '../myAnnonces/myAnnonces';
 import { MyAddressesPage } from '../myAddresses/myAddresses';
@@ -9,7 +10,7 @@ import { MyAddressesPage } from '../myAddresses/myAddresses';
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',
-  providers: [UserProvider]
+  providers: [UserProvider, CommentProvider]
 })
 export class ProfilePage {
 
@@ -18,8 +19,9 @@ export class ProfilePage {
   profileId : number;
   
   services : any;
+  comments : any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider, private announceProvider: AnnounceProvider) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider, private announceProvider: AnnounceProvider, private commentProvider : CommentProvider) {
   
     if(navParams.get("profileId")) {
       this.profileId = navParams.get("profileId");
@@ -27,11 +29,10 @@ export class ProfilePage {
       this.profileId = -1;
     }
     
-    console.log(this.profileId);
-    
     this.profileUser = {};
     this.connectedUser = {};
     this.services = [];
+    this.comments = [];
   
 		this.userProvider.getConnectedUser().then( user => {
 			this.connectedUser = user;
@@ -49,6 +50,10 @@ export class ProfilePage {
               }
             }
           );
+          this.commentProvider.getCommentByTarget(this.profileUser.id).then(
+            comments => {
+              this.comments = comments;
+          });
 				}
 			);
 		});
@@ -68,5 +73,11 @@ export class ProfilePage {
   editAddresses() {
     this.navCtrl.push(MyAddressesPage);
   }
+  
+  goToProfile(profileId) {
+    this.navCtrl.push(ProfilePage, {
+		  profileId: profileId
+		});
+	}
 
 }

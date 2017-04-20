@@ -102,7 +102,9 @@ module.exports = function (server) {
             }
             body.status = 1;
             Transaction.update(body, {where: {id: request.params.id}}).then(function (data) {
-                response.send();
+                Transaction.update({status: -1}, {where: {id: {$ne: request.params.id}, announceId: transaction.announceId}}).then(function () {
+                    response.send(data);
+                });
             }, function (data) {
                 response.send({ah: 'AH !', error: data});
             });
@@ -133,12 +135,24 @@ module.exports = function (server) {
         var body = {
             status: 3
         };
-        Transaction.findById(request.params.id).then(function (transaction) {
+        Transaction.findById(request.params.id, {
+            include: [
+                {model: Announce, as: 'announce'},
+                {model: User, as: 'seller'},
+                {model: User, as: 'buyer'}
+            ]
+        }).then(function (transaction) {
             if (transaction.status != 2) {
                 response.send({ah: 'AH !', error: "Cette annonce ne peux pas être terminée !"});
             } else if (request.body.accepterId != transaction.sellerId) {
                 response.send({ah: 'AH !', error: "Cette annonce ne vous appartient pas !"});
             } else if (request.body.code == transaction.code) {
+                // Pay
+                var sellerUpdate = {ahAmount: transaction.seller.ahAmount + transaction.announce.price};
+                var buyerUpdate = {ahAmount: transaction.buyer.ahAmount - transaction.announce.price};
+                User.update(sellerUpdate, {where: {id: transaction.sellerId}});
+                User.update(buyerUpdate, {where: {id: transaction.buyerId}});
+                // Update transaction
                 Transaction.update(body, {where: {id: request.params.id}}).then(function (data) {
                     response.send(data);
                 }, function (data) {

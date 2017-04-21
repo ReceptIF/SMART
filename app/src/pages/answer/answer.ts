@@ -19,21 +19,34 @@ export class AnswerPage {
               private userProvider: UserProvider, private transactionProvider: TransactionProvider) {
 		this.service= params.get("service");
 		this.answerTransaction = {};
+    
 		this.userProvider.getConnectedUser().then(
 		  user => {
 		    this.connectedUser = user;
 		    this.answerTransaction = {
 		      name: this.connectedUser.firstName,
           email: this.connectedUser.email,
-          cellPhone: this.connectedUser.cellPhone,
-          sellerId: this.service.authorId,
-          comment: "",
-          buyerOk: 1,
+          phoneNumber: this.connectedUser.cellPhone,
+          transactionDate: new Date(),
+          sellerId: -1,
+          buyerId: -1,
+          commentary: "",
+          buyerOk: 0,
           sellerOk: 0,
-          buyerId: this.connectedUser.id,
           announceId: this.service.id,
           status: 1,
+        };
+        
+        if(this.service.sale) {
+          this.answerTransaction.buyerId = this.connectedUser.id;
+          this.answerTransaction.sellerId = this.service.author.id;
+          this.answerTransaction.buyerOk = 1;
+        } else {
+          this.answerTransaction.sellerId = this.connectedUser.id;
+          this.answerTransaction.buyerId = this.service.author.id;
+          this.answerTransaction.sellerOk = 1;
         }
+        
       }
     );
 	}

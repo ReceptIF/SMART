@@ -12,7 +12,8 @@
     coordX?: number;
     coordY?: number;
     sale?: boolean;
-    announce_type: ServiceType;
+    type: ServiceType;
+    author: User;
     typeId?: number;
     closed: boolean;
     authorId?: number;

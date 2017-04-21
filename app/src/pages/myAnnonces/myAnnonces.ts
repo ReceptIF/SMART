@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
+import _ from "lodash";
 import { NavController, NavParams } from 'ionic-angular';
 import { AnnoncePage } from '../annonce/annonce';
 import { AnnounceProvider } from '../../providers/announces.provider';
 import { UserProvider } from '../../providers/users.provider';
+import { TransactionProvider } from '../../providers/transactions.provider';
 
 @Component({
   selector: 'page-myAnnonces',
   templateUrl: 'myAnnonces.html',
-  providers: [AnnounceProvider]
+  providers: [AnnounceProvider, TransactionProvider]
 })
 export class MyAnnoncesPage {
 
@@ -17,23 +19,29 @@ export class MyAnnoncesPage {
   itemsOpen: any;
   itemsClosed: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-      private announceProvider : AnnounceProvider, private userProvider: UserProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private announceProvider : AnnounceProvider,
+              private userProvider: UserProvider, private transactionProvider: TransactionProvider) {
 
     this.selectedItem = navParams.get('item');
     this.items = [];
     this.itemsOpen = [];
     this.itemsClosed = [];
-    
+
     this.userProvider.getConnectedUser().then( user => {
 	    this.connectedUser = user;
       this.announceProvider.getAnnounceByUser(this.connectedUser.id).then(
         announces => {
           this.items = announces;
-          for(var i=0; i < this.items.length; i++) {
-            if(this.items[i].closed) { this.itemsClosed.push(this.items[i]); 
-            } else { this.itemsOpen.push(this.items[i]);  }
-          }
+          _.forEach(this.items, item => {
+            if (!item.closed) {
+              this.itemsOpen.push(item);
+              this.transactionProvider.getTransactionsByAnnounce(item.id).then(transactions => {
+                item.transactions = transactions;
+                item.nbTransactions = item.transactions.length;
+                console.log(item.nbTransactions)
+              });
+            } else this.itemsClosed.push(item);
+          });
         }
       );
     });

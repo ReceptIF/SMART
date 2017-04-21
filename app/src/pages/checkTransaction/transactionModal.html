@@ -15,19 +15,22 @@
   <ion-list>
     <ion-card>
       <ion-card-content>
-        <p>Bonjour monsieur, <br/> Je suis expert en plomberie (je suis titulaire d'un bac pro plomberie). Je devrais donc pouvoir déboucher tout ça lol. <br/> Au plaisir !</p>
+        <p>{{answer.commentary}}</p>
       </ion-card-content>
     </ion-card>
     <ion-item>
       <ion-avatar item-left>
         <img src="../../assets/jm.png">
       </ion-avatar>
-      <h2>Jean-Michel Réponse</h2>
+      
+      <h2 *ngIf="answer.sale">{{answer.buyer.firstName}} {{answer.buyer.lastName}}</h2>
+      <h2 *ngIf="!answer.sale">{{answer.seller.firstName}} {{answer.seller.lastName}}</h2>
+      
       <p><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon> 4,5/5</p>
     </ion-item>
     <ion-item>
       <button class="modalButton" ion-button block icon-left (click)="validate();" ><ion-icon name="checkmark"></ion-icon> Choisir cette réponse</button>
-      <button class="modalButton" ion-button block icon-left (click)="dismiss();"><ion-icon name="trash"></ion-icon> Refuser cette réponse</button>
+      <button class="modalButton" ion-button block icon-left (click)="refuse();"><ion-icon name="trash"></ion-icon> Refuser cette réponse</button>
     </ion-item>
   </ion-list>
 </ion-content>

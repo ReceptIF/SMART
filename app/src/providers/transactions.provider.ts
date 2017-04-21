@@ -23,13 +23,22 @@ export class TransactionProvider {
     });
   }
 
-  getTransaction(transactionId) {
+  getTransactionById(transactionId) {
     return new Promise(resolve => {
       this.http.get(GlobalConstants.urlServer + '/transaction/' + transactionId)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
   }
+
+  getTransactionsByAnnounce(announceId) {
+    return new Promise(resolve => {
+      this.http.get(GlobalConstants.urlServer + '/transactions/announce/' + announceId)
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
+
 
   postTransaction(transaction) {
     return new Promise(resolve => {

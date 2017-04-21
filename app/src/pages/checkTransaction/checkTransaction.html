@@ -19,22 +19,17 @@
   </ion-item>
 	
   <ion-list>
-  <ion-item-sliding>
-    <ion-item (click)="openModal()">
+    <ion-item *ngFor="let answer of answers" (click)="openModal(answer)">
       <ion-avatar item-left>
         <img src="../../assets/jm.png">
       </ion-avatar>
-      <h2>Jean-Michel Réponse</h2>
-      <p>Bonjour. Je peux répondre à votre demande. J'ai suivi un CAP plomberie du coup je devrais pouvoir gérer le problème sans soucis.</p>
+      
+      <h2 *ngIf="answer.sale">{{answer.buyer.firstName}} {{answer.buyer.lastName}}</h2>
+      <h2 *ngIf="!answer.sale">{{answer.seller.firstName}} {{answer.seller.lastName}}</h2>
+      
+      <p>{{answer.commentary}}</p>
     </ion-item>
-    <ion-item-options side="right">
-      <button ion-button color="primary">
-        <ion-icon name="trash"></ion-icon>
-        Refuser
-      </button>
-    </ion-item-options>
-  </ion-item-sliding>
-</ion-list>
+  </ion-list>
 
   
 </ion-content>

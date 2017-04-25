@@ -46,11 +46,6 @@ export class MyAddressesPage {
 		});
 	}
   
-	editAddress() {
-		let modal = this.modalCtrl.create(AddressModal);
-		modal.present();
-	}
-  
 	createAddress() {
 		let modal = this.modalCtrl.create(AddressModal, {
 			profileId: this.profileId
@@ -69,5 +64,12 @@ export class MyAddressesPage {
 			}
 		}
 		this.addressProvider.deleteAddress(address.id);
+	}
+  
+	editAddress(address: any) {
+		let modal = this.modalCtrl.create(AddressModal, {
+			address: address
+		});
+		modal.present();
 	}
 }

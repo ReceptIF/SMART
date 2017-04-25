@@ -17,6 +17,8 @@ export class AddressModal {
 	complement: String;
 	address: String;
 	profileId : number;
+	cityId: number;
+	addressId: number;
 
 	constructor(private platform: Platform,	public navParams: NavParams, private viewCtrl: ViewController,	public navCtrl: NavController,
 		private alertCtrl: AlertController, private addressProvider: AddressProvider, private userProvider: UserProvider, private cityProvider: CityProvider) {
@@ -28,6 +30,18 @@ export class AddressModal {
 		} else {
 			this.profileId = -1;
 		}
+		
+		
+		if(navParams.get("address")) {
+			var address = navParams.get("address");
+			this.complement = address.complement;
+			this.address = address.address;
+			this.name = address.name;
+			this.cityId = address.cityId;
+			this.addressId = address.id;
+		} else {
+			this.addressId = -1;
+		}
 	}
 
 	dismiss() {
@@ -35,22 +49,34 @@ export class AddressModal {
 	}
   
 	createAddress() {
-		let alert = this.alertCtrl.create({
-			title: 'Adresse ajoutée',
-			buttons: ['Ok']
-		});
-		alert.present();
 		
 		var address = {
 			name : this.name,
 			complement : this.complement,
 			address : this.address,
-			cityId : 1,
-			ownerId : 1
+			cityId : 1, //TODO
+			ownerId : this.profileId
 		};
+		console.log(address);
+		if(this.addressId >= 0) {
+			let alert = this.alertCtrl.create({
+				title: 'Adresse modifiée',
+				buttons: ['Ok']
+			});
+			alert.present();
+			this.addressProvider.putAddress(address).then(response => {
+				this.viewCtrl.dismiss();
+			});
+		} else {
+			let alert = this.alertCtrl.create({
+				title: 'Adresse ajoutée',
+				buttons: ['Ok']
+			});
+			alert.present();
 		
-		this.addressProvider.postAddress(address).then(response => {
-			this.viewCtrl.dismiss();
-		});
+			this.addressProvider.postAddress(address).then(response => {
+				this.viewCtrl.dismiss();
+			});
+		}
 	}
 }

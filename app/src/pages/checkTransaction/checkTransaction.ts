@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ModalController } from 'ionic-angular';
+import { ModalController, Events } from 'ionic-angular';
 import { TransactionModal } from './transactionModal';
 import { TransactionProvider } from '../../providers/transactions.provider';
 
@@ -15,7 +15,8 @@ export class CheckTransactionPage {
   answers : any;
 
 	constructor(public navCtrl: NavController, public params:NavParams, 
-        private modalCtrl: ModalController, private transactionProvider: TransactionProvider) {
+        private modalCtrl: ModalController, private transactionProvider: TransactionProvider,
+        private events : Events) {
 		
     this.service = params.get("service");
     this.answers = [];
@@ -26,6 +27,11 @@ export class CheckTransactionPage {
         this.answers = this.answers.filter( transaction => {
 						return transaction.status == 0;
         });
+    });
+    
+    this.events.subscribe('reloadCheckTransactionPage',() => {
+     this.navCtrl.pop();
+     this.navCtrl.push(CheckTransactionPage, { service : this.service });
     });
     
 	}

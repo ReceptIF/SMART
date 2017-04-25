@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Platform, ViewController } from 'ionic-angular';
+import { Platform, ViewController, Events } from 'ionic-angular';
 import { PinCodePage } from '../pinCode/pinCode';
 import { TransactionProvider } from '../../providers/transactions.provider';
 
@@ -17,7 +17,8 @@ export class TransactionModal {
     public params: NavParams,
     private viewCtrl: ViewController,
     public navCtrl: NavController,
-    private transactionProvider : TransactionProvider
+    private transactionProvider : TransactionProvider,
+    private events : Events
   ) {
   
     this.answer = params.get('answer');
@@ -30,14 +31,20 @@ export class TransactionModal {
   }
   
   validate() {
-		this.navCtrl.push(PinCodePage, {
-    
-		});
+		this.transactionProvider.acceptTransaction(this.answer.id).then(
+      response => { 
+        console.log(response);
+        this.navCtrl.push(PinCodePage, {
+        
+        });
+    });
   }
   
   refuse() {
 		this.transactionProvider.cancelTransaction(this.answer.id).then(
-      response => {console.log(response)
+      response => { 
+        this.events.publish('reloadCheckTransactionPage');
+        this.viewCtrl.dismiss();
     });
   }
 }

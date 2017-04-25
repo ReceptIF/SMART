@@ -50,7 +50,7 @@ export class TransactionProvider {
 
   acceptTransaction(transactionId) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/accept', {})
+      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/accept', { accepterId : 1 })
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -74,7 +74,7 @@ export class TransactionProvider {
 
   cancelTransaction(transactionId) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/cancel', {})
+      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/cancel', { accepterId : 1 })
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

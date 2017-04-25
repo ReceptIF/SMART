@@ -11,14 +11,23 @@
 	
   <ion-list>
     <ion-item>
-      <p class="icon-pincode"><ion-icon name="barcode"></ion-icon></p>
+      <ion-avatar item-left>
+        <img src="../../assets/jm.png">
+      </ion-avatar>
+      
+      <p>Vous avez choisi</p>
+      <h2 *ngIf="answer.sale">{{answer.buyer.firstName}} {{answer.buyer.lastName}}</h2>
+      <h2 *ngIf="!answer.sale">{{answer.seller.firstName}} {{answer.seller.lastName}}</h2>
+      
+      <h3 *ngIf="!answer.sale" id="pincode-profile"><ion-icon name="call"></ion-icon> {{answer.seller.cellPhone}}<br/><ion-icon name="mail"></ion-icon> {{answer.seller.email}}</h3>
+      
     </ion-item>
     <ion-item text-wrap class="text-pincode">
-          Une fois que le service aura été effectué, transmettez le code ci-dessous à la personne qui l'aura réalisé.
+          Une fois que le service aura été effectué, transmettez le code ci-dessous à <span *ngIf="answer.sale">{{answer.buyer.firstName}}</span><span *ngIf="!answer.sale">{{answer.seller.firstName}}</span>.
           Une fois entré, ce code lui permettera de récupérer les AH! que vous lui avez promis.
     </ion-item>
     <ion-item>
-      <p class="code-pincode">69432</p>
+      <p class="code-pincode">{{answer.code}}</p>
     </ion-item>
   </ion-list>
 

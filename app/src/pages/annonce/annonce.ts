@@ -107,7 +107,8 @@ export class AnnoncePage {
 
 	goToPinCode(event, service) {
 		this.navCtrl.push(PinCodePage, {
-		  service: service
+		  service: service,
+      answer : this.acceptedTransaction
 		});
 	}
 }

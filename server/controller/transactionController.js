@@ -27,7 +27,7 @@ module.exports = function (server) {
                 {model: User, as: 'buyer'}
             ]
         }).then(function (data) {
-            response.send(data);
+            response.send(data ? data : {});
         }, function (data) {
             response.send({ah: 'AH !', error: data});
         });
@@ -63,7 +63,7 @@ module.exports = function (server) {
                 {model: User, as: 'buyer'}
             ]
         }).then(function (data) {
-            response.send(data);
+            response.send(data ? data : {});
         }, function (data) {
             response.send({ah: 'AH !', error: data});
         });

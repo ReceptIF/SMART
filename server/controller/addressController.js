@@ -20,7 +20,7 @@ module.exports = function (server) {
 
     server.get('/address/:id', function (request, response) {
         Address.findById(request.params.id).then(function (data) {
-            response.send(data);
+            response.send(data ? data : {});
         }, function (data) {
             response.send({ah: 'AH !', error: data});
         });

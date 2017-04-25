@@ -14,7 +14,7 @@ module.exports = function (server) {
 
     server.get('/comment/:id', function (request, response) {
         Comment.findById(request.params.id, {include: [{model: User, as: 'author'},{model: User, as: 'target'}]}).then(function (data) {
-            response.send(data);
+            response.send(data ? data : {});
         }, function (data) {
             response.send({ah: 'AH !', error: data});
         });

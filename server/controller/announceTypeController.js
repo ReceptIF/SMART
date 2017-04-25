@@ -13,7 +13,7 @@ module.exports = function (server) {
 
     server.get('/announceType/:id', function (request, response) {
         AnnounceType.findById(request.params.id).then(function (data) {
-            response.send(data);
+            response.send(data ? data : {});
         }, function (data) {
             response.send({ah: 'AH !', error: data});
         });

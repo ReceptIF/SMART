@@ -13,7 +13,7 @@ module.exports = function (server) {
 
     server.get('/user/:id', function (request, response) {
         User.findById(request.params.id).then(function (data) {
-            response.send(data);
+            response.send(data ? data : {});
         }, function (data) {
             response.send({ah: 'AH !', error: data});
         });

@@ -23,5 +23,13 @@ export class MyAddressesPage {
     let modal = this.modalCtrl.create(AddressModal);
     modal.present();
   }
+  
+  modifyAddress() {
+    alert("modify");
+  }
+  
+  deleteAddress() {
+    alert("delete");
+  }
 
 }

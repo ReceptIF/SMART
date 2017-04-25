@@ -38,10 +38,13 @@ export class MyAnnoncesPage {
               this.transactionProvider.getTransactionsByAnnounce(item.id).then(transactions => {
                 item.transactions = transactions;
                 item.transactions = item.transactions.filter( transaction => {
-                    return transaction.status == 0;
+                    return transaction.status > 0;
                 });
                 item.nbTransactions = item.transactions.length;
-                console.log(item.nbTransactions)
+                
+                item.answered = false;
+                _.forEach(item.transactions, trans => { if(trans.status > 0) { item.answered = true; } });
+              
               });
             } else this.itemsClosed.push(item);
           });

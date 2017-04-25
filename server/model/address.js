@@ -1,10 +1,15 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../orm');
-;
+
 var City = require('./city');
 var User = require('./user');
 
 var Address = sequelize.define('address', {
+        name: {
+            type: Sequelize.STRING,
+            field: 'name',
+            allowNull: false
+        },
         address: {
             type: Sequelize.STRING,
             field: 'address',
@@ -35,6 +40,7 @@ Address.belongsTo(User, {as: 'owner', foreignKey: 'ownerId'});
 
 Address.sync().then(function () {
     return Address.create({
+        name:'Maison',
         address: '1 rue de l\'olive',
         complement: 'Batiment Alphonse Brown',
         coordX: '69.69',

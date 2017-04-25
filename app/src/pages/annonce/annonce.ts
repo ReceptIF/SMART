@@ -3,12 +3,14 @@ import { NavController, NavParams, Events } from 'ionic-angular';
 import { AnswerPage } from '../answer/answer';
 import { ProfilePage } from '../profile/profile';
 import { CheckTransactionPage } from '../checkTransaction/checkTransaction';
+import { PinCodePage } from '../pinCode/pinCode';
 import { UserProvider } from '../../providers/users.provider';
+import { TransactionProvider } from '../../providers/transactions.provider';
 
 @Component({
   selector: 'page-annonce',
   templateUrl: 'annonce.html',
-  providers: [UserProvider]
+  providers: [UserProvider, TransactionProvider]
 })
 export class AnnoncePage {
 	
@@ -18,15 +20,19 @@ export class AnnoncePage {
 	endTime: string;
 	estimatedTime: string;
 	createdAt: string;
+  acceptedTransaction : any;
   
   connectedUser : any;
 
 	constructor(public navCtrl: NavController, public params:NavParams, 
-      private userProvider : UserProvider, private events : Events) {
+      private userProvider : UserProvider, private events : Events, 
+      private transactionProvider : TransactionProvider) {
+    
+		this.service= params.get("item");
     
     this.userProvider.getConnectedUser().then(user => {this.connectedUser = user;});
+    this.transactionProvider.getAcceptedTransaction(this.service.id).then(transaction => { var t; t = transaction; if(t.id) { this.acceptedTransaction = transaction; } else { this.acceptedTransaction = null; } });
 
-		this.service= params.get("item");
 		this.price = this.service.price + " AH !";
 		
 		if(this.service.startTime != null) {
@@ -95,6 +101,12 @@ export class AnnoncePage {
 
 	checkTransaction(event, service) {
 		this.navCtrl.push(CheckTransactionPage, {
+		  service: service
+		});
+	}
+
+	goToPinCode(event, service) {
+		this.navCtrl.push(PinCodePage, {
 		  service: service
 		});
 	}

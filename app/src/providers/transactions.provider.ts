@@ -39,6 +39,13 @@ export class TransactionProvider {
     });
   }
 
+  getAcceptedTransaction(announceId) {
+    return new Promise(resolve => {
+      this.http.get(GlobalConstants.urlServer + '/transaction/announce/' + announceId + '/accepted')
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
 
   postTransaction(transaction) {
     return new Promise(resolve => {

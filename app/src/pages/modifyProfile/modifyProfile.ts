@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { AlertController } from 'ionic-angular';
 import { UserProvider } from '../../providers/users.provider';
 import { MyAddressesPage } from '../myAddresses/myAddresses';
 
@@ -13,11 +14,8 @@ export class ModifyProfilePage {
 	connectedUser: any;
 	profileUser: any;
 	profileId : number;
-  
-	services : any;
-	comments : any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider, private alertCtrl: AlertController) {
  
 		if(navParams.get("profileId")) {
 			this.profileId = navParams.get("profileId");
@@ -27,8 +25,6 @@ export class ModifyProfilePage {
     
 		this.profileUser = {};
 		this.connectedUser = {};
-		this.services = [];
-		this.comments = [];
   
 		this.userProvider.getConnectedUser().then( user => {
 			this.connectedUser = user;
@@ -43,6 +39,12 @@ export class ModifyProfilePage {
 	}
 
 	updateProfile() {
-		this.navCtrl.push(ModifyProfilePage);
+		let alert = this.alertCtrl.create({
+			title: 'Profil mis à jour',
+			buttons: ['Ok']
+		});
+		alert.present();
+		this.userProvider.putUser(this.profileUser).then( response => {
+			this.navCtrl.pop();}  );
 	}
 }	

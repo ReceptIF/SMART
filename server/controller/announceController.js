@@ -2,12 +2,15 @@ var Announce = require('../model/announce');
 var AnnounceType = require('../model/announceType');
 var User = require('../model/user');
 var Address = require('../model/address');
+var Transaction = require('../model/transaction');
 
 module.exports = function (server) {
 
     // GET
     server.get('/announces', function (request, response) {
-        Announce.findAll({include: [{model: AnnounceType, as: 'type'},{model: User, as: 'author'}]}).then(function (data) {
+        Announce.findAll({
+            include: [{model: AnnounceType, as: 'type'}, {model: User, as: 'author'}, {model: Address, as: 'address'}]
+        }).then(function (data) {
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});
@@ -18,7 +21,7 @@ module.exports = function (server) {
     server.get('/announces/by/:authorId', function (request, response) {
         Announce.findAll({
             where: {authorId: request.params.authorId},
-            include: [{model: AnnounceType, as: 'type'},{model: User, as: 'author'}]
+            include: [{model: AnnounceType, as: 'type'}, {model: User, as: 'author'}, {model: Address, as: 'address'}]
         }).then(function (data) {
             response.send(data);
         }, function (data) {
@@ -27,8 +30,25 @@ module.exports = function (server) {
     });
 
     server.get('/announce/:id', function (request, response) {
-        Announce.findById(request.params.id, {include: [{model: AnnounceType, as: 'type'},{model: User, as: 'author'}]}).then(function (data) {
-            response.send(data);
+        Announce.findById(request.params.id, {
+            include: [{model: AnnounceType, as: 'type'}, {model: User, as: 'author'}, {model: Address, as: 'address'}]
+        }).then(function (announce) {
+            Transaction.find({
+                where: {
+                    announceId: request.params.id,
+                    buyerOk: true,
+                    sellerOk: true
+                },
+                include: [
+                    {model: User, as: 'seller'},
+                    {model: User, as: 'buyer'}
+                ]
+            }).then(function (data) {
+                announce.dataValues.acceptedTransaction = data;
+                response.send(announce);
+            }, function (data) {
+                response.send({ah: 'AH !', error: data});
+            });
         }, function (data) {
             response.send({ah: 'AH !', error: data});
         });
@@ -37,7 +57,7 @@ module.exports = function (server) {
     server.get('/announce/type/:type/sale', function (request, response) {
         Announce.findAll({
             where: {typeId: request.params.type, sale: true},
-            include: [{model: AnnounceType, as: 'type'},{model: User, as: 'author'}]
+            include: [{model: AnnounceType, as: 'type'}, {model: User, as: 'author'}, {model: Address, as: 'address'}]
         }).then(function (data) {
             response.send(data);
         }, function (data) {
@@ -48,7 +68,7 @@ module.exports = function (server) {
     server.get('/announce/type/:type/purchase', function (request, response) {
         Announce.findAll({
             where: {typeId: request.params.type, sale: false},
-            include: [{model: AnnounceType, as: 'type'},{model: User, as: 'author'}]
+            include: [{model: AnnounceType, as: 'type'}, {model: User, as: 'author'}, {model: Address, as: 'address'}]
         }).then(function (data) {
             response.send(data);
         }, function (data) {

@@ -50,6 +50,25 @@ module.exports = function (server) {
         });
     });
 
+    server.get('/transaction/announce/:id/accepted', function (request, response) {
+        Transaction.find({
+            where: {
+                announceId: request.params.id,
+                buyerOk: true,
+                sellerOk: true
+            },
+            include: [
+                {model: Announce, as: 'announce'},
+                {model: User, as: 'seller'},
+                {model: User, as: 'buyer'}
+            ]
+        }).then(function (data) {
+            response.send(data);
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
     // POST
     server.post('/transaction', function (request, response) {
         var body = request.body;

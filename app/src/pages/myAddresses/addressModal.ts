@@ -50,31 +50,46 @@ export class AddressModal {
   
 	createAddress() {
 		
-		var address = {
-			name : this.name,
-			complement : this.complement,
-			address : this.address,
-			cityId : 1, //TODO
-			ownerId : this.profileId
-		};
-		console.log(address);
 		if(this.addressId >= 0) {
+			var addressToPut = {
+				name : this.name,
+				complement : this.complement,
+				address : this.address,
+				cityId : 1, //TODO
+				ownerId : 1,
+				id: this.addressId
+			};
+		
+			console.log(addressToPut);
+			
 			let alert = this.alertCtrl.create({
 				title: 'Adresse modifiée',
 				buttons: ['Ok']
 			});
 			alert.present();
-			this.addressProvider.putAddress(address).then(response => {
+			this.addressProvider.putAddress(addressToPut).then(response => {
 				this.viewCtrl.dismiss();
 			});
-		} else {
+		} 
+		
+		else {
+			var addressToPost = {
+				name : this.name,
+				complement : this.complement,
+				address : this.address,
+				cityId : 1, //TODO
+				ownerId : 1
+			};
+			
+			console.log(addressToPost);
+			
 			let alert = this.alertCtrl.create({
 				title: 'Adresse ajoutée',
 				buttons: ['Ok']
 			});
 			alert.present();
 		
-			this.addressProvider.postAddress(address).then(response => {
+			this.addressProvider.postAddress(addressToPost).then(response => {
 				this.viewCtrl.dismiss();
 			});
 		}

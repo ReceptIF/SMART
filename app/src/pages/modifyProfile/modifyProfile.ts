@@ -45,11 +45,8 @@ export class ModifyProfilePage {
 			buttons: ['Ok']
 		});
 		alert.present();
-		this.userProvider.putUser(this.profileUser)
-      .then(
-        response => {
-          this.navCtrl.pop();
-        }
-		  );
-  }
+		this.userProvider.putUser(this.profileUser).then(response => {
+			this.navCtrl.pop();
+		});
+	}
 }

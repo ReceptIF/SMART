@@ -24,6 +24,8 @@ import { AddressModal } from '../pages/myAddresses/addressModal';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AnnounceProvider } from '../providers/announces.provider';
+import { AddressProvider } from '../providers/address.provider';
+import { CityProvider } from '../providers/city.provider';
 import { AnnounceTypeProvider } from '../providers/announceTypes.provider';
 import { UserProvider } from '../providers/users.provider';
 import { TransactionProvider } from '../providers/transactions.provider';
@@ -78,9 +80,11 @@ import { CommentProvider } from '../providers/comments.provider';
     StatusBar,
     SplashScreen,
     AnnounceProvider,
+    AddressProvider,
     AnnounceTypeProvider,
     UserProvider,
-    TransactionProvider,,
+    TransactionProvider,
+	CityProvider,
     CommentProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]

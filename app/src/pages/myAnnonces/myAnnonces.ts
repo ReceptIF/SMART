@@ -37,6 +37,9 @@ export class MyAnnoncesPage {
               this.itemsOpen.push(item);
               this.transactionProvider.getTransactionsByAnnounce(item.id).then(transactions => {
                 item.transactions = transactions;
+                item.transactions = item.transactions.filter( transaction => {
+                    return transaction.status == 0;
+                });
                 item.nbTransactions = item.transactions.length;
                 console.log(item.nbTransactions)
               });

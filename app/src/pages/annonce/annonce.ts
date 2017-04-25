@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import { AnswerPage } from '../answer/answer';
 import { ProfilePage } from '../profile/profile';
 import { CheckTransactionPage } from '../checkTransaction/checkTransaction';
@@ -21,7 +21,8 @@ export class AnnoncePage {
   
   connectedUser : any;
 
-	constructor(public navCtrl: NavController, public params:NavParams, private userProvider : UserProvider) {
+	constructor(public navCtrl: NavController, public params:NavParams, 
+      private userProvider : UserProvider, private events : Events) {
     
     this.userProvider.getConnectedUser().then(user => {this.connectedUser = user;});
 
@@ -72,6 +73,12 @@ export class AnnoncePage {
 		if(this.service.createdAt != null) {
 			this.createdAt = "Date de publication : "+this.service.createdAt;			
 		}
+    
+    this.events.subscribe('reloadAnnoncePage',() => {
+     this.navCtrl.pop();
+     this.navCtrl.push(AnnoncePage, { service : this.service });
+    });
+    
 	}
 
 	answerAnnonce(event, service) {

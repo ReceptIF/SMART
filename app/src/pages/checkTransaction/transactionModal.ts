@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Platform, ViewController, Events } from 'ionic-angular';
 import { PinCodePage } from '../pinCode/pinCode';
+import { MyAnnoncesPage } from '../myAnnonces/myAnnonces';
 import { TransactionProvider } from '../../providers/transactions.provider';
 
 @Component({
@@ -33,10 +34,7 @@ export class TransactionModal {
   validate() {
 		this.transactionProvider.acceptTransaction(this.answer.id).then(
       response => { 
-        console.log(response);
-        this.navCtrl.push(PinCodePage, {
-        
-        });
+        this.navCtrl.setRoot(MyAnnoncesPage);
     });
   }
   

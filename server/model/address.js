@@ -20,6 +20,10 @@ var Address = sequelize.define('address', {
             field: 'complement',
             allowNull: false
         },
+        district: {
+            type: Sequelize.STRING,
+            field: 'district'
+        },
         coordX: {
             type: Sequelize.FLOAT,
             field: 'coordX'
@@ -40,7 +44,7 @@ Address.belongsTo(User, {as: 'owner', foreignKey: 'ownerId'});
 
 Address.sync().then(function () {
     return Address.create({
-        name:'Maison',
+        name: 'Maison',
         address: '1 rue de l\'olive',
         complement: 'Batiment Alphonse Brown',
         coordX: '69.69',

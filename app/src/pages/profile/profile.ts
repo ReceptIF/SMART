@@ -6,6 +6,7 @@ import { CommentProvider } from '../../providers/comments.provider';
 import { AnnoncePage } from '../annonce/annonce';
 import { MyAnnoncesPage } from '../myAnnonces/myAnnonces';
 import { MyAddressesPage } from '../myAddresses/myAddresses';
+import { ModifyProfilePage } from '../modifyProfile/modifyProfile';
 
 @Component({
   selector: 'page-profile',
@@ -60,23 +61,29 @@ export class ProfilePage {
 
 	}
 
-  itemTapped(event, item) {
-    this.navCtrl.push(AnnoncePage, {
-      item: item
-    });
-  }
+	itemTapped(event, item) {
+		this.navCtrl.push(AnnoncePage, {
+		item: item
+		});
+	}
 
-  showMyAnnounces() {
-    this.navCtrl.push(MyAnnoncesPage);
-  }
+	showMyAnnounces() {
+		this.navCtrl.push(MyAnnoncesPage);
+	}
 
-  editAddresses() {
-    this.navCtrl.push(MyAddressesPage);
-  }
+	editAddresses() {
+		this.navCtrl.push(MyAddressesPage);
+	}
+
+	editProfile() {
+		this.navCtrl.push(ModifyProfilePage, {
+			profileId: this.profileId
+		});
+	}
   
-  goToProfile(profileId) {
-    this.navCtrl.push(ProfilePage, {
-		  profileId: profileId
+	goToProfile(profileId) {
+		this.navCtrl.push(ProfilePage, {
+			profileId: profileId
 		});
 	}
 

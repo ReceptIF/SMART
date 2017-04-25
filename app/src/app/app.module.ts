@@ -17,6 +17,7 @@ import { CheckTransactionPage } from '../pages/checkTransaction/checkTransaction
 import { TransactionModal } from '../pages/checkTransaction/transactionModal';
 import { PinCodePage } from '../pages/pinCode/pinCode';
 import { ProfilePage } from '../pages/profile/profile';
+import { ModifyProfilePage } from '../pages/modifyProfile/modifyProfile';
 import { MyAddressesPage } from '../pages/myAddresses/myAddresses';
 import { AddressModal } from '../pages/myAddresses/addressModal';
 
@@ -44,6 +45,7 @@ import { CommentProvider } from '../providers/comments.provider';
     TransactionModal,
     PinCodePage,
     ProfilePage,
+	ModifyProfilePage,
     MyAddressesPage,
     AddressModal
   ],
@@ -68,6 +70,7 @@ import { CommentProvider } from '../providers/comments.provider';
     TransactionModal,
     PinCodePage,
     ProfilePage,
+	ModifyProfilePage,
     MyAddressesPage,
     AddressModal
   ],

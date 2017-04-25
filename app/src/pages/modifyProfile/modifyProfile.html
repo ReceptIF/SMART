@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Profil</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item id="profile-pct">
+      <img [src]="'../../assets/ahDenis.jpg'"/><br/>
+    </ion-item>
+	</ion-list>
+	
+	<ion-item>
+		<ion-label floating>Prénom</ion-label>
+		<ion-input type="text" [(ngModel)]="profileUser.firstName"></ion-input>
+	</ion-item>
+	
+	<ion-item>
+		<ion-label floating>Nom</ion-label>
+		<ion-input type="text" [(ngModel)]="profileUser.lastName"></ion-input>
+	</ion-item>
+
+	<ion-item>
+		<ion-label floating>Mail</ion-label>
+		<ion-input type="text" [(ngModel)]="profileUser.email"></ion-input>
+	</ion-item>
+
+	<ion-item>
+		<ion-label floating>Téléphone</ion-label>
+		<ion-input type="text" [(ngModel)]="profileUser.cellPhone"></ion-input>
+	</ion-item>
+	
+	<ion-fab right bottom>
+		<button ion-fab color="light" (click)="updateProfile()"><ion-icon name="checkmark"></ion-icon></button>
+	</ion-fab>
+  
+</ion-content>

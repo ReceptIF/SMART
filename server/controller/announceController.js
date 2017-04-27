@@ -45,9 +45,9 @@ module.exports = function (server) {
                 ]
             }).then(function (data) {
                 announce.dataValues.acceptedTransaction = data;
-                response.send(announce ? data : {});
+                response.send(announce ? announce : {});
             }, function (data) {
-                response.send({ah: 'AH !', error: data});
+                response.send(announce ? announce : {});
             });
         }, function (data) {
             response.send({ah: 'AH !', error: data});

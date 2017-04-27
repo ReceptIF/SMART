@@ -48,7 +48,7 @@ module.exports = function (server) {
         });
     });
 
-    server.get('/transaction/buyer/:id', function (request, response) {
+    server.get('/transaction/seller/:id', function (request, response) {
         Transaction.findAll({
             where: {sellerId: request.params.id},
             include: [

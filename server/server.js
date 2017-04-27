@@ -22,6 +22,7 @@ require('./controller/announceTypeController')(server);
 require('./controller/cityController')(server);
 require('./controller/commentController')(server);
 require('./controller/addressController')(server);
+require('./controller/notificationController')(server);
 
 
 http.createServer(server).listen(8080, function () {

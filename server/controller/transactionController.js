@@ -167,8 +167,7 @@ module.exports = function (server) {
 
     server.put('/transaction/:id/end', function (request, response) {
         var body = {
-            status: 2,
-            code: Math.floor(Math.random() * 100000)
+            status: 2
         };
         Transaction.findById(request.params.id).then(function (transaction) {
             if (transaction.status != 1) {
@@ -177,7 +176,7 @@ module.exports = function (server) {
                 response.send({ah: 'AH !', error: "Cette annonce ne vous appartient pas !"});
             } else {
                 Transaction.update(body, {where: {id: request.params.id}}).then(function (data) {
-                    response.send({code: code});
+                    response.send(data);
                 }, function (data) {
                     response.send({ah: 'AH !', error: data});
                 });
@@ -200,7 +199,7 @@ module.exports = function (server) {
                 response.send({ah: 'AH !', error: "Cette annonce ne peux pas être terminée !"});
             } else if (request.body.accepterId != transaction.sellerId) {
                 response.send({ah: 'AH !', error: "Cette annonce ne vous appartient pas !"});
-            } else if (request.body.code == transaction.code) {
+            } else {
                 // Pay
                 var sellerUpdate = {ahAmount: transaction.seller.ahAmount + transaction.announce.price};
                 var buyerUpdate = {ahAmount: transaction.buyer.ahAmount - transaction.announce.price};
@@ -212,8 +211,6 @@ module.exports = function (server) {
                 }, function (data) {
                     response.send({ah: 'AH !', error: data});
                 });
-            } else {
-                response.send({ah: 'AH !', error: 'Code erronné !'});
             }
         });
     });

@@ -58,17 +58,6 @@ Transaction.belongsTo(User, {as: 'buyer', foreignKey: 'buyerId'});
 Announce.hasMany(Transaction, {as: 'announceId_fk', foreignKey: 'announceId'});
 Transaction.belongsTo(Announce, {as: 'announce', foreignKey: 'announceId'});
 
-Transaction.sync().then(function () {
-    return Transaction.create({
-        transactionDate: '05-05-2015 15:12',
-        name: 'Jean-Michel Transaction',
-        email: 'Jm@Forever.com',
-        phoneNumber: '0607080907',
-        commentary: 'Ceci est un Jean-Michel Commentaire !',
-        sellerOk: false,
-        buyerOk: true,
-        status: 1
-    });
-});
+Transaction.sync();
 
 module.exports = Transaction;

@@ -33,12 +33,6 @@ Comment.belongsTo(Announce, {as: 'announce', foreignKey : 'announceId'});
 User.hasMany(Comment, {as: 'targetId_fk', foreignKey : 'targetId'});
 Comment.belongsTo(User, {as: 'target', foreignKey : 'targetId'});
 
-Comment.sync().then(function () {
-    return Comment.create({
-        title:'Ah! Titre',
-        content:'Ah! Very Interesting!',
-        note:5
-    });
-});
+Comment.sync();
 
 module.exports = Comment;

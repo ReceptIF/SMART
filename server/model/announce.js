@@ -60,20 +60,6 @@ Address.hasMany(Announce, {as: 'addressId_fk', foreignKey: 'addressId'});
 Announce.belongsTo(Address, {foreignKey: 'addressId'});
 */
 
-Announce.sync().then(function () {
-    return Announce.create({
-        price: 500,
-        title: 'Aide Plomberie',
-        description: 'J\'ai un problème de tuyaux',
-        estimatedTime: 30,
-        startTime: new Date(2017, 6, 20),
-        endTime: new Date(2017, 6, 25),
-        address: 'Rue Einstein, Villeurbanne',
-        coordX: 45.782530,
-        coordY: 4.878155,
-        sale: true,
-        closed: false
-    });
-});
+Announce.sync();
 
 module.exports = Announce;

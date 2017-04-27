@@ -42,14 +42,6 @@ Address.belongsTo(City, {as: 'city', foreignKey: 'cityId'});
 User.hasMany(Address, {as: 'ownerId_fk', foreignKey: 'ownerId'});
 Address.belongsTo(User, {as: 'owner', foreignKey: 'ownerId'});
 
-Address.sync().then(function () {
-    return Address.create({
-        name: 'Maison',
-        address: '1 rue de l\'olive',
-        complement: 'Batiment Alphonse Brown',
-        coordX: '69.69',
-        coordY: '69.69'
-    });
-});
+Address.sync();
 
 module.exports = Address;

@@ -18,11 +18,6 @@ var City = sequelize.define('city', {
     }
 );
 
-City.sync().then(function () {
-    return City.create({
-        name: 'Jean-Michel Villeurbanne',
-        postCode: 69100
-    });
-});
+City.sync();
 
 module.exports = City;

@@ -9,11 +9,11 @@ var Notification = sequelize.define('notification', {
             type: Sequelize.STRING,
             field: 'icon'
         },
-        code: {
+        type: {
             type: Sequelize.STRING,
             field: 'type'
         },
-        postCode: {
+        read: {
             type: Sequelize.BOOLEAN,
             field: 'read'
         }

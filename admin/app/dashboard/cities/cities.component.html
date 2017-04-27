@@ -11,22 +11,21 @@
                         <table class="table">
                             <thead class="text-danger">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Country</th>
-                                    <th>City</th>
-                                    <th>Salary</th>
+                                    <th>ID</th>
+                                    <th>Nom</th>
+                                    <th>Code Postal</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Dakota Rice</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td class="text-danger">$36,738</td>
+                                <tr *ngFor="let city of cities">
+                                    <td>{{city.id}}</td>
+                                    <td>{{city.name}}</td>
+                                    <td>{{city.postCode}}</td>
+                                    <td></td>
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>

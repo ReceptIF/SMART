@@ -9,16 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var city_provider_1 = require('../../providers/city.provider');
 var CitiesComponent = (function () {
-    function CitiesComponent() {
+    function CitiesComponent(cityProvider) {
+        var _this = this;
+        this.cityProvider = cityProvider;
+        this.cityProvider.getCities().then(function (cities) { _this.cities = cities; console.log(_this.cities); });
     }
     CitiesComponent = __decorate([
         core_1.Component({
             selector: 'cities-cmp',
             moduleId: module.id,
-            templateUrl: 'cities.component.html'
+            templateUrl: 'cities.component.html',
+            providers: [city_provider_1.CityProvider]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [city_provider_1.CityProvider])
     ], CitiesComponent);
     return CitiesComponent;
 }());

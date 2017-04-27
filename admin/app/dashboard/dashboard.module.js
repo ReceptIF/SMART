@@ -15,6 +15,8 @@ var http_1 = require('@angular/http');
 var dashboard_routes_1 = require('./dashboard.routes');
 var users_provider_1 = require('../providers/users.provider');
 var announces_provider_1 = require('../providers/announces.provider');
+var announceTypes_provider_1 = require('../providers/announceTypes.provider');
+var city_provider_1 = require('../providers/city.provider');
 var DashboardModule = (function () {
     function DashboardModule() {
     }
@@ -28,7 +30,9 @@ var DashboardModule = (function () {
             declarations: [dashboard_routes_1.MODULE_COMPONENTS],
             providers: [
                 users_provider_1.UserProvider,
-                announces_provider_1.AnnounceProvider
+                announces_provider_1.AnnounceProvider,
+                announceTypes_provider_1.AnnounceTypeProvider,
+                city_provider_1.CityProvider,
             ]
         }), 
         __metadata('design:paramtypes', [])

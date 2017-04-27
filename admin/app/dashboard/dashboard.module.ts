@@ -8,6 +8,8 @@ import { MODULE_COMPONENTS, MODULE_ROUTES } from './dashboard.routes';
 
 import { UserProvider } from '../providers/users.provider';
 import { AnnounceProvider } from '../providers/announces.provider';
+import { AnnounceTypeProvider } from '../providers/announceTypes.provider';
+import { CityProvider } from '../providers/city.provider';
 
 @NgModule({
     imports: [
@@ -18,7 +20,9 @@ import { AnnounceProvider } from '../providers/announces.provider';
     declarations: [ MODULE_COMPONENTS ],
     providers: [
         UserProvider,
-        AnnounceProvider
+        AnnounceProvider,
+        AnnounceTypeProvider,
+        CityProvider,
     ]
 })
 

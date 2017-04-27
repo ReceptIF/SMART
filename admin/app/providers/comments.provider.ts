@@ -4,67 +4,68 @@ import { GlobalConstants } from '../app/app.constants';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class AnnounceProvider {
-  cachedAnnounces : any;
+export class CommentProvider {
   headers : Headers;
   options : RequestOptions;
 
   constructor(private http: Http) {
-    this.cachedAnnounces = this.getAnnounces();
     this.headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     this.options = new RequestOptions({ headers: this.headers });
   }
 
-  getAnnounces() {
-    if (this.cachedAnnounces) {
-      return Promise.resolve(this.cachedAnnounces);
-    }
-
+  getComments() {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announces')
+      this.http.get(GlobalConstants.urlServer + '/comments')
         .map(res => res.json())
         .subscribe(data => {
-          this.cachedAnnounces = data;
-          resolve(this.cachedAnnounces);
+          resolve(data);
         });
     });
   }
 
-  getAnnounce(announceId) {
+  getCommentById(commentId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announce/' + announceId)
+      this.http.get(GlobalConstants.urlServer + '/comment/' + commentId)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
   }
 
-  getAnnounceByUser(userId) {
+  getCommentByAuthor(authorId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announces/by/' + userId)
+      this.http.get(GlobalConstants.urlServer + '/comments/author/' + authorId)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
   }
 
-  postAnnounce(announce) {
+  getCommentByTarget(targetId) {
     return new Promise(resolve => {
-      this.http.post(GlobalConstants.urlServer + '/announce', announce)
+      this.http.get(GlobalConstants.urlServer + '/comments/target/' + targetId)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
   }
 
-  putAnnounce(announce) {
+  postComment(comment) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/announce', announce)
+      this.http.post(GlobalConstants.urlServer + '/comment', comment)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
   }
 
-  deleteAnnounce(announceId) {
+  putComment(comment) {
     return new Promise(resolve => {
-      this.http.delete(GlobalConstants.urlServer + '/announce/' + announceId)
+      this.http.put(GlobalConstants.urlServer + '/comment', comment)
+        .map(res => res.json())
+        .subscribe(data => resolve(data));
+    });
+  }
+
+  deleteComment(commentId) {
+    return new Promise(resolve => {
+      this.http.delete(GlobalConstants.urlServer + '/comment/' + commentId)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

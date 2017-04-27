@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { GlobalConstants } from '../app.constants';
+import { GlobalConstants } from '../app/app.constants';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -23,9 +23,41 @@ export class TransactionProvider {
     });
   }
 
-  getTransaction(transactionId) {
+  getTransactionById(transactionId) {
     return new Promise(resolve => {
       this.http.get(GlobalConstants.urlServer + '/transaction/' + transactionId)
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
+
+  getTransactionBySeller(sellerId) {
+    return new Promise(resolve => {
+      this.http.get(GlobalConstants.urlServer + '/transactions/seller/' + sellerId)
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
+
+  getTransactionByBuyer(buyerId) {
+    return new Promise(resolve => {
+      this.http.get(GlobalConstants.urlServer + '/transactions/buyer/' + buyerId)
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
+
+  getTransactionsByAnnounce(announceId) {
+    return new Promise(resolve => {
+      this.http.get(GlobalConstants.urlServer + '/transactions/announce/' + announceId)
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
+
+  getAcceptedTransaction(announceId) {
+    return new Promise(resolve => {
+      this.http.get(GlobalConstants.urlServer + '/transaction/announce/' + announceId + '/accepted')
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -41,7 +73,7 @@ export class TransactionProvider {
 
   acceptTransaction(transactionId) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/accept', {})
+      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/accept', { accepterId : 1 })
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -65,7 +97,7 @@ export class TransactionProvider {
 
   cancelTransaction(transactionId) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/cancel', {})
+      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/cancel', { accepterId : 1 })
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

@@ -4,67 +4,52 @@ import { GlobalConstants } from '../app/app.constants';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class AnnounceProvider {
-  cachedAnnounces : any;
+export class NotificationProvider {
   headers : Headers;
   options : RequestOptions;
 
   constructor(private http: Http) {
-    this.cachedAnnounces = this.getAnnounces();
     this.headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     this.options = new RequestOptions({ headers: this.headers });
   }
 
-  getAnnounces() {
-    if (this.cachedAnnounces) {
-      return Promise.resolve(this.cachedAnnounces);
-    }
-
+  getNotifications() {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announces')
+      this.http.get(GlobalConstants.urlServer + '/notifications')
         .map(res => res.json())
         .subscribe(data => {
-          this.cachedAnnounces = data;
-          resolve(this.cachedAnnounces);
+          resolve(data);
         });
     });
   }
 
-  getAnnounce(announceId) {
+  getNotificationById(notificationId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announce/' + announceId)
+      this.http.get(GlobalConstants.urlServer + '/notification/' + notificationId)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
   }
 
-  getAnnounceByUser(userId) {
+  getNotificationsByUser(userId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announces/by/' + userId)
+      this.http.get(GlobalConstants.urlServer + '/notifications/user/' + userId)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
   }
 
-  postAnnounce(announce) {
+  getNotificationsByAnnounce(announceId) {
     return new Promise(resolve => {
-      this.http.post(GlobalConstants.urlServer + '/announce', announce)
+      this.http.get(GlobalConstants.urlServer + '/notifications/announce/' + announceId + '/accepted')
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
   }
 
-  putAnnounce(announce) {
+  deleteNotification(notificationId) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/announce', announce)
-        .map(res => res.json())
-        .subscribe(data => {resolve(data);});
-    });
-  }
-
-  deleteAnnounce(announceId) {
-    return new Promise(resolve => {
-      this.http.delete(GlobalConstants.urlServer + '/announce/' + announceId)
+      this.http.delete(GlobalConstants.urlServer + '/notification/' + notificationId)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

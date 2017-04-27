@@ -4,67 +4,59 @@ import { GlobalConstants } from '../app/app.constants';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class AnnounceProvider {
-  cachedAnnounces : any;
+export class CityProvider {
+  cachedCities : any;
   headers : Headers;
   options : RequestOptions;
 
   constructor(private http: Http) {
-    this.cachedAnnounces = this.getAnnounces();
+    this.cachedCities = this.getCities();
     this.headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     this.options = new RequestOptions({ headers: this.headers });
   }
 
-  getAnnounces() {
-    if (this.cachedAnnounces) {
-      return Promise.resolve(this.cachedAnnounces);
+  getCities() {
+    if (this.cachedCities) {
+      return Promise.resolve(this.cachedCities);
     }
 
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announces')
+      this.http.get(GlobalConstants.urlServer + '/cities')
         .map(res => res.json())
         .subscribe(data => {
-          this.cachedAnnounces = data;
-          resolve(this.cachedAnnounces);
+          this.cachedCities = data;
+          resolve(this.cachedCities);
         });
     });
   }
 
-  getAnnounce(announceId) {
+  getCity(cityId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announce/' + announceId)
+      this.http.get(GlobalConstants.urlServer + '/city/' + cityId)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
   }
 
-  getAnnounceByUser(userId) {
+  postCity(city) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announces/by/' + userId)
+      this.http.post(GlobalConstants.urlServer + '/city', city)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
   }
 
-  postAnnounce(announce) {
+  putCity(city) {
     return new Promise(resolve => {
-      this.http.post(GlobalConstants.urlServer + '/announce', announce)
+      this.http.put(GlobalConstants.urlServer + '/city', city)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
   }
 
-  putAnnounce(announce) {
+  deleteCity(cityId) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/announce', announce)
-        .map(res => res.json())
-        .subscribe(data => {resolve(data);});
-    });
-  }
-
-  deleteAnnounce(announceId) {
-    return new Promise(resolve => {
-      this.http.delete(GlobalConstants.urlServer + '/announce/' + announceId)
+      this.http.delete(GlobalConstants.urlServer + '/city/' + cityId)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

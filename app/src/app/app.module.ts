@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { PostAnnoncePage } from '../pages/postAnnonce/postAnnonce';
 import { AnnoncePage } from '../pages/annonce/annonce';
 import { MyAnnoncesPage } from '../pages/myAnnonces/myAnnonces';
+import { MyAnswersPage } from '../pages/myAnswers/myAnswers';
 import { AnswerPage } from '../pages/answer/answer';
 import { SearchedAnnouncesPage } from '../pages/searchedAnnounces/searchedAnnounces';
 import { RecherchePage } from '../pages/recherche/recherche';
@@ -39,6 +40,7 @@ import { CommentProvider } from '../providers/comments.provider';
     AnnoncePage,
     AnswerPage,
     MyAnnoncesPage,
+	MyAnswersPage,
 	SearchedAnnouncesPage,
     LoginPage,
     AnnoncePage,
@@ -64,6 +66,7 @@ import { CommentProvider } from '../providers/comments.provider';
     HomePage,
     AnnoncePage,
     MyAnnoncesPage,
+	MyAnswersPage,
     AnswerPage,
     RecherchePage,
     SearchedAnnouncesPage,

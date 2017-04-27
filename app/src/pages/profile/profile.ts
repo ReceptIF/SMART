@@ -7,6 +7,7 @@ import { CommentProvider } from '../../providers/comments.provider';
 import { AnnoncePage } from '../annonce/annonce';
 import { MyAnnoncesPage } from '../myAnnonces/myAnnonces';
 import { MyAddressesPage } from '../myAddresses/myAddresses';
+import { MyAnswersPage } from '../myAnswers/myAnswers';
 import { ModifyProfilePage } from '../modifyProfile/modifyProfile';
 
 @Component({
@@ -56,8 +57,6 @@ export class ProfilePage {
 								}
 							}
 							this.nbService = this.services.length;
-							console.log(this.nbService);
-							console.log(this.services);
 						}
 					);
 					this.commentProvider.getCommentByTarget(this.profileUser.id).then(
@@ -85,6 +84,10 @@ export class ProfilePage {
 
 	showMyAnnounces() {
 		this.navCtrl.push(MyAnnoncesPage);
+	}
+
+	showMyAnswers() {
+		this.navCtrl.push(MyAnswersPage);
 	}
 
 	editAddresses() {

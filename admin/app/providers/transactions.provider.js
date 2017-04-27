@@ -28,10 +28,42 @@ var TransactionProvider = (function () {
             });
         });
     };
-    TransactionProvider.prototype.getTransaction = function (transactionId) {
+    TransactionProvider.prototype.getTransactionById = function (transactionId) {
         var _this = this;
         return new Promise(function (resolve) {
             _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId)
+                .map(function (res) { return res.json(); })
+                .subscribe(function (data) { resolve(data); });
+        });
+    };
+    TransactionProvider.prototype.getTransactionBySeller = function (sellerId) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transactions/seller/' + sellerId)
+                .map(function (res) { return res.json(); })
+                .subscribe(function (data) { resolve(data); });
+        });
+    };
+    TransactionProvider.prototype.getTransactionByBuyer = function (buyerId) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transactions/buyer/' + buyerId)
+                .map(function (res) { return res.json(); })
+                .subscribe(function (data) { resolve(data); });
+        });
+    };
+    TransactionProvider.prototype.getTransactionsByAnnounce = function (announceId) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transactions/announce/' + announceId)
+                .map(function (res) { return res.json(); })
+                .subscribe(function (data) { resolve(data); });
+        });
+    };
+    TransactionProvider.prototype.getAcceptedTransaction = function (announceId) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transaction/announce/' + announceId + '/accepted')
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -47,7 +79,7 @@ var TransactionProvider = (function () {
     TransactionProvider.prototype.acceptTransaction = function (transactionId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '/accept', {})
+            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '/accept', { accepterId: 1 })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -71,7 +103,7 @@ var TransactionProvider = (function () {
     TransactionProvider.prototype.cancelTransaction = function (transactionId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '/cancel', {})
+            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '/cancel', { accepterId: 1 })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });

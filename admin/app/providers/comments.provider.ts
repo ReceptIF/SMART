@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
-import { GlobalConstants } from '../app/app.constants';
+import { GlobalConstants } from '../app.constants';
 import 'rxjs/add/operator/map';
 
 @Injectable()

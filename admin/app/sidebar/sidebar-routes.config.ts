@@ -2,9 +2,9 @@ import {  RouteInfo } from './sidebar.metadata';
 
 export const ROUTES: RouteInfo[] = [
     { path: 'dashboard', title: 'Dashboard',  icon: 'dashboard', class: '' },
-    { path: 'user', title: 'User Profile',  icon:'person', class: '' },
-    { path: 'table', title: 'Table List',  icon:'content_paste', class: '' },
-    { path: 'icons', title: 'Icons',  icon:'bubble_chart', class: '' },
-    { path: 'maps', title: 'Maps',  icon:'location_on', class: '' },
-    { path: 'notifications', title: 'Notifications',  icon:'notifications', class: '' },
+    { path: 'users', title: 'Utilisateurs',  icon:'people', class: '' },
+    { path: 'announces', title: 'Annonces',  icon: 'content_paste', class: '' },
+    { path: 'announcesTypes', title: "Types d'Annonce",  icon: 'label', class: '' },
+    { path: 'cities', title: 'Villes',  icon: 'location_city', class: '' },
+    { path: 'announces', title: 'Carte Intéractive',  icon: 'map', class: '' },
 ];

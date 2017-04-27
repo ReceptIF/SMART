@@ -9,16 +9,13 @@
 
 <ion-content>
   <ion-list>
-    <ion-card class="notif-new">
+    <ion-card *ngFor="let notif of notifications" (click)="selectNotif(notif)">
       <ion-card-content>
-        <p class="notif-message">Votre réponse à la demande "<strong>Caresser mon chat</strong>" a été acceptée par <strong>Mylène Michel</strong>. Elle prendra contact avec vous dans les plus brefs délais.</p>
-        <p class="notif-infos">il y a 10 minutes</p>
-      </ion-card-content>
-    </ion-card>
-    <ion-card>
-      <ion-card-content>
-        <p class="notif-message">Le paiement de <strong>Jean-Michel Payé</strong> a bien été réalisé. Vous avez été débité de <strong>6 AH!</strong>. Donnez nous rapidement <strong>votre avis</strong> sur Jean-Michel !</p>
-        <p class="notif-infos">il y a 4 heures</p>
+        
+        <p class="notif-message" *ngIf="notif.code == 'answer'">{{notif.transaction.name}} a répondu à votre annonce "<strong>{{notif.announce.title}}</strong>". Vous pouvez accepter ou refuser son offre.</p>
+        <p class="notif-message" *ngIf="notif.code == 'accepted'">Votre réponse à l'annonce "<strong>{{notif.announce.title}}</strong>" vient d'être acceptée. Vous pouvez désormais <strong>rentrer en contact</strong> avec le posteur de l'annonce.</p>
+        
+        <p class="notif-infos"><ion-icon [name]="notif.icon"></ion-icon> il y a 10 minutes</p>
       </ion-card-content>
     </ion-card>
 	</ion-list>

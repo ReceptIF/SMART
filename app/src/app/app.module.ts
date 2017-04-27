@@ -32,6 +32,7 @@ import { AnnounceTypeProvider } from '../providers/announceTypes.provider';
 import { UserProvider } from '../providers/users.provider';
 import { TransactionProvider } from '../providers/transactions.provider';
 import { CommentProvider } from '../providers/comments.provider';
+import { NotificationProvider } from '../providers/notifications.provider';
 
 @NgModule({
   declarations: [
@@ -92,6 +93,7 @@ import { CommentProvider } from '../providers/comments.provider';
     TransactionProvider,
 	CityProvider,
     CommentProvider,
+    NotificationProvider,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })

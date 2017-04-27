@@ -25,13 +25,26 @@ export class AnnoncePage {
   connectedUser : any;
 
 	constructor(public navCtrl: NavController, public params:NavParams, 
-      private userProvider : UserProvider, private events : Events, 
-      private transactionProvider : TransactionProvider) {
+			private userProvider : UserProvider, private events : Events, 
+			private transactionProvider : TransactionProvider) {
     
 		this.service= params.get("item");
     
-    this.userProvider.getConnectedUser().then(user => {this.connectedUser = user;});
-    this.transactionProvider.getAcceptedTransaction(this.service.id).then(transaction => { var t; t = transaction; if(t.id) { this.acceptedTransaction = transaction; } else { this.acceptedTransaction = null; } });
+		this.userProvider.getConnectedUser().then(user => {
+			this.connectedUser = user;
+		});
+		
+		this.transactionProvider.getAcceptedTransaction(this.service.id).then(
+			transaction => { 
+				var t; 
+				t = transaction; 
+				if(t.id) { 
+					this.acceptedTransaction = transaction; 
+				} else { 
+					this.acceptedTransaction = null; 
+				} 
+			}
+		);
 
 		this.price = this.service.price + " AH !";
 		

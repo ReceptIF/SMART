@@ -9,7 +9,30 @@
 
 <ion-content>
   <ion-list>
-      <ion-item *ngFor="let service of services" class="myAnswers-annonce" (click)="itemTapped($event, service)">
+    <ion-list-header>Services en cours</ion-list-header>
+      <ion-item *ngFor="let service of servicesOpen" class="myAnswers-annonce" (click)="itemTapped($event, service)">
+        <ion-avatar item-left>
+          <img [src]="'../../assets/icon/service-type/'+service.type.icon+'.png'">
+        </ion-avatar>
+        <h1>{{service.title}}</h1>
+        <h2>{{service.price}} AH!</h2>
+        <p class="anwser-valid" *ngIf="service.answered"><ion-icon name="checkmark"></ion-icon></p>
+      </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>Services à valider</ion-list-header>
+      <ion-item *ngFor="let service of servicesToValidate" class="myAnswers-annonce" (click)="itemTapped($event, service)">
+        <ion-avatar item-left>
+          <img [src]="'../../assets/icon/service-type/'+service.type.icon+'.png'">
+        </ion-avatar>
+        <h1>{{service.title}}</h1>
+        <h2>{{service.price}} AH!</h2>
+        <p class="anwser-valid" *ngIf="service.answered"><ion-icon name="checkmark"></ion-icon></p>
+      </ion-item>
+  </ion-list>
+  <ion-list>
+    <ion-list-header>Services terminés</ion-list-header>
+      <ion-item *ngFor="let service of servicesClosed" class="myAnswers-annonce" (click)="itemTapped($event, service)">
         <ion-avatar item-left>
           <img [src]="'../../assets/icon/service-type/'+service.type.icon+'.png'">
         </ion-avatar>

@@ -39,6 +39,17 @@ var User = sequelize.define('user', {
 );
 
 User.sync().then(function () {
+    User.create({
+        email: 'jm.server@smart.pld',
+        firstName: 'Jean-Michel',
+        lastName: 'Server',
+        cellPhone: '0606060607',
+        address: '68 Avenue Jean-Michel Grand Lyon',
+        ahAmount: 54000,
+        password: 'lol',
+        coordX: 68.68,
+        coordY: 68.68
+    });
     return User.create({
         email: 'jm.be@smart.pld',
         firstName: 'Jean-Michel',

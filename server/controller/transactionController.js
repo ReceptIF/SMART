@@ -1,6 +1,7 @@
 var Transaction = require('../model/transaction');
 var Announce = require('../model/announce');
 var User = require('../model/user');
+var Notification = require('../model/notification');
 
 module.exports = function (server) {
 
@@ -124,6 +125,13 @@ module.exports = function (server) {
             }
             body.status = 0;
             Transaction.create(body).then(function (data) {
+                Notification.create({
+                    transactionId: data.id,
+                    type: 'answer',
+                    userId: announce.authorId,
+                    icon: 'chatbubbles',
+                    read: false
+                });
                 response.send(data);
             }, function (data) {
                 response.send({ah: 'AH !', error: data});
@@ -138,7 +146,12 @@ module.exports = function (server) {
 
         var body = {};
 
-        Transaction.findById(request.params.id).then(function (transaction) {
+        Transaction.findById(request.params.id, {
+            include: {
+                model: Announce,
+                as: 'announce'
+            }
+        }).then(function (transaction) {
             if (transaction.status != 0) {
                 response.send({ah: 'AH !', error: "Cette annonce ne peux pas être acceptée !"});
             } else if (transaction.sellerId == id && !transaction.sellerOk) {
@@ -151,6 +164,15 @@ module.exports = function (server) {
             }
             body.status = 1;
             Transaction.update(body, {where: {id: request.params.id}}).then(function (data) {
+                Notification.create(
+                    {
+                        transactionId: transaction.id,
+                        type: 'accept',
+                        userId: transaction.sellerId == transaction.announce.authorId ? transaction.buyerId : transaction.sellerId,
+                        icon: 'chatbubbles',
+                        read: false
+                    }
+                );
                 Transaction.update({status: -1}, {
                     where: {
                         id: {$ne: request.params.id},
@@ -175,6 +197,15 @@ module.exports = function (server) {
             } else if (request.body.accepterId != transaction.buyerId) {
                 response.send({ah: 'AH !', error: "Cette annonce ne vous appartient pas !"});
             } else {
+                Notification.create(
+                    {
+                        transactionId: transaction.id,
+                        type: 'end',
+                        userId: transaction.sellerId,
+                        icon: 'chatbubbles',
+                        read: false
+                    }
+                );
                 Transaction.update(body, {where: {id: request.params.id}}).then(function (data) {
                     response.send(data);
                 }, function (data) {
@@ -206,6 +237,15 @@ module.exports = function (server) {
                 User.update(sellerUpdate, {where: {id: transaction.sellerId}});
                 User.update(buyerUpdate, {where: {id: transaction.buyerId}});
                 // Update transaction
+                Notification.create(
+                    {
+                        transactionId: transaction.id,
+                        type: 'close',
+                        userId: transaction.buyerId,
+                        icon: 'chatbubbles',
+                        read: false
+                    }
+                );
                 Transaction.update(body, {where: {id: request.params.id}}).then(function (data) {
                     response.send(data);
                 }, function (data) {
@@ -224,6 +264,24 @@ module.exports = function (server) {
             } else if (request.body.accepterId != transaction.sellerId && request.body.accepterId != transaction.buyerId) {
                 response.send({ah: 'AH !', error: "Cette annonce ne vous appartient pas !"});
             } else {
+                Notification.create(
+                    {
+                        transactionId: transaction.id,
+                        type: 'cancel',
+                        userId: transaction.buyerId,
+                        icon: 'chatbubbles',
+                        read: false
+                    }
+                );
+                Notification.create(
+                    {
+                        transactionId: transaction.id,
+                        type: 'cancel',
+                        userId: transaction.sellerId,
+                        icon: 'chatbubbles',
+                        read: false
+                    }
+                );
                 Transaction.update(body, {where: {id: request.params.id}}).then(function (data) {
                     response.send(data);
                 }, function (data) {

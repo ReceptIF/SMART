@@ -12,10 +12,11 @@ import { ProfilePage } from '../pages/profile/profile';
 import { NotificationsPage } from '../pages/notifications/notifications';
 
 import { UserProvider } from '../providers/users.provider';
+import { NotificationProvider } from '../providers/notifications.provider';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [UserProvider]
+  providers: [UserProvider,NotificationProvider]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -25,11 +26,27 @@ export class MyApp {
 
   //connectedUser : User; TODO MAJ Interface to fit
   connectedUser : any;
+  notifNumber : any;
+  notifications : any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen, private userProvider : UserProvider) {
+  constructor(public platform: Platform, public statusBar: StatusBar, 
+        public splashScreen: SplashScreen, private userProvider : UserProvider,
+        private notificationProvider : NotificationProvider) {
     this.initializeApp();
-    //this.connectedUser = { id:1, email:'denis.brogniard@gmail.com', firstName:'Denis', lastName : 'BROGNIART', ahAmont: 42 };
-    this.userProvider.getUser(1).then(user => {this.connectedUser = user; console.log(user)});
+    this.notifications = [];
+    
+    this.userProvider.getUser(1).then(user => {
+      
+      this.connectedUser = user;
+      this.notificationProvider.getNotificationsByUser(this.connectedUser.id).then(
+        notifs => { 
+          this.notifications = notifs;
+          this.notifications = this.notifications.filter( notif => {
+              return !notif.read;
+          });
+          this.notifNumber = this.notifications.length;
+      });
+    });
 
     // used for an example of ngFor and navigation
     this.pages = [

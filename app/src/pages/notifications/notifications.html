@@ -9,11 +9,11 @@
 
 <ion-content>
   <ion-list>
-    <ion-card *ngFor="let notif of notifications" (click)="selectNotif(notif)">
+    <ion-card *ngFor="let notif of notifications" (click)="selectNotif(notif)" [ngClass]="{'notif-new': !notif.read }">
       <ion-card-content>
         
-        <p class="notif-message" *ngIf="notif.code == 'answer'">{{notif.transaction.name}} a répondu à votre annonce "<strong>{{notif.announce.title}}</strong>". Vous pouvez accepter ou refuser son offre.</p>
-        <p class="notif-message" *ngIf="notif.code == 'accepted'">Votre réponse à l'annonce "<strong>{{notif.announce.title}}</strong>" vient d'être acceptée. Vous pouvez désormais <strong>rentrer en contact</strong> avec le posteur de l'annonce.</p>
+        <p class="notif-message" *ngIf="notif.type == 'answer'">{{notif.transaction.name}} a répondu à votre annonce "<strong>{{notif.announce.title}}</strong>". Vous pouvez accepter ou refuser son offre.</p>
+        <p class="notif-message" *ngIf="notif.type == 'accepted'">Votre réponse à l'annonce "<strong>{{notif.announce.title}}</strong>" vient d'être acceptée. Vous pouvez désormais <strong>rentrer en contact</strong> avec le posteur de l'annonce.</p>
         
         <p class="notif-infos"><ion-icon [name]="notif.icon"></ion-icon> il y a 10 minutes</p>
       </ion-card-content>

@@ -54,7 +54,7 @@ export class NotificationsPage {
   }
   
   selectNotif(notif) {
-    switch(notif.code) {
+    switch(notif.type) {
       case 'answer' :
         this.navCtrl.push(AnnoncePage, { item: notif.announce });
         break;

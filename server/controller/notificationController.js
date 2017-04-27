@@ -1,5 +1,6 @@
 var Notification = require('../model/notification');
-var Announce = require('../model/announce');
+var Transaction = require('../model/transaction');
+var Comment = require('../model/comment');
 var User = require('../model/user');
 
 
@@ -10,7 +11,8 @@ module.exports = function (server) {
         Notification.findAll({
             include: [
                 {model: User, as: 'user'},
-                {model: Announce, as: 'announce'}
+                {model: Transaction, as: 'transaction'},
+                {model: Comment, as: 'comment'}
             ]
         }).then(function (data) {
             response.send(data);
@@ -23,7 +25,8 @@ module.exports = function (server) {
         Notification.findById(request.params.id, {
             include: [
                 {model: User, as: 'user'},
-                {model: Announce, as: 'announce'}
+                {model: Transaction, as: 'transaction'},
+                {model: Comment, as: 'comment'}
             ]
         }).then(function (data) {
             response.send(data ? data : {});
@@ -36,7 +39,8 @@ module.exports = function (server) {
         Notification.findAll({
             include: [
                 {model: User, as: 'user'},
-                {model: Announce, as: 'announce'}
+                {model: Transaction, as: 'transaction'},
+                {model: Comment, as: 'comment'}
             ], where: {userId: request.params.id}
         }).then(function (data) {
             response.send(data ? data : {});
@@ -45,12 +49,27 @@ module.exports = function (server) {
         });
     });
 
-    server.get('/notifications/announce/:id', function (request, response) {
+    server.get('/notifications/transaction/:id', function (request, response) {
         Notification.findAll({
             include: [
                 {model: User, as: 'user'},
-                {model: Announce, as: 'announce'}
-            ], where: {announceId: request.params.id}
+                {model: Transaction, as: 'transaction'},
+                {model: Comment, as: 'comment'}
+            ], where: {transactionId: request.params.id}
+        }).then(function (data) {
+            response.send(data ? data : {});
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
+    server.get('/notifications/comment/:id', function (request, response) {
+        Notification.findAll({
+            include: [
+                {model: User, as: 'user'},
+                {model: Transaction, as: 'transaction'},
+                {model: Comment, as: 'comment'}
+            ], where: {commentId: request.params.id}
         }).then(function (data) {
             response.send(data ? data : {});
         }, function (data) {

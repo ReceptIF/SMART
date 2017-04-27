@@ -1,6 +1,7 @@
 var Sequelize = require('sequelize');
 var sequelize = require('../orm');
-var Announce = require('./announce');
+var Transaction = require('./transaction');
+var Comment = require('./comment');
 var User = require('./user');
 
 var Notification = sequelize.define('notification', {
@@ -21,8 +22,12 @@ var Notification = sequelize.define('notification', {
     }
 );
 
-Announce.hasMany(Notification, {as: 'announceId_fk', foreignKey: 'announceId'});
-Notification.belongsTo(Announce, {as: 'announce', foreignKey: 'announceId'});
+Transaction.hasMany(Notification, {as: 'transactionId_fk', foreignKey: 'transactionId'});
+Notification.belongsTo(Transaction, {as: 'transaction', foreignKey: 'transactionId'});
+
+Comment.hasMany(Notification, {as: 'commentId_fk', foreignKey: 'commentId'});
+Notification.belongsTo(Comment, {as: 'comment', foreignKey: 'commentId'});
+
 User.hasMany(Notification, {as: 'userId_fk', foreignKey: 'userId'});
 Notification.belongsTo(User, {as: 'user', foreignKey: 'userId'});
 

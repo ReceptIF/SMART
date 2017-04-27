@@ -9,16 +9,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var announces_provider_1 = require('../../providers/announces.provider');
 var AnnouncesComponent = (function () {
-    function AnnouncesComponent() {
+    function AnnouncesComponent(announcesProvider) {
+        var _this = this;
+        this.announcesProvider = announcesProvider;
+        this.announcesProvider.getAnnounces().then(function (announces) { _this.announces = announces; console.log(_this.announces); });
     }
     AnnouncesComponent = __decorate([
         core_1.Component({
             selector: 'announces-cmp',
             moduleId: module.id,
-            templateUrl: 'announces.component.html'
+            templateUrl: 'announces.component.html',
+            providers: [announces_provider_1.AnnounceProvider]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [announces_provider_1.AnnounceProvider])
     ], AnnouncesComponent);
     return AnnouncesComponent;
 }());

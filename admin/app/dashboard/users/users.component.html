@@ -11,22 +11,26 @@
                         <table class="table">
                             <thead class="text-danger">
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Country</th>
-                                    <th>City</th>
-                                    <th>Salary</th>
+                                    <th>ID</th>
+                                    <th>Nom</th>
+                                    <th>Prénom</th>
+                                    <th>Email</th>
+                                    <th>Téléphone</th>
+                                    <th>Ah</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Dakota Rice</td>
-                                    <td>Niger</td>
-                                    <td>Oud-Turnhout</td>
-                                    <td class="text-danger">$36,738</td>
+                                <tr *ngFor="let user of users">
+                                    <td>{{user.id}}</td>
+                                    <td>{{user.lastName}}</td>
+                                    <td>{{user.firstName}}</td>
+                                    <td>{{user.email}}</td>
+                                    <td>{{user.cellPhone}}</td>
+                                    <td>{{user.ahAmount}}</td>
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>

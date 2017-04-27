@@ -58,7 +58,13 @@ export class NotificationsPage {
       case 'answer' :
         this.navCtrl.push(AnnoncePage, { item: notif.announce });
         break;
-      case 'accepted' :
+      case 'accept' :
+        this.navCtrl.push(AnnoncePage, { item: notif.announce });
+        break;
+      case 'end' :
+        this.navCtrl.push(AnnoncePage, { item: notif.announce });
+        break;
+      case 'close' :
         this.navCtrl.push(AnnoncePage, { item: notif.announce });
         break;
     }

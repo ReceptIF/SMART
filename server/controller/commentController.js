@@ -1,11 +1,24 @@
 var Comment = require('../model/comment');
 var User = require('../model/user');
+var Announce = require('../model/announce');
 
 module.exports = function (server) {
 
     // GET
     server.get('/comments', function (request, response) {
-        Comment.findAll({include: [{model: User, as: 'author'},{model: User, as: 'target'}]}).then(function (data) {
+        Comment.findAll({
+            include: [
+                {model: User, as: 'author'},
+                {model: User, as: 'target'},
+                {model: Announce, as: 'announce'}
+            ]
+        }).then(function (data) {
+            data.forEach(function (comment) {
+                if (comment.dataValues.announce && comment.dataValues.author) {
+                    comment.dataValues.authorIsBuyer = (comment.dataValues.announce.sale && comment.dataValues.author.id !== comment.dataValues.announce.authorId)
+                        || (!comment.dataValues.announce.sale && comment.dataValues.author.id === comment.dataValues.announce.authorId);
+                }
+            });
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});
@@ -13,8 +26,18 @@ module.exports = function (server) {
     });
 
     server.get('/comment/:id', function (request, response) {
-        Comment.findById(request.params.id, {include: [{model: User, as: 'author'},{model: User, as: 'target'}]}).then(function (data) {
-            response.send(data ? data : {});
+        Comment.findById(request.params.id, {
+            include: [
+                {model: User, as: 'author'},
+                {model: User, as: 'target'},
+                {model: Announce, as: 'announce'}
+                ]
+        }).then(function (comment) {
+            if (comment.dataValues.announce && comment.dataValues.author) {
+                comment.dataValues.authorIsBuyer = (comment.dataValues.announce.sale && comment.dataValues.author.id !== comment.dataValues.announce.authorId)
+                    || (!comment.dataValues.announce.sale && comment.dataValues.author.id === comment.dataValues.announce.authorId);
+            }
+            response.send(comment ? comment : {});
         }, function (data) {
             response.send({ah: 'AH !', error: data});
         });
@@ -25,8 +48,14 @@ module.exports = function (server) {
             where: {
                 targetId: request.params.id
             },
-            include: [{model: User, as: 'author'},{model: User, as: 'target'}]
+            include: [{model: User, as: 'author'}, {model: User, as: 'target'}, {model: Announce, as: 'announce'}]
         }).then(function (data) {
+            data.forEach(function (comment) {
+                if (comment.dataValues.announce && comment.dataValues.author) {
+                    comment.dataValues.authorIsBuyer = (comment.dataValues.announce.sale && comment.dataValues.author.id !== comment.dataValues.announce.authorId)
+                        || (!comment.dataValues.announce.sale && comment.dataValues.author.id === comment.dataValues.announce.authorId);
+                }
+            });
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});
@@ -38,8 +67,14 @@ module.exports = function (server) {
             where: {
                 authorId: request.params.id
             },
-            include: [{model: User, as: 'author'},{model: User, as: 'target'}]
+            include: [{model: User, as: 'author'}, {model: User, as: 'target'}, {model: Announce, as: 'announce'}]
         }).then(function (data) {
+            data.forEach(function (comment) {
+                if (comment.dataValues.announce && comment.dataValues.author) {
+                    comment.dataValues.authorIsBuyer = (comment.dataValues.announce.sale && comment.dataValues.author.id !== comment.dataValues.announce.authorId)
+                        || (!comment.dataValues.announce.sale && comment.dataValues.author.id === comment.dataValues.announce.authorId);
+                }
+            });
             response.send(data);
         }, function (data) {
             response.send({ah: 'AH !', error: data});

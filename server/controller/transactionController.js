@@ -33,6 +33,36 @@ module.exports = function (server) {
         });
     });
 
+    server.get('/transaction/buyer/:id', function (request, response) {
+        Transaction.findAll({
+            where: {buyerId: request.params.id},
+            include: [
+                {model: Announce, as: 'announce'},
+                {model: User, as: 'seller'},
+                {model: User, as: 'buyer'}
+            ]
+        }).then(function (data) {
+            response.send(data ? data : {});
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
+    server.get('/transaction/buyer/:id', function (request, response) {
+        Transaction.findAll({
+            where: {sellerId: request.params.id},
+            include: [
+                {model: Announce, as: 'announce'},
+                {model: User, as: 'seller'},
+                {model: User, as: 'buyer'}
+            ]
+        }).then(function (data) {
+            response.send(data ? data : {});
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
     server.get('/transactions/announce/:id', function (request, response) {
         Transaction.findAll({
             where: {
@@ -121,7 +151,12 @@ module.exports = function (server) {
             }
             body.status = 1;
             Transaction.update(body, {where: {id: request.params.id}}).then(function (data) {
-                Transaction.update({status: -1}, {where: {id: {$ne: request.params.id}, announceId: transaction.announceId}}).then(function () {
+                Transaction.update({status: -1}, {
+                    where: {
+                        id: {$ne: request.params.id},
+                        announceId: transaction.announceId
+                    }
+                }).then(function () {
                     response.send(data);
                 });
             }, function (data) {
@@ -142,7 +177,7 @@ module.exports = function (server) {
                 response.send({ah: 'AH !', error: "Cette annonce ne vous appartient pas !"});
             } else {
                 Transaction.update(body, {where: {id: request.params.id}}).then(function (data) {
-                    response.send(data);
+                    response.send({code: code});
                 }, function (data) {
                     response.send({ah: 'AH !', error: data});
                 });

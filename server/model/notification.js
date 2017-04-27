@@ -5,7 +5,7 @@ var Comment = require('./comment');
 var User = require('./user');
 
 var Notification = sequelize.define('notification', {
-        name: {
+        icon: {
             type: Sequelize.STRING,
             field: 'icon'
         },

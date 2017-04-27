@@ -47,13 +47,9 @@
     
     <h2><ion-icon name="home"></ion-icon> Adresse</h2>
     <ion-list radio-group [(ngModel)]="address">
-      <ion-item>
-        <ion-label>Domicile</ion-label>
-        <ion-radio checked="true" value="0"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Chez Marcus</ion-label>
-        <ion-radio value="1"></ion-radio>
+      <ion-item *ngFor="let address of addresses">
+        <ion-label>{{address.name}}</ion-label>
+        <ion-radio value="{{address.id}}"></ion-radio>
       </ion-item>
     </ion-list>
     

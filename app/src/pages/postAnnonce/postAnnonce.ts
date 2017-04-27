@@ -4,12 +4,13 @@ import { ToastController } from 'ionic-angular';
 import { AnnounceProvider } from '../../providers/announces.provider';
 import { UserProvider } from '../../providers/users.provider';
 import { AnnounceTypeProvider } from '../../providers/announceTypes.provider';
+import { AddressProvider } from '../../providers/address.provider';
 import { AlertController } from 'ionic-angular';
 
 @Component({
   selector: 'page-postAnnonce',
   templateUrl: 'postAnnonce.html',
-  providers: [AnnounceProvider, UserProvider]
+  providers: [AnnounceProvider, UserProvider, AddressProvider]
 })
 export class PostAnnoncePage {
 
@@ -24,14 +25,24 @@ export class PostAnnoncePage {
   startAt : string;
   endAt : string;
   estimatedTime : number;
+  addresses : any;
   
   connectedUser : any;
 
-  constructor(public navCtrl: NavController, private announceTypeProvider : AnnounceTypeProvider, private userProvider : UserProvider, public toastCtrl: ToastController, private announceProvider : AnnounceProvider, private alertCtrl: AlertController) {
+  constructor(public navCtrl: NavController, private announceTypeProvider : AnnounceTypeProvider, 
+  private userProvider : UserProvider, public toastCtrl: ToastController, private announceProvider : AnnounceProvider, 
+  private alertCtrl: AlertController, private addressProvider : AddressProvider) {
 
     this.annonceType = false;
+    this.addresses = [];
     this.announceTypeProvider.getAnnounceTypes().then( announceTypes => { this.announceTypes = announceTypes; console.log(this.announceTypes);});
-    this.userProvider.getConnectedUser().then( user => { this.connectedUser = user; });
+    this.userProvider.getConnectedUser().then( user => { 
+      
+      this.connectedUser = user; 
+      this.addressProvider.getAddressesByUser(this.connectedUser.id).then( addresses => { 
+        this.addresses = addresses; 
+      });
+    });
 
   }
 
@@ -54,7 +65,7 @@ export class PostAnnoncePage {
                   estimatedTime : this.estimatedTime,
                   startTime : this.startAt,
                   endTime : this.endAt,
-                  address : this.address,
+                  addressId : this.address,
                   sale : this.annonceType,
                   closed: false,
                   typeId : this.categorie,

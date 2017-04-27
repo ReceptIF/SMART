@@ -31,6 +31,22 @@ export class TransactionProvider {
     });
   }
 
+  getTransactionBySeller(sellerId) {
+    return new Promise(resolve => {
+      this.http.get(GlobalConstants.urlServer + '/transactions/seller/' + sellerId)
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
+
+  getTransactionByBuyer(buyerId) {
+    return new Promise(resolve => {
+      this.http.get(GlobalConstants.urlServer + '/transactions/buyer/' + buyerId)
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
+
   getTransactionsByAnnounce(announceId) {
     return new Promise(resolve => {
       this.http.get(GlobalConstants.urlServer + '/transactions/announce/' + announceId)

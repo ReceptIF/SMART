@@ -13,7 +13,7 @@
       <img [src]="'../../assets/ahDenis.jpg'"/><br/>
       <span *ngIf="profileUser.id == connectedUser.id"><ion-badge color="primary">C'est vous !</ion-badge><br/></span>
       <h1>{{profileUser.firstName}} {{profileUser.lastName}}</h1>
-      <h3>4 services proposés - 6 services rendus</h3>
+      <h3>{{nbService}} services proposés - {{nbService}} services rendus</h3>
       <p><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon> 4,5/5</p>
     </ion-item>
 	</ion-list>

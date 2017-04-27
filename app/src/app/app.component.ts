@@ -9,6 +9,7 @@ import { PostAnnoncePage } from '../pages/postAnnonce/postAnnonce';
 import { LoginPage } from '../pages/login/login';
 import { RecherchePage } from '../pages/recherche/recherche';
 import { ProfilePage } from '../pages/profile/profile';
+import { NotificationsPage } from '../pages/notifications/notifications';
 
 import { UserProvider } from '../providers/users.provider';
 
@@ -43,6 +44,18 @@ export class MyApp {
   
   goToPersonalProfile() {
     this.nav.setRoot(ProfilePage);
+  }
+  
+  goToSearch() {
+    this.nav.setRoot(RecherchePage);
+  }
+  
+  goToNotif() {
+    this.nav.setRoot(NotificationsPage);
+  }
+  
+  logout() {
+    this.nav.setRoot(LoginPage);
   }
 
   initializeApp() {

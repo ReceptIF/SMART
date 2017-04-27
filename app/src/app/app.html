@@ -14,14 +14,14 @@
       <p><img [src]="'../../assets/ahPiece_small.png'" class="ah-icon" /> {{connectedUser.ahAmount}} AH!</p>
     </ion-item>
     <ion-item class="menu-button">
-      <button ion-button icon-only clear>
+      <button menuClose ion-button icon-only clear (click)="goToNotif()">
         <ion-icon name="notifications"></ion-icon>
-        <ion-badge item-right>2</ion-badge>
+        <ion-badge item-right>1</ion-badge>
       </button>
-      <button ion-button icon-only clear>
+      <button menuClose ion-button icon-only clear (click)="goToSearch()">
         <ion-icon name="search"></ion-icon>
       </button>
-      <button ion-button icon-only clear>
+      <button menuClose ion-button icon-only clear (click)="logout()">
         <ion-icon name="exit"></ion-icon>
       </button>
     </ion-item>

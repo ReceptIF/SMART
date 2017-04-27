@@ -20,6 +20,7 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ModifyProfilePage } from '../pages/modifyProfile/modifyProfile';
 import { MyAddressesPage } from '../pages/myAddresses/myAddresses';
 import { AddressModal } from '../pages/myAddresses/addressModal';
+import { NotificationsPage } from '../pages/notifications/notifications';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -47,9 +48,10 @@ import { CommentProvider } from '../providers/comments.provider';
     TransactionModal,
     PinCodePage,
     ProfilePage,
-	ModifyProfilePage,
+    ModifyProfilePage,
     MyAddressesPage,
-    AddressModal
+    AddressModal,
+    NotificationsPage
   ],
   imports: [
     BrowserModule,
@@ -61,10 +63,10 @@ import { CommentProvider } from '../providers/comments.provider';
     MyApp,
     HomePage,
     AnnoncePage,
-	MyAnnoncesPage,
+    MyAnnoncesPage,
     AnswerPage,
-	RecherchePage,
-	SearchedAnnouncesPage,
+    RecherchePage,
+    SearchedAnnouncesPage,
     AnnoncePage,
     LoginPage,
     PostAnnoncePage,
@@ -72,9 +74,10 @@ import { CommentProvider } from '../providers/comments.provider';
     TransactionModal,
     PinCodePage,
     ProfilePage,
-	ModifyProfilePage,
+    ModifyProfilePage,
     MyAddressesPage,
-    AddressModal
+    AddressModal,
+    NotificationsPage
   ],
   providers: [
     StatusBar,

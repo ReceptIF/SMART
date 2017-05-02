@@ -194,14 +194,14 @@ module.exports = function (server) {
         Transaction.findById(request.params.id).then(function (transaction) {
             if (transaction.status != 1) {
                 response.send({ah: 'AH !', error: "Cette annonce ne peux pas être terminée !"});
-            } else if (request.body.accepterId != transaction.buyerId) {
+            } else if (request.body.accepterId != transaction.sellerId) {
                 response.send({ah: 'AH !', error: "Cette annonce ne vous appartient pas !"});
             } else {
                 Notification.create(
                     {
                         transactionId: transaction.id,
                         type: 'end',
-                        userId: transaction.sellerId,
+                        userId: transaction.buyerId,
                         icon: 'chatbubbles',
                         read: false
                     }
@@ -228,7 +228,7 @@ module.exports = function (server) {
         }).then(function (transaction) {
             if (transaction.status != 2) {
                 response.send({ah: 'AH !', error: "Cette annonce ne peux pas être terminée !"});
-            } else if (request.body.accepterId != transaction.sellerId) {
+            } else if (request.body.accepterId != transaction.buyerId) {
                 response.send({ah: 'AH !', error: "Cette annonce ne vous appartient pas !"});
             } else {
                 // Pay
@@ -241,7 +241,7 @@ module.exports = function (server) {
                     {
                         transactionId: transaction.id,
                         type: 'close',
-                        userId: transaction.buyerId,
+                        userId: transaction.sellerId,
                         icon: 'chatbubbles',
                         read: false
                     }

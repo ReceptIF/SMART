@@ -59,8 +59,8 @@
 	</ion-fab>
 	<ion-fab right bottom *ngIf="!service.closed && connectedUser && answer">
 		<button ion-fab color="light" (click)="answerAnnonce($event, service)"><ion-icon name="heart"></ion-icon></button>
-	</ion-fab>
-	<ion-fab right bottom *ngIf="!service.closed && acceptedTransaction && connectedUser && (connectedUser.id == service.author.id)">
+	</ion-fab><
+	<ion-fab right bottom *ngIf="!service.closed && acceptedTransaction && connectedUser && (connectedUser.id == service.author.id || connectedUser.id == acceptedTransaction.sellerId || connectedUser.id == acceptedTransaction.buyerId)">
 		<button ion-fab color="light" (click)="goToPinCode($event, service)"><ion-icon name="cash"></ion-icon></button>
 	</ion-fab>
 </ion-content>

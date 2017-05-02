@@ -9,7 +9,7 @@
 
 <ion-content padding>
 	
-  <ion-list>
+  <ion-list *ngIf="connectedUser && service.author.id == connectedUser.id">
     <ion-item>
       <ion-avatar item-left>
         <img src="../../assets/jm.png">
@@ -23,12 +23,26 @@
       
     </ion-item>
     <ion-item text-wrap class="text-pincode">
-          Une fois que le service aura été effectué, transmettez le code ci-dessous à <span *ngIf="answer.sale">{{answer.buyer.firstName}}</span><span *ngIf="!answer.sale">{{answer.seller.firstName}}</span>.
-          Une fois entré, ce code lui permettera de récupérer les AH! que vous lui avez promis.
+        <p>{{answer.name}} a répondu :</p>
+        {{answer.commentary}}
     </ion-item>
-    <ion-item>
-      <p class="code-pincode">{{answer.code}}</p>
+    
+    <ion-item text-wrap class="text-pincode" *ngIf="answer.seller.id == connectedUser.id && answer.status == 1">
+          Une fois que vous avez réalisé ce service, cliquez sur le bouton ci-dessous pour valider la transaction.
     </ion-item>
+    
+    <ion-item text-wrap class="text-pincode" *ngIf="answer.buyer.id == connectedUser.id && answer.status == 1">
+          {{answer.seller.firstName}} doit confirmer qu'il a réalisé le service avant que vous puissiez à votre tour confirmer la transaction.
+    </ion-item>
+    
+    <ion-item text-wrap class="text-pincode" *ngIf="answer.seller.id == connectedUser.id && answer.status == 2">
+          Vous avez validé la transaction. C'est désormais au tour {{answer.buyer.firstName}} de valider que votre service a bien été effectué.
+    </ion-item>
+    
+    <ion-item text-wrap class="text-pincode" *ngIf="answer.buyer.id == connectedUser.id && answer.status == 2">
+          {{answer.seller.firstName}} a marqué ce service comme effectué. Cliquez sur le bouton ci-dessous pour valider la transaction et effectuer le paiement.
+    </ion-item>
+    
   </ion-list>
 
 </ion-content>

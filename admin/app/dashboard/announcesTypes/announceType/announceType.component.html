@@ -1,0 +1,30 @@
+<div class="main-content">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header" data-background-color="red">
+                    <h4 class="title">Détails d'un type d'annonce</h4>
+                    <p class="category"></p>
+                </div>
+                <div class="card-content">
+                    <div>
+                        <br>
+                        <br>
+                        <div *ngIf="announce" class="card card-profile">
+                            <div class="card-avatar">
+                                <img [src]="'../../../../assets/images/icon/service-type/'+announce.icon+'.png'">
+                            </div>
+
+                            <div class="content">
+                                <h4 class="card-title">{{announce.name}}</h4>
+                                <a class="btn btn-danger btn-round">Changer Icone</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

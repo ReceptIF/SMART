@@ -44,6 +44,12 @@ export class NotificationsPage {
         this.announceProvider.getAnnounce(notif.transaction.announceId).then(
           announce => { 
             notif.announce = announce;
+            
+            var postDate = this.parseDate(notif.createdAt);
+            var today = new Date();
+            
+            notif.timeNb = Math.round((today.getTime()-postDate.getTime())/(1000*60*60*24)) - 1;
+            
             newNotifs.push(notif);
           }
         );
@@ -51,6 +57,13 @@ export class NotificationsPage {
     });
     
     return newNotifs;
+  }
+  
+  parseDate(str) {
+    var day = str.substr(8,2);
+    var month = str.substr(5,2);
+    var year = str.substr(0,4);
+    return new Date(year,month, day);
   }
   
   selectNotif(notif) {

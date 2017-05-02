@@ -1,6 +1,7 @@
 var Address = require('../model/address');
 var User = require('../model/user');
 var City = require('../model/city');
+var GoogleAPIService = require('../service/googleAPIService');
 
 module.exports = function (server) {
 
@@ -52,10 +53,17 @@ module.exports = function (server) {
 
     // POST
     server.post('/address', function (request, response) {
-        Address.create(request.body).then(function (data) {
-            response.send(data);
-        }, function (data) {
-            response.send({ah: 'AH !', error: data});
+        var body = request.body;
+        City.findById(body.cityId).then(function (city) {
+            GoogleAPIService.getAddressCoordinates(body.address, city.name, city.postCode).then(function (data) {
+                body.coordX = data.coordX;
+                body.coordY = data.coordY;
+                Address.create(body).then(function (data) {
+                    response.send(data);
+                }, function (data) {
+                    response.send({ah: 'AH !', error: data});
+                });
+            });
         });
     });
 

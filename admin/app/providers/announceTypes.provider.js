@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-var app_constants_1 = require('../app.constants');
-require('rxjs/add/operator/map');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var app_constants_1 = require("../app.constants");
+require("rxjs/add/operator/map");
 var AnnounceTypeProvider = (function () {
     function AnnounceTypeProvider(http) {
         this.http = http;
@@ -31,19 +31,27 @@ var AnnounceTypeProvider = (function () {
             });
         });
     };
-    AnnounceTypeProvider.prototype.getAnnounce = function (announceId) {
+    AnnounceTypeProvider.prototype.getAnnounceType = function (announceTypeId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/announce/' + announceId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/announceType/' + announceTypeId)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
     };
-    AnnounceTypeProvider = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], AnnounceTypeProvider);
+    AnnounceTypeProvider.prototype.deleteAnnounceType = function (announceTypeId) {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/announceType/' + announceTypeId)
+                .map(function (res) { return res.json(); })
+                .subscribe(function (data) { resolve(data); });
+        });
+    };
     return AnnounceTypeProvider;
 }());
+AnnounceTypeProvider = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], AnnounceTypeProvider);
 exports.AnnounceTypeProvider = AnnounceTypeProvider;
 //# sourceMappingURL=announceTypes.provider.js.map

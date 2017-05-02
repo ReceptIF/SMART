@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var initDemo = require('../../../assets/js/charts.js');
+var core_1 = require("@angular/core");
+var initDemo = require("../../../assets/js/charts.js");
 var HomeComponent = (function () {
     function HomeComponent() {
     }
@@ -22,15 +22,15 @@ var HomeComponent = (function () {
         // });
         initDemo();
     };
-    HomeComponent = __decorate([
-        core_1.Component({
-            selector: 'home-cmp',
-            moduleId: module.id,
-            templateUrl: 'home.component.html'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], HomeComponent);
     return HomeComponent;
 }());
+HomeComponent = __decorate([
+    core_1.Component({
+        selector: 'home-cmp',
+        moduleId: module.id,
+        templateUrl: 'home.component.html'
+    }),
+    __metadata("design:paramtypes", [])
+], HomeComponent);
 exports.HomeComponent = HomeComponent;
 //# sourceMappingURL=home.component.js.map

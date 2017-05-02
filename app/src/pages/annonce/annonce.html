@@ -17,10 +17,18 @@
 	<p id="annonce-description">{{service.description}}</p>
 	<hr/>
 
-	<div id="start-time">
-		<ion-icon name="calendar"></ion-icon> De
-		{{service.startTime | date:'dd/MM/yyyy hh:mm'}} à
-		{{service.endTime | date:'dd/MM/yyyy hh:mm'}}
+	<div id="start-time" *ngIf="service.startTime && service.endTime">
+		<ion-icon name="calendar"></ion-icon> Du
+		{{service.startTime | date:'dd/MM/yyyy'}} au
+		{{service.endTime | date:'dd/MM/yyyy'}}
+	</div>
+	<div id="start-time" *ngIf="service.startTime && !service.endTime">
+		<ion-icon name="calendar"></ion-icon>
+		A partir du {{service.startTime | date:'dd/MM/yyyy'}}
+	</div>
+	<div id="start-time" *ngIf="!service.startTime && service.endTime">
+		<ion-icon name="calendar"></ion-icon> 
+		Jusqu'au {{service.endTime | date:'dd/MM/yyyy'}}
 	</div>
 
 	<div id="duration">
@@ -43,14 +51,16 @@
     <h2 (click)="openProfile($event, service)">{{service.author.firstName}} {{service.author.lastName}}</h2>
   </ion-item>
 
-
-	<ion-fab right bottom *ngIf="!service.closed && connectedUser && (connectedUser.id != service.author.id)">
-		<button ion-fab color="light" (click)="answerAnnonce($event, service)"><ion-icon name="send"></ion-icon></button>
-	</ion-fab>
 	<ion-fab right bottom *ngIf="!service.closed && !acceptedTransaction && connectedUser && (connectedUser.id == service.author.id)">
 		<button ion-fab color="light" (click)="checkTransaction($event, service)"><ion-icon name="chatbubbles"></ion-icon></button>
 	</ion-fab>
-	<ion-fab right bottom *ngIf="!service.closed && acceptedTransaction && connectedUser && (connectedUser.id == service.author.id)">
+	<ion-fab right bottom *ngIf="!service.closed && !acceptedTransaction && connectedUser && (connectedUser.id != service.author.id)">
+		<button ion-fab color="light" (click)="answerAnnonce($event, service)"><ion-icon name="send"></ion-icon></button>
+	</ion-fab><!--
+	<ion-fab right bottom *ngIf="!service.closed && connectedUser && answer">
+		<button ion-fab color="light" (click)="answerAnnonce($event, service)"><ion-icon name="heart"></ion-icon></button>
+	</ion-fab>-->
+	<ion-fab right bottom *ngIf="!service.closed && acceptedTransaction && connectedUser && (connectedUser.id == service.author.id || connectedUser.id == acceptedTransaction.sellerId || connectedUser.id == acceptedTransaction.buyerId)">
 		<button ion-fab color="light" (click)="goToPinCode($event, service)"><ion-icon name="cash"></ion-icon></button>
 	</ion-fab>
 </ion-content>

@@ -8,24 +8,48 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var announceTypes_provider_1 = require('../../providers/announceTypes.provider');
+var core_1 = require("@angular/core");
+var material_1 = require("@angular/material");
+var announceTypes_provider_1 = require("../../providers/announceTypes.provider");
 var AnnouncesTypesComponent = (function () {
-    function AnnouncesTypesComponent(announceTypeProvider) {
+    function AnnouncesTypesComponent(announceTypeProvider, dialog) {
         var _this = this;
         this.announceTypeProvider = announceTypeProvider;
+        this.dialog = dialog;
         this.announceTypeProvider.getAnnounceTypes().then(function (announcesTypes) { _this.announcesTypes = announcesTypes; });
     }
-    AnnouncesTypesComponent = __decorate([
-        core_1.Component({
-            selector: 'announcesTypes-cmp',
-            moduleId: module.id,
-            templateUrl: 'announcesTypes.component.html',
-            providers: [announceTypes_provider_1.AnnounceTypeProvider]
-        }), 
-        __metadata('design:paramtypes', [announceTypes_provider_1.AnnounceTypeProvider])
-    ], AnnouncesTypesComponent);
+    AnnouncesTypesComponent.prototype.deleteAnnounceType = function (announceTypeId) {
+        this.dialogRef = this.dialog.open(ConfirmModalComponent);
+        this.dialogRef.afterClosed().subscribe(function () {
+            console.log(arguments);
+            this.dialogRef = null;
+        });
+        //this.announceTypeProvider.deleteAnnounceType(announceTypeId).then( response => console.log(response) );
+    };
     return AnnouncesTypesComponent;
 }());
+AnnouncesTypesComponent = __decorate([
+    core_1.Component({
+        selector: 'announcesTypes-cmp',
+        moduleId: module.id,
+        templateUrl: 'announcesTypes.component.html',
+        providers: [announceTypes_provider_1.AnnounceTypeProvider]
+    }),
+    __metadata("design:paramtypes", [announceTypes_provider_1.AnnounceTypeProvider, material_1.MdDialog])
+], AnnouncesTypesComponent);
 exports.AnnouncesTypesComponent = AnnouncesTypesComponent;
+var ConfirmModalComponent = (function () {
+    function ConfirmModalComponent(dialogRef) {
+        this.dialogRef = dialogRef;
+    }
+    return ConfirmModalComponent;
+}());
+ConfirmModalComponent = __decorate([
+    core_1.Component({
+        selector: 'confirm-modal',
+        template: "\n        <h2>Voulez-vous vraiment supprimer cet \u00E9l\u00E9ment ?</h2>\n        <button class=\"btn btn-danger\" md-raised-button (click)=\"dialogRef.close()\">Supprimer</button>\n        <button class=\"btn btn-default\" md-raised-button (click)=\"dialogRef.close()\">Annuler</button>"
+    }),
+    __metadata("design:paramtypes", [material_1.MdDialogRef])
+], ConfirmModalComponent);
+exports.ConfirmModalComponent = ConfirmModalComponent;
 //# sourceMappingURL=announcesTypes.component.js.map

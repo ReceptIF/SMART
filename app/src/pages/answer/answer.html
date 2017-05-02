@@ -15,26 +15,17 @@
       </ion-avatar>
       <h1>{{service.title}}</h1>
       <h2>{{service.price}} AH !</h2>
-      <h3>{{service.address}}</h3>
+      <h3>{{service.address.district}}</h3>
     </ion-item>
+    
+  <ion-item text-wrap class="text-pincode">
+      Vous allez répondre à l'annonce de {{service.author.firstName}}. Soyez convaincant pour qu'il
+      vous choisisse parmis toutes les réponses qu'il va recevoir ! {{service.author.firstName}} aura accès
+      à votre téléphone et votre mail pour vous contacter si il vous choisit.
+  </ion-item>
 
 	<ion-item>
-		<ion-label floating>Nom*</ion-label>
-		<ion-input type="text" [(ngModel)]="answerTransaction.name"></ion-input>
-	</ion-item>
-
-	<ion-item>
-		<ion-label floating>Mail*</ion-label>
-		<ion-input type="text" [(ngModel)]="answerTransaction.email"></ion-input>
-	</ion-item>
-
-	<ion-item>
-		<ion-label floating>Téléphone</ion-label>
-		<ion-input type="text" [(ngModel)]="answerTransaction.phoneNumber"></ion-input>
-	</ion-item>
-
-	<ion-item>
-		<ion-label floating>Commentaire</ion-label>
+		<ion-label floating>Votre message</ion-label>
 		<ion-textarea rows=5 [(ngModel)]="answerTransaction.commentary"></ion-textarea>
 	</ion-item>
 

@@ -22,10 +22,11 @@ export class HomePage {
 		this.items = [];
 		this.userProvider.getConnectedUser().then( user => {
 			this.connectedUser = user;
-			this.announceProvider.getAnnounces().then(
+			this.announceProvider.getOpenAnnounces().then(
 				announces => {
-          console.log(announces);
-					this.items = announces.filter( announce => {
+          console.log(this.items);
+          this.items = announces;
+					this.items = this.items.filter( announce => {
 						return announce.author.id != this.connectedUser.id;
 					});
 				}

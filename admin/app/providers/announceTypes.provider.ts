@@ -26,11 +26,19 @@ export class AnnounceTypeProvider {
     });
   }
 
-  getAnnounce(announceId) {
+  getAnnounceType(announceTypeId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announce/' + announceId)
+      this.http.get(GlobalConstants.urlServer + '/announceType/' + announceTypeId)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
+    });
+  }
+
+  deleteAnnounceType(announceTypeId) {
+    return new Promise(resolve => {
+      this.http.delete(GlobalConstants.urlServer + '/announceType/' + announceTypeId)
+          .map(res => res.json())
+          .subscribe(data => {resolve(data);});
     });
   }
 

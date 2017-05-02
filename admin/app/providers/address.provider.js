@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-var app_constants_1 = require('../app.constants');
-require('rxjs/add/operator/map');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var app_constants_1 = require("../app.constants");
+require("rxjs/add/operator/map");
 var AddressProvider = (function () {
     function AddressProvider(http) {
         this.http = http;
@@ -73,11 +73,11 @@ var AddressProvider = (function () {
                 .subscribe(function (data) { resolve(data); });
         });
     };
-    AddressProvider = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], AddressProvider);
     return AddressProvider;
 }());
+AddressProvider = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], AddressProvider);
 exports.AddressProvider = AddressProvider;
 //# sourceMappingURL=address.provider.js.map

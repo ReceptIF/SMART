@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 
+import 'hammerjs';
+
 import { AppComponent }   from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 

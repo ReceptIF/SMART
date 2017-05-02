@@ -20,15 +20,22 @@ export class AnnoncePage {
 	endTime: string;
 	estimatedTime: string;
 	createdAt: string;
-  acceptedTransaction : any;
+	acceptedTransaction : any;
   
-  connectedUser : any;
+	answer: boolean;
+	connectedUser : any;
 
 	constructor(public navCtrl: NavController, public params:NavParams, 
 			private userProvider : UserProvider, private events : Events, 
 			private transactionProvider : TransactionProvider) {
     
-		this.service= params.get("item");
+		this.service = params.get("item");
+		
+		if(params.get("answer") != null) {
+			this.answer = true;
+		} else {
+			this.answer = false;
+		}
     
 		this.userProvider.getConnectedUser().then(user => {
 			this.connectedUser = user;
@@ -58,35 +65,22 @@ export class AnnoncePage {
 
 		if(this.service.estimatedTime != null) {
 			var time: number;
-			var days;
-			time = Math.trunc(this.service.estimatedTime/60);
-			var minutes = time*60 - this.service.estimatedTime;
-			var hours = time % 24;
-			if(time >= 24) {
-				days = Math.trunc(time/24);
-				if(days == 1) {
-					this.estimatedTime = days + " jour";
-				}
-				else {
-					this.estimatedTime = days + " jours";
-				}
-				if(hours == 1) {
-					this.estimatedTime = this.estimatedTime + " et "+hours+"heure";
-				}
-				else if (hours > 1) {
-					this.estimatedTime = this.estimatedTime + " et "+hours+"heures";
-				}
-			}
-			else if(time > 0) {
-				if(minutes < 10) {
-					this.estimatedTime = hours+" h 0"+minutes
-				} else {
-					this.estimatedTime = hours+" h "+minutes				
-				}
-			}
-			else {
-				this.estimatedTime = minutes+" min";
-			}
+			time = this.service.estimatedTime;
+      
+      var days;
+      var heures;
+      var minutes;
+      
+      days = Math.trunc(time/(24*3600));
+      time = time - days*(24*3600);
+      
+      heures = Math.trunc(time/(60));
+      minutes = time - heures*60;
+      
+      this.estimatedTime = "";
+      if(days > 0) { this.estimatedTime += days + " jour"; if(days > 1) { this.estimatedTime += "s"; } this.estimatedTime += " ";} 
+      if(heures > 0) { this.estimatedTime += heures + " heure"; if(heures > 1) { this.estimatedTime += "s"; } this.estimatedTime += " ";} 
+      if(minutes > 0) { this.estimatedTime += minutes + " minute"; if(minutes > 1) { this.estimatedTime += "s"; } this.estimatedTime += " ";} 
 		}
 
 		if(this.service.createdAt != null) {
@@ -106,22 +100,22 @@ export class AnnoncePage {
 		});
 	}
   
-  openProfile(event, service) {
-    this.navCtrl.push(ProfilePage, {
-		  profileId: service.author.id
+	openProfile(event, service) {
+		this.navCtrl.push(ProfilePage, {
+			profileId: service.author.id
 		});
 	}
 
 	checkTransaction(event, service) {
 		this.navCtrl.push(CheckTransactionPage, {
-		  service: service
+			service: service
 		});
 	}
 
 	goToPinCode(event, service) {
 		this.navCtrl.push(PinCodePage, {
-		  service: service,
-      answer : this.acceptedTransaction
+			service: service,
+		answer : this.acceptedTransaction
 		});
 	}
 }

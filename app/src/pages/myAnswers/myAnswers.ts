@@ -19,6 +19,7 @@ export class MyAnswersPage {
 	servicesClosed: any;
 	servicesOpen: any;
 	servicesToValidate: any;
+	servicesWaiting: any;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private announceProvider : AnnounceProvider,
               private userProvider: UserProvider, private transactionProvider: TransactionProvider) {
@@ -28,6 +29,7 @@ export class MyAnswersPage {
 		this.servicesClosed = [];
 		this.servicesOpen = [];
 		this.servicesToValidate = [];
+		this.servicesWaiting = [];
 
 		this.userProvider.getConnectedUser().then( user => {
 			this.connectedUser = user;
@@ -37,14 +39,23 @@ export class MyAnswersPage {
 					this.transactions = transactions;
 					console.log(this.transactions);
 					for(var i=0; i<this.transactions.length; i++) {
-						if(this.transactions[i].status == 1) {
+						if(this.transactions[i].status == 0) {
 							this.announceProvider.getAnnounce(this.transactions[i].announceId).then(
 								announce => {
 									this.item = announce;
 									console.log(this.item);
-									if(this.item.sell==1) {
+									if(this.item.sale==1) {
 										this.servicesOpen.push(announce);
-										console.log(this.servicesOpen);
+										//console.log(this.servicesOpen);
+									}
+								}
+							);
+						} else if(this.transactions[i].status == 1) {
+							this.announceProvider.getAnnounce(this.transactions[i].announceId).then(
+								announce => {
+									this.item = announce;
+									if(this.item.sale==1) {
+										this.servicesToValidate.push(announce);
 									}
 								}
 							);
@@ -52,8 +63,8 @@ export class MyAnswersPage {
 							this.announceProvider.getAnnounce(this.transactions[i].announceId).then(
 								announce => {
 									this.item = announce;
-									if(this.item.sell==1) {
-										this.servicesToValidate.push(announce);
+									if(this.item.sale==1) {
+										this.servicesWaiting.push(announce);
 									}
 								}
 							);
@@ -61,7 +72,7 @@ export class MyAnswersPage {
 							this.announceProvider.getAnnounce(this.transactions[i].announceId).then(
 								announce => {
 									this.item = announce;
-									if(this.item.sell==1) {
+									if(this.item.sale==1) {
 										this.servicesClosed.push(announce);
 									}
 								}
@@ -74,13 +85,23 @@ export class MyAnswersPage {
 			this.transactionProvider.getTransactionBySeller(this.connectedUser.id).then(
 				transactions => {
 					this.transactions = transactions;
+					console.log(this.transactions);
 					for(var i=0; i<this.transactions.length; i++) {
-						if(this.transactions[i].status == 1) {
+						if(this.transactions[i].status == 0) {
 							this.announceProvider.getAnnounce(this.transactions[i].announceId).then(
 								announce => {
 									this.item = announce;
-									if(this.item.sell==0) {
+									if(this.item.sale==0) {
 										this.servicesOpen.push(announce);
+									}
+								}
+							);
+						} else if(this.transactions[i].status == 1) {
+							this.announceProvider.getAnnounce(this.transactions[i].announceId).then(
+								announce => {
+									this.item = announce;
+									if(this.item.sale==0) {
+										this.servicesToValidate.push(announce);
 									}
 								}
 							);
@@ -88,8 +109,8 @@ export class MyAnswersPage {
 							this.announceProvider.getAnnounce(this.transactions[i].announceId).then(
 								announce => {
 									this.item = announce;
-									if(this.item.sell==0) {
-										this.servicesToValidate.push(announce);
+									if(this.item.sale==0) {
+										this.servicesWaiting.push(announce);
 									}
 								}
 							);
@@ -97,7 +118,7 @@ export class MyAnswersPage {
 							this.announceProvider.getAnnounce(this.transactions[i].announceId).then(
 								announce => {
 									this.item = announce;
-									if(this.item.sell==0) {
+									if(this.item.sale==0) {
 										this.servicesClosed.push(announce);
 									}
 								}
@@ -109,10 +130,11 @@ export class MyAnswersPage {
 		});
 	}
 
-  itemTapped(event, item) {
-    this.navCtrl.push(AnnoncePage, {
-      item: item
-    });
-  }
+	itemTapped(event, item) {
+		this.navCtrl.push(AnnoncePage, {
+			item: item,
+			answer: true
+		});
+	}
 
 }

@@ -30,6 +30,16 @@ export class AnnounceProvider {
     });
   }
 
+  getOpenAnnounces() {
+    return new Promise(resolve => {
+      this.http.get(GlobalConstants.urlServer + '/announces/open')
+        .map(res => res.json())
+        .subscribe(data => {
+          resolve(data);
+        });
+    });
+  }
+
   getAnnounce(announceId) {
     return new Promise(resolve => {
       this.http.get(GlobalConstants.urlServer + '/announce/' + announceId)

@@ -17,6 +17,17 @@ module.exports = function (server) {
         });
     });
 
+    server.get('/announces/open', function (request, response) {
+        Announce.findAll({
+            where: {closed: false},
+            include: [{model: AnnounceType, as: 'type'}, {model: User, as: 'author'}, {model: Address, as: 'address'}]
+        }).then(function (data) {
+            response.send(data);
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
     // GET announces by clientID
     server.get('/announces/by/:authorId', function (request, response) {
         Announce.findAll({

@@ -1,6 +1,7 @@
 var Transaction = require('../model/transaction');
 var Announce = require('../model/announce');
 var User = require('../model/user');
+var Comment = require('../model/comment');
 var Notification = require('../model/notification');
 
 module.exports = function (server) {
@@ -194,18 +195,28 @@ module.exports = function (server) {
         Transaction.findById(request.params.id).then(function (transaction) {
             if (transaction.status != 1) {
                 response.send({ah: 'AH !', error: "Cette annonce ne peux pas être terminée !"});
-            } else if (request.body.accepterId != transaction.buyerId) {
+            } else if (request.body.accepterId != transaction.sellerId) {
                 response.send({ah: 'AH !', error: "Cette annonce ne vous appartient pas !"});
             } else {
                 Notification.create(
                     {
                         transactionId: transaction.id,
                         type: 'end',
-                        userId: transaction.sellerId,
+                        userId: transaction.buyerId,
                         icon: 'chatbubbles',
                         read: false
                     }
                 );
+                if (request.body.comment) {
+                    Comment.create({
+                        title: request.body.comment.title,
+                        content: request.body.comment.content,
+                        note: request.body.comment.note,
+                        announceId: transaction.announceId,
+                        authorId: transaction.sellerId,
+                        targetId: transaction.buyerId
+                    });
+                }
                 Transaction.update(body, {where: {id: request.params.id}}).then(function (data) {
                     response.send(data);
                 }, function (data) {
@@ -228,7 +239,7 @@ module.exports = function (server) {
         }).then(function (transaction) {
             if (transaction.status != 2) {
                 response.send({ah: 'AH !', error: "Cette annonce ne peux pas être terminée !"});
-            } else if (request.body.accepterId != transaction.sellerId) {
+            } else if (request.body.accepterId != transaction.buyerId) {
                 response.send({ah: 'AH !', error: "Cette annonce ne vous appartient pas !"});
             } else {
                 // Pay
@@ -236,16 +247,27 @@ module.exports = function (server) {
                 var buyerUpdate = {ahAmount: transaction.buyer.ahAmount - transaction.announce.price};
                 User.update(sellerUpdate, {where: {id: transaction.sellerId}});
                 User.update(buyerUpdate, {where: {id: transaction.buyerId}});
+                Announce.update({closed: true}, {where: {id: transaction.announceId}});
                 // Update transaction
                 Notification.create(
                     {
                         transactionId: transaction.id,
                         type: 'close',
-                        userId: transaction.buyerId,
+                        userId: transaction.sellerId,
                         icon: 'chatbubbles',
                         read: false
                     }
                 );
+                if (request.body.comment) {
+                    Comment.create({
+                        title: request.body.comment.title,
+                        content: request.body.comment.content,
+                        note: request.body.comment.note,
+                        announceId: transaction.announceId,
+                        authorId: transaction.buyerId,
+                        targetId: transaction.sellerId
+                    });
+                }
                 Transaction.update(body, {where: {id: request.params.id}}).then(function (data) {
                     response.send(data);
                 }, function (data) {

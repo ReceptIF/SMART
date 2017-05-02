@@ -16,6 +16,7 @@
     "url": "https://github.com/creativetimofficial/material-dashboard-angular/issues"
   },
   "dependencies": {
+    "@angular/animations": "^4.1.0",
     "@angular/common": "^4.1.0",
     "@angular/compiler": "^4.1.0",
     "@angular/core": "^4.1.0",

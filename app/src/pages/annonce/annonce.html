@@ -17,10 +17,18 @@
 	<p id="annonce-description">{{service.description}}</p>
 	<hr/>
 
-	<div id="start-time">
-		<ion-icon name="calendar"></ion-icon> De
-		{{service.startTime | date:'dd/MM/yyyy hh:mm'}} à
-		{{service.endTime | date:'dd/MM/yyyy hh:mm'}}
+	<div id="start-time" *ngIf="service.startTime && service.endTime">
+		<ion-icon name="calendar"></ion-icon> Du
+		{{service.startTime | date:'dd/MM/yyyy'}} au
+		{{service.endTime | date:'dd/MM/yyyy'}}
+	</div>
+	<div id="start-time" *ngIf="service.startTime && !service.endTime">
+		<ion-icon name="calendar"></ion-icon>
+		A partir du {{service.startTime | date:'dd/MM/yyyy'}}
+	</div>
+	<div id="start-time" *ngIf="!service.startTime && service.endTime">
+		<ion-icon name="calendar"></ion-icon> 
+		Jusqu'au {{service.endTime | date:'dd/MM/yyyy'}}
 	</div>
 
 	<div id="duration">

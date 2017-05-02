@@ -48,11 +48,7 @@ export class NotificationsPage {
             var postDate = this.parseDate(notif.createdAt);
             var today = new Date();
             
-            notif.timeText = "";
-            notif.timeText = Math.round((today.getTime()-postDate.getTime())/(1000*60*60*24));
-            
-            console.log(notif);
-            console.log(postDate);
+            notif.timeNb = Math.round((today.getTime()-postDate.getTime())/(1000*60*60*24)) - 1;
             
             newNotifs.push(notif);
           }

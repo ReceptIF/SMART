@@ -13,6 +13,9 @@ export class PinCodePage {
   service : Service;
   answer : any;
   connectedUser : any;
+  comment : string;
+  title : string;
+  note : number;
 
 	constructor(public navCtrl: NavController, public params:NavParams,
   private userProvider:UserProvider, private transactionProvider : TransactionProvider,
@@ -27,24 +30,22 @@ export class PinCodePage {
     
 	}
   
-  validSeller() {
+  valid() {
+  
+    var commentBody = { title : this.title, content : this.comment, note : this.note };
+  
     if(this.connectedUser.id == this.answer.seller.id) {
-      console.log("couille");
-      this.transactionProvider.endTransaction(this.answer.id).then(
+      this.transactionProvider.endTransaction(this.answer.id,commentBody).then(
         transaction => {
-          this.events.publish('reloadAnnoncePage'); 
+          this.navCtrl.pop();
           this.navCtrl.pop();
         }
       );
-    }
-  }
-  
-  validBuyer() {
-    if(this.connectedUser.id == this.answer.buyer.id) {
-      this.transactionProvider.closeTransaction(this.answer.id).then(
+    } else if(this.connectedUser.id == this.answer.buyer.id) {
+      this.transactionProvider.closeTransaction(this.answer.id,commentBody).then(
         transaction => { 
-          this.events.publish('reloadAnnoncePage');
-          this.navCtrl.pop(); 
+          this.navCtrl.pop();
+          this.navCtrl.pop();
         }
       );
     }

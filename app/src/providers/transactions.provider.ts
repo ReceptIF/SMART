@@ -79,17 +79,17 @@ export class TransactionProvider {
     });
   }
 
-  endTransaction(transactionId) {
+  endTransaction(transactionId,comment) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/end', { accepterId : 1 })
+      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/end', { accepterId : 1, comment : comment })
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
   }
 
-  closeTransaction(transactionId) {
+  closeTransaction(transactionId,comment) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/close', { accepterId : 1 })
+      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/close', { accepterId : 1, comment : comment })
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

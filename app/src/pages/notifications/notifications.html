@@ -17,7 +17,9 @@
         <p class="notif-message" *ngIf="notif.type == 'end'">Le service <strong>{{notif.announce.title}}</strong> vient d'être marqué comme réalisé. Veuillez maintenant <strong>valider cette réalisation</strong> à votre tour pour transférer les AH! promis à votre serviteur.</p>
         <p class="notif-message" *ngIf="notif.type == 'close'">Le service <strong>{{notif.announce.title}}</strong> vient d'être marqué comme réalisé. Vous avez reçu <strong>{{announce.price}} AH!</strong>.</p>
         
-        <p class="notif-infos"><ion-icon [name]="notif.icon"></ion-icon> il y a 10 minutes</p>
+        <p class="notif-infos" *ngIf="notif.timeNb == 0"><ion-icon [name]="notif.icon"></ion-icon> aujourd'hui</p>
+        <p class="notif-infos" *ngIf="notif.timeNb == 1"><ion-icon [name]="notif.icon"></ion-icon> hier</p>
+        <p class="notif-infos" *ngIf="notif.timeNb > 1"><ion-icon [name]="notif.icon"></ion-icon> il y a {{notif.timeNb}} jours</p>
       </ion-card-content>
     </ion-card>
 	</ion-list>

@@ -46,6 +46,7 @@
     
     <ion-item text-wrap class="text-pincode" *ngIf="connectedUser && answer.seller.id == connectedUser.id && answer.status == 1">
           Une fois que vous avez réalisé ce service, cliquez sur le bouton ci-dessous pour valider la transaction.
+          Pensez à donner votre avis sur {{answer.buyer.firstName}} pour les prochains utilisateurs !
           <button class="modalButton" ion-button block icon-left (click)="validSeller()" ><ion-icon name="checkmark"></ion-icon> Valider la transaction</button>
     </ion-item>
     
@@ -59,8 +60,25 @@
     
     <ion-item text-wrap class="text-pincode" *ngIf="connectedUser && answer.buyer.id == connectedUser.id && answer.status == 2">
           {{answer.seller.firstName}} a marqué ce service comme effectué. Cliquez sur le bouton ci-dessous pour valider la transaction et effectuer le paiement.
-          <button class="modalButton" ion-button block icon-left (click)="validBuyer()" ><ion-icon name="checkmark"></ion-icon> Valider la transaction</button>
+          Pensez à donner votre avis sur {{answer.seller.firstName}} pour les prochains utilisateurs !
     </ion-item>
+    
+    <ion-item>
+      <ion-label><ion-icon name="star"></ion-icon> Note :</ion-label>
+      <ion-input type="number" min="1" max="5" [(ngModel)]="note"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label stacked>Titre du commentaire</ion-label>
+      <ion-input type="text" [(ngModel)]="title"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating><ion-icon name="chatboxes"></ion-icon> Votre commentaire</ion-label>
+      <ion-textarea rows=3 [(ngModel)]="comment"></ion-textarea>
+    </ion-item>
+    
+    <button ion-button block (click)="valid();">Valider la transaction</button>
     
   </ion-list>
 

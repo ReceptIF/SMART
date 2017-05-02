@@ -77,6 +77,16 @@ module.exports = function (server) {
         });
     });
 
+    server.put('/notifications/user/:id/read', function (request, response) {
+        Notification.update({read: true}, {
+            where: {userId: request.params.id}
+        }).then(function (data) {
+            response.send(data ? data : {});
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
     // DELETE
     server.delete('/notification/:id', function (request, response) {
         Notification.destroy({where: {id: request.params.id}}).then(function (data) {

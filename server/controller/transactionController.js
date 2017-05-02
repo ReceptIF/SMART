@@ -207,11 +207,11 @@ module.exports = function (server) {
                         read: false
                     }
                 );
-                if (request.body.title && request.body.content && request.body.note) {
+                if (request.body.comment) {
                     Comment.create({
-                        title: request.body.title,
-                        content: request.body.content,
-                        note: request.body.note,
+                        title: request.body.comment.title,
+                        content: request.body.comment.content,
+                        note: request.body.comment.note,
                         announceId: transaction.announceId,
                         authorId: transaction.sellerId,
                         targetId: transaction.buyerId
@@ -258,11 +258,11 @@ module.exports = function (server) {
                         read: false
                     }
                 );
-                if (request.body.title && request.body.content && request.body.note) {
+                if (request.body.comment) {
                     Comment.create({
-                        title: request.body.title,
-                        content: request.body.content,
-                        note: request.body.note,
+                        title: request.body.comment.title,
+                        content: request.body.comment.content,
+                        note: request.body.comment.note,
                         announceId: transaction.announceId,
                         authorId: transaction.buyerId,
                         targetId: transaction.sellerId

@@ -13,8 +13,29 @@
       <img [src]="'../../assets/ahDenis.jpg'"/><br/>
       <span *ngIf="profileUser.id == connectedUser.id"><ion-badge color="primary">C'est vous !</ion-badge><br/></span>
       <h1>{{profileUser.firstName}} {{profileUser.lastName}}</h1>
-      <h3>{{nbAnnounce}} services proposés - {{nbService}} services rendus</h3>
-      <p><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star"></ion-icon><ion-icon name="star-half"></ion-icon> 4,5/5</p>
+      <h3>{{nbAnnounce}} service<span *ngIf="nbAnnounce > 1">s</span> proposé<span *ngIf="nbAnnounce > 1">s</span> - {{nbService}} service<span *ngIf="nbService > 1">s</span> rendu<span *ngIf="nbService > 1">s</span></h3>
+      
+      <p *ngIf="comments.length > 0">
+        <ion-icon name="star" *ngIf="note >= 1"></ion-icon>
+        <ion-icon name="star" *ngIf="note >= 2"></ion-icon>
+        <ion-icon name="star" *ngIf="note >= 3"></ion-icon>
+        <ion-icon name="star" *ngIf="note >= 4"></ion-icon>
+        <ion-icon name="star" *ngIf="note >= 5"></ion-icon>
+        <ion-icon name="star-half" *ngIf="note >= 0.5 && note < 1"></ion-icon> 
+        <ion-icon name="star-half" *ngIf="note >= 1.5 && note < 2"></ion-icon> 
+        <ion-icon name="star-half" *ngIf="note >= 2.5 && note < 3"></ion-icon> 
+        <ion-icon name="star-half" *ngIf="note >= 3.5 && note < 4"></ion-icon> 
+        <ion-icon name="star-half" *ngIf="note >= 4.5 && note < 5"></ion-icon>
+        <ion-icon name="star-outline" *ngIf="note < 0.5"></ion-icon>
+        <ion-icon name="star-outline" *ngIf="note < 1.5"></ion-icon>
+        <ion-icon name="star-outline" *ngIf="note < 2.5"></ion-icon>
+        <ion-icon name="star-outline" *ngIf="note < 3.5"></ion-icon>
+        <ion-icon name="star-outline" *ngIf="note < 4.5"></ion-icon>
+        {{note}}/5
+      </p>
+      
+      <p *ngIf="comments.length == 0">Aucun avis</p>
+      
     </ion-item>
 	</ion-list>
   

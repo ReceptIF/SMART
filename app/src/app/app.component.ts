@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Events  } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -13,6 +13,7 @@ import { NotificationsPage } from '../pages/notifications/notifications';
 
 import { UserProvider } from '../providers/users.provider';
 import { NotificationProvider } from '../providers/notifications.provider';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 
 @Component({
   templateUrl: 'app.html',
@@ -31,11 +32,11 @@ export class MyApp {
 
   constructor(public platform: Platform, public statusBar: StatusBar, 
         public splashScreen: SplashScreen, private userProvider : UserProvider,
-        private notificationProvider : NotificationProvider) {
+        private notificationProvider : NotificationProvider, private events:Events) {
     this.initializeApp();
     this.notifications = [];
     
-    this.userProvider.getUser(1).then(user => {
+    this.userProvider.getConnectedUser().then(user => {
       
       this.connectedUser = user;
       this.notificationProvider.getNotificationsByUser(this.connectedUser.id).then(
@@ -56,7 +57,28 @@ export class MyApp {
 	    { title: 'Recherche', component: RecherchePage },
       { title: 'Login', component: LoginPage }
     ];
+    
+    this.events.subscribe('reloadMenu',() => {
+      this.loadUser();
+    });
 
+  }
+  
+  loadUser() {
+  
+    this.userProvider.getConnectedUser().then(user => {
+      
+      this.connectedUser = user;
+      this.notificationProvider.getNotificationsByUser(this.connectedUser.id).then(
+        notifs => { 
+          this.notifications = notifs;
+          this.notifications = this.notifications.filter( notif => {
+              return !notif.read;
+          });
+          this.notifNumber = this.notifications.length;
+      });
+    });
+  
   }
   
   goToPersonalProfile() {
@@ -72,6 +94,7 @@ export class MyApp {
   }
   
   logout() {
+    Cookie.delete("ahCookie");
     this.nav.setRoot(LoginPage);
   }
 

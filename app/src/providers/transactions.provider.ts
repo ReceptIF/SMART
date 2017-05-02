@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { GlobalConstants } from '../app/app.constants';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -15,7 +16,7 @@ export class TransactionProvider {
 
   getTransactions() {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/transactions')
+      this.http.get(GlobalConstants.urlServer + '/transactions?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -25,7 +26,7 @@ export class TransactionProvider {
 
   getTransactionById(transactionId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/transaction/' + transactionId)
+      this.http.get(GlobalConstants.urlServer + '/transaction/' + transactionId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -33,7 +34,7 @@ export class TransactionProvider {
 
   getTransactionBySeller(sellerId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/transactions/seller/' + sellerId)
+      this.http.get(GlobalConstants.urlServer + '/transactions/seller/' + sellerId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -41,7 +42,7 @@ export class TransactionProvider {
 
   getTransactionByBuyer(buyerId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/transactions/buyer/' + buyerId)
+      this.http.get(GlobalConstants.urlServer + '/transactions/buyer/' + buyerId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -49,7 +50,7 @@ export class TransactionProvider {
 
   getTransactionsByAnnounce(announceId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/transactions/announce/' + announceId)
+      this.http.get(GlobalConstants.urlServer + '/transactions/announce/' + announceId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -57,7 +58,7 @@ export class TransactionProvider {
 
   getAcceptedTransaction(announceId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/transaction/announce/' + announceId + '/accepted')
+      this.http.get(GlobalConstants.urlServer + '/transaction/announce/' + announceId + '/accepted?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -65,7 +66,7 @@ export class TransactionProvider {
 
   postTransaction(transaction) {
     return new Promise(resolve => {
-      this.http.post(GlobalConstants.urlServer + '/transaction', transaction)
+      this.http.post(GlobalConstants.urlServer + '/transaction?token='+Cookie.get('ahCookie'), transaction)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -73,7 +74,7 @@ export class TransactionProvider {
 
   acceptTransaction(transactionId) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/accept', { accepterId : 1 })
+      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/accept?token='+Cookie.get('ahCookie'), { accepterId : 1 })
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -81,7 +82,7 @@ export class TransactionProvider {
 
   endTransaction(transactionId,comment) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/end', { accepterId : 1, comment : comment })
+      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/end' + '?token='+Cookie.get('ahCookie'), { accepterId : 1, comment : comment })
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -89,7 +90,7 @@ export class TransactionProvider {
 
   closeTransaction(transactionId,comment) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/close', { accepterId : 1, comment : comment })
+      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/close' + '?token='+Cookie.get('ahCookie'), { accepterId : 1, comment : comment })
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -97,7 +98,7 @@ export class TransactionProvider {
 
   cancelTransaction(transactionId) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/cancel', { accepterId : 1 })
+      this.http.put(GlobalConstants.urlServer + '/transaction/' + transactionId + '/cancel' + '?token='+Cookie.get('ahCookie'), { accepterId : 1 })
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -105,7 +106,7 @@ export class TransactionProvider {
 
   deleteTransaction(transactionId) {
     return new Promise(resolve => {
-      this.http.delete(GlobalConstants.urlServer + '/transaction/' + transactionId)
+      this.http.delete(GlobalConstants.urlServer + '/transaction/' + transactionId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

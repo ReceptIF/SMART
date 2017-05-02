@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { GlobalConstants } from '../app/app.constants';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -21,7 +22,7 @@ export class CityProvider {
     }
 
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/cities')
+      this.http.get(GlobalConstants.urlServer + '/cities' + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {
           this.cachedCities = data;
@@ -32,7 +33,7 @@ export class CityProvider {
 
   getCity(cityId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/city/' + cityId)
+      this.http.get(GlobalConstants.urlServer + '/city/' + cityId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -40,7 +41,7 @@ export class CityProvider {
 
   postCity(city) {
     return new Promise(resolve => {
-      this.http.post(GlobalConstants.urlServer + '/city', city)
+      this.http.post(GlobalConstants.urlServer + '/city' + '?token='+Cookie.get('ahCookie'), city)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -48,7 +49,7 @@ export class CityProvider {
 
   putCity(city) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/city', city)
+      this.http.put(GlobalConstants.urlServer + '/city' + '?token='+Cookie.get('ahCookie'), city)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -56,7 +57,7 @@ export class CityProvider {
 
   deleteCity(cityId) {
     return new Promise(resolve => {
-      this.http.delete(GlobalConstants.urlServer + '/city/' + cityId)
+      this.http.delete(GlobalConstants.urlServer + '/city/' + cityId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

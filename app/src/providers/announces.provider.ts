@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { GlobalConstants } from '../app/app.constants';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -11,7 +12,9 @@ export class AnnounceProvider {
 
   constructor(private http: Http) {
     this.cachedAnnounces = this.getAnnounces();
-    this.headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+    this.headers = new Headers({ 
+      'Content-Type': 'application/x-www-form-urlencoded'
+    });
     this.options = new RequestOptions({ headers: this.headers });
   }
 
@@ -21,7 +24,7 @@ export class AnnounceProvider {
     }
 
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announces')
+      this.http.get(GlobalConstants.urlServer + '/announces?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {
           this.cachedAnnounces = data;
@@ -32,7 +35,7 @@ export class AnnounceProvider {
 
   getOpenAnnounces() {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announces/open')
+      this.http.get(GlobalConstants.urlServer + '/announces/open?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -42,7 +45,7 @@ export class AnnounceProvider {
 
   getAnnounce(announceId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announce/' + announceId)
+      this.http.get(GlobalConstants.urlServer + '/announce/' + announceId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -50,7 +53,7 @@ export class AnnounceProvider {
 
   getAnnounceByUser(userId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announces/by/' + userId)
+      this.http.get(GlobalConstants.urlServer + '/announces/by/' + userId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -58,7 +61,7 @@ export class AnnounceProvider {
 
   postAnnounce(announce) {
     return new Promise(resolve => {
-      this.http.post(GlobalConstants.urlServer + '/announce', announce)
+      this.http.post(GlobalConstants.urlServer + '/announce?token='+Cookie.get('ahCookie'), announce)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -66,7 +69,7 @@ export class AnnounceProvider {
 
   putAnnounce(announce) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/announce', announce)
+      this.http.put(GlobalConstants.urlServer + '/announce?token='+Cookie.get('ahCookie'), announce)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -74,7 +77,7 @@ export class AnnounceProvider {
 
   deleteAnnounce(announceId) {
     return new Promise(resolve => {
-      this.http.delete(GlobalConstants.urlServer + '/announce/' + announceId)
+      this.http.delete(GlobalConstants.urlServer + '/announce/' + announceId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

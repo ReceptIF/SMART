@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import _ from "lodash";
 import { NavController, NavParams } from 'ionic-angular';
 import { UserProvider } from '../../providers/users.provider';
 import { AnnounceProvider } from '../../providers/announces.provider';
@@ -27,6 +28,8 @@ export class ProfilePage {
 	services : any;
 	transactions : any;
 	comments : any;
+  
+  note : any;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider, 
 	private announceProvider: AnnounceProvider, private commentProvider : CommentProvider, private transactionProvider : TransactionProvider) {
@@ -64,6 +67,7 @@ export class ProfilePage {
 					this.commentProvider.getCommentByTarget(this.profileUser.id).then(
 						comments => {
 							this.comments = comments;
+              this.calculNote(comments);
 						}
 					);
 					this.transactionProvider.getTransactionByBuyer(this.profileUser.id).then(
@@ -90,6 +94,24 @@ export class ProfilePage {
 			);
 		});
 	}
+  
+  calculNote(comments) {
+    var calcul : number;
+    calcul = 0;
+    
+    _.forEach(comments, comment => {
+      calcul += comment.note;
+    });
+    
+    if(calcul != 0) {
+      calcul /= comments.length;
+    }
+    
+    calcul = Math.round(calcul*10)/10;
+    console.log(calcul);
+    this.note = calcul;
+    
+  }
 
 	itemTapped(event, item) {
 		this.navCtrl.push(AnnoncePage, {

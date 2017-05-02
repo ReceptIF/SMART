@@ -4,110 +4,140 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header" data-background-color="red">
-                    <h4 class="title">Edit Profile</h4>
-                    <p class="category">Complete your profile</p>
+                    <h4 class="title">Profil</h4>
+                    <p class="category">Informations de l'utilisateur</p>
                 </div>
                 <div class="card-content">
-                    <form>
+                    <form contenteditable="true">
                         <div class="row">
-                            <div class="col-md-5">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Company (disabled)</label>
-                                    <input type="text" class="form-control" disabled>
+                            <div class="col-md-6">
+                                <div class="form-group form-black is-empty">
+                                    <label class="control-label">Prénom</label>
+                                    <label class="contenteditable form-control">Jean-Michel</label>
                                 </div>
                             </div>
+                            <div class="col-md-4">
+                                <div class="form-group form-black is-empty">
+                                    <label class="control-label">Nom de famiille</label>
+                                    <label class="contenteditable form-control">User</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
                             <div class="col-md-3">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Username</label>
-                                    <input type="text" class="form-control" >
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Email address</label>
-                                    <input type="email" class="form-control" >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Fist Name</label>
-                                    <input type="text" class="form-control" >
+                                <div class="form-group form-black is-empty">
+                                    <label class="control-label">Numéro de téléphone</label>
+                                    <label type="number" class="contenteditable form-control">0607080900</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Last Name</label>
-                                    <input type="text" class="form-control" >
+                                <div class="form-group form-black is-empty">
+                                    <label class="control-label">Adresse email</label>
+                                    <label type="email" class="contenteditable form-control">jean-michel.user@insa-lyon.fr</label>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Adress</label>
-                                    <input type="text" class="form-control" >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">City</label>
-                                    <input type="text" class="form-control" >
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Country</label>
-                                    <input type="text" class="form-control" >
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="form-group form-black label-floating is-empty">
-                                    <label class="control-label">Postal Code</label>
-                                    <input type="text" class="form-control" >
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label>About Me</label>
-                                    <div class="form-group form-black label-floating is-empty">
-                                        <label class="control-label"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
-                                        <textarea class="form-control" rows="5"></textarea>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <button type="submit" class="btn btn-danger pull-right">Update Profile</button>
+                        <button type="submit" class="btn btn-danger pull-right">Mettre à jour le profil</button>
                         <div class="clearfix"></div>
                     </form>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" data-background-color="red">
+                    <h4 class="title">Adresses</h4>
+                    <p class="category">Utilisé par ce profil</p>
+                </div>
+                <div class="card-content table-responsive">
+                    <table class="table">
+                        <thead class="text-danger">
+                        <th>Nom</th>
+                        <th>Adresse</th>
+                        <th>Ville</th>
+                        <th>Complément</th>
+                        </thead>
+                        <tbody contenteditable="true">
+                        <tr>
+                            <td class="contenteditable">Maison</td>
+                            <td class="contenteditable">1 rue de l'olive</td>
+                            <td class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown">Jean-Michel Villeurbanne</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">A city</a></li>
+                                    <li><a href="#">Another city</a></li>
+                                </ul>
+                            </td>
+                            <td class="contenteditable">Bâtiment Alphonse Brown</td>
+                        </tr>
+                        <tr>
+                            <td class="contenteditable">Travail</td>
+                            <td class="contenteditable">25 rue part-dieu</td>
+                            <td class="dropdown">
+                                <a class="dropdown-toggle" data-toggle="dropdown">Lyon</a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">A city</a></li>
+                                    <li><a href="#">Another city</a></li>
+                                </ul>
+                            </td>
+                            <td class="contenteditable">Bâtiment Oxygen</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <button type="submit" class="btn btn-danger pull-right">Mettre à jour les adresses</button>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header" data-background-color="red">
+                    <h4 class="title">Annonces</h4>
+                    <p class="category">Postées par ce profil</p>
+                </div>
+                <div class="card-content table-responsive">
+                    <table class="table">
+                        <thead class="text-danger">
+                        <th>Titre</th>
+                        <th>Prix</th>
+                        <th>Temps estimé</th>
+                        <th>Type</th>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Besoin de plombier</td>
+                            <td>12 AH !</td>
+                            <td>30 min</td>
+                            <td>Bricolage</td>
+                        </tr>
+                        <tr>
+                            <td>Vente de fleurs</td>
+                            <td>3 AH !</td>
+                            <td>30 min</td>
+                            <td>Courses</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card card-profile">
                 <div class="card-avatar">
-                    <a href="#pablo">
-                        <img class="img" src="../assets/img/faces/marc.jpg" />
-                    </a>
+                    <img class="img" src="../assets/img/ahPiece_big.png" />
                 </div>
 
                 <div class="content">
-                    <h6 class="category text-gray">CEO / Co-Founder</h6>
-                    <h4 class="card-title">Alec Thompson</h4>
-                    <p class="card-content">
-                        Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                    </p>
-                    <a href="#pablo" class="btn btn-danger btn-round">Follow</a>
+                    <h6 class="category text-gray">Nombre de AH !</h6>
+                    <h4 class="card-title">$$$$$$$$$$$$$$$</h4>
+                    <a href="ModifyAh" class="btn btn-danger btn-round">Modifier</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card card-profile">
+                <div class="content">
+                    <h6 class="category text-gray">Mot de passe</h6>
+                    <h4 class="card-title">$$$$$$$$$$$$$$$</h4>
+                    <a href="ModifyAh" class="btn btn-danger btn-round">Montrer le mot de passe</a>
                 </div>
             </div>
         </div>

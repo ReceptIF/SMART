@@ -54,8 +54,7 @@ export class MyApp {
       { title: 'A la une', component: HomePage },
 	    { title: 'Mes Annonces', component: MyAnnoncesPage },
       { title: 'Poster une annonce', component: PostAnnoncePage },
-	    { title: 'Recherche', component: RecherchePage },
-      { title: 'Login', component: LoginPage }
+	    { title: 'Recherche', component: RecherchePage }
     ];
     
     this.events.subscribe('reloadMenu',() => {

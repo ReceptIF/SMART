@@ -236,6 +236,7 @@ module.exports = function (server) {
                 var buyerUpdate = {ahAmount: transaction.buyer.ahAmount - transaction.announce.price};
                 User.update(sellerUpdate, {where: {id: transaction.sellerId}});
                 User.update(buyerUpdate, {where: {id: transaction.buyerId}});
+                Announce.update({closed: true}, {where: {id: transaction.announceId}});
                 // Update transaction
                 Notification.create(
                     {

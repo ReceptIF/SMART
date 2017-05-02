@@ -13,6 +13,6 @@ export class UsersComponent{
     users : any;
 
     constructor(private userProvider : UserProvider){
-        this.userProvider.getUsers().then( users => {this.users = users;} );
+        this.userProvider.getUsers().then( users => { this.users = users; } );
     }
 }

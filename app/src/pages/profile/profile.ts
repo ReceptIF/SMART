@@ -17,16 +17,16 @@ import { ModifyProfilePage } from '../modifyProfile/modifyProfile';
 })
 export class ProfilePage {
 
-  connectedUser: any;
-  profileUser: any;
-  profileId : number;
-  
-  nbAnnouce : number;
-  nbService : number;
-  
-  services : any;
-  transactions : any;
-  comments : any;
+	connectedUser: any;
+	profileUser: any;
+	profileId : number;
+	 
+	nbAnnounce : number;
+	nbService : number;
+	  
+	services : any;
+	transactions : any;
+	comments : any;
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider: UserProvider, 
 	private announceProvider: AnnounceProvider, private commentProvider : CommentProvider, private transactionProvider : TransactionProvider) {
@@ -41,6 +41,8 @@ export class ProfilePage {
 		this.connectedUser = {};
 		this.services = [];
 		this.comments = [];
+		
+		this.nbService = 0;
   
 		this.userProvider.getConnectedUser().then( user => {
 			this.connectedUser = user;
@@ -51,12 +53,12 @@ export class ProfilePage {
 					this.announceProvider.getAnnounceByUser(this.profileUser.id).then(
 						announces => {
 							this.services = announces;
+							this.nbAnnounce = this.services.length;
 							for(var i = this.services.length - 1; i >= 0; i--) {
 								if(this.services[i].closed) {
 									this.services.splice(i, 1);
 								}
 							}
-							this.nbService = this.services.length;
 						}
 					);
 					this.commentProvider.getCommentByTarget(this.profileUser.id).then(
@@ -67,8 +69,21 @@ export class ProfilePage {
 					this.transactionProvider.getTransactionByBuyer(this.profileUser.id).then(
 						transactions => {
 							this.transactions = transactions;
-							this.nbService = this.transactions.length;
-							console.log(this.nbService);
+							for(var i = 0; i<this.transactions.length; i++) {
+								if(this.transactions[i].status == 3) {
+									this.nbService ++;
+								}
+							}
+						}
+					);
+					this.transactionProvider.getTransactionBySeller(this.profileUser.id).then(
+						transactions => {
+							this.transactions = transactions;
+							for(var i = 0; i<this.transactions.length; i++) {
+								if(this.transactions[i].status == 3) {
+									this.nbService ++;
+								}
+							}
 						}
 					);
 				}
@@ -105,5 +120,4 @@ export class ProfilePage {
 			profileId: profileId
 		});
 	}
-
 }

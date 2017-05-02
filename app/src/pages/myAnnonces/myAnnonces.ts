@@ -38,7 +38,7 @@ export class MyAnnoncesPage {
               this.transactionProvider.getTransactionsByAnnounce(item.id).then(transactions => {
                 item.transactions = transactions;
                 item.transactions = item.transactions.filter( transaction => {
-                    return transaction.status > 0;
+                    return transaction.status >= 0;
                 });
                 item.nbTransactions = item.transactions.length;
                 

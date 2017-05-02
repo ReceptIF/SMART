@@ -5,7 +5,7 @@ var announces_component_1 = require("./announces/announces.component");
 var announcesTypes_component_1 = require("./announcesTypes/announcesTypes.component");
 var announceType_component_1 = require("./announcesTypes/announceType/announceType.component");
 var cities_component_1 = require("./cities/cities.component");
-var user_component_1 = require("./user/user.component");
+var user_component_1 = require("./users/user/user.component");
 var icons_component_1 = require("./icons/icons.component");
 var table_component_1 = require("./table/table.component");
 var notifications_component_1 = require("./notifications/notifications.component");
@@ -17,7 +17,7 @@ exports.MODULE_ROUTES = [
     { path: 'announcesTypes', component: announcesTypes_component_1.AnnouncesTypesComponent },
     { path: 'announceType/:id', component: announceType_component_1.AnnounceTypeComponent },
     { path: 'cities', component: cities_component_1.CitiesComponent },
-    { path: 'user', component: user_component_1.UserComponent },
+    { path: 'user/:id', component: user_component_1.UserComponent },
     { path: 'table', component: table_component_1.TableComponent },
     { path: 'icons', component: icons_component_1.IconsComponent },
     { path: 'notifications', component: notifications_component_1.NotificationsComponent },

@@ -1,6 +1,7 @@
 var Transaction = require('../model/transaction');
 var Announce = require('../model/announce');
 var User = require('../model/user');
+var Comment = require('../model/comment');
 var Notification = require('../model/notification');
 
 module.exports = function (server) {
@@ -206,6 +207,16 @@ module.exports = function (server) {
                         read: false
                     }
                 );
+                if (request.body.title && request.body.content && request.body.note) {
+                    Comment.create({
+                        title: request.body.title,
+                        content: request.body.content,
+                        note: request.body.note,
+                        announceId: transaction.announceId,
+                        authorId: transaction.sellerId,
+                        targetId: transaction.buyerId
+                    });
+                }
                 Transaction.update(body, {where: {id: request.params.id}}).then(function (data) {
                     response.send(data);
                 }, function (data) {
@@ -247,6 +258,16 @@ module.exports = function (server) {
                         read: false
                     }
                 );
+                if (request.body.title && request.body.content && request.body.note) {
+                    Comment.create({
+                        title: request.body.title,
+                        content: request.body.content,
+                        note: request.body.note,
+                        announceId: transaction.announceId,
+                        authorId: transaction.buyerId,
+                        targetId: transaction.sellerId
+                    });
+                }
                 Transaction.update(body, {where: {id: request.params.id}}).then(function (data) {
                     response.send(data);
                 }, function (data) {

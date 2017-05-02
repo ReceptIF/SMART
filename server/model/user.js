@@ -33,7 +33,8 @@ var User = sequelize.define('user', {
             field: 'password',
             allowNull: false
         }
-    }, {
+    },
+    {
         freezeTableName: true
     }
 );
@@ -62,17 +63,5 @@ User.sync().then(function () {
         coordY: 69.69
     });
 });
-
-User.findByEmail = function(email, cb) {
-    process.nextTick(function() {
-        for (var i = 0, len = records.length; i < len; i++) {
-            var record = records[i];
-            if (record.email === email) {
-                return cb(null, record);
-            }
-        }
-        return cb(null, null);
-    });
-}
 
 module.exports = User;

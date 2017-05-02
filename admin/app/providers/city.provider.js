@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-var app_constants_1 = require('../app.constants');
-require('rxjs/add/operator/map');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var app_constants_1 = require("../app.constants");
+require("rxjs/add/operator/map");
 var CityProvider = (function () {
     function CityProvider(http) {
         this.http = http;
@@ -65,11 +65,11 @@ var CityProvider = (function () {
                 .subscribe(function (data) { resolve(data); });
         });
     };
-    CityProvider = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], CityProvider);
     return CityProvider;
 }());
+CityProvider = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], CityProvider);
 exports.CityProvider = CityProvider;
 //# sourceMappingURL=city.provider.js.map

@@ -8,19 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
 var NotificationsComponent = (function () {
     function NotificationsComponent() {
     }
-    NotificationsComponent = __decorate([
-        core_1.Component({
-            selector: 'notifications-cmp',
-            moduleId: module.id,
-            templateUrl: 'notifications.component.html'
-        }), 
-        __metadata('design:paramtypes', [])
-    ], NotificationsComponent);
     return NotificationsComponent;
 }());
+NotificationsComponent = __decorate([
+    core_1.Component({
+        selector: 'notifications-cmp',
+        moduleId: module.id,
+        templateUrl: 'notifications.component.html'
+    }),
+    __metadata("design:paramtypes", [])
+], NotificationsComponent);
 exports.NotificationsComponent = NotificationsComponent;
 //# sourceMappingURL=notifications.component.js.map

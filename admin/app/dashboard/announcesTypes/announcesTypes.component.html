@@ -25,13 +25,10 @@
                                     <td>{{announcesType.icon}}</td>
                                     <td><img [src]="'../../../assets/images/icon/service-type/'+announcesType.icon+'.png'" style="height: 50px;width: 50px;"></td>
                                     <td>
-                                        <button class="btn btn-default" >
+                                        <button class="btn btn-default" [routerLink]="['/announceType', announcesType.id]">
                                             <i class="material-icons">mode_edit</i>
                                         </button>
-                                        <button class="btn btn-primary" >
-                                            <i class="material-icons">visibility</i>
-                                        </button>
-                                        <button class="btn btn-danger" >
+                                        <button class="btn btn-danger" (click)="deleteAnnounceType(announcesType.id)">
                                             <i class="material-icons">delete</i>
                                         </button>
                                     </td>

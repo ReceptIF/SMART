@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-var app_constants_1 = require('../app.constants');
-require('rxjs/add/operator/map');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+var app_constants_1 = require("../app.constants");
+require("rxjs/add/operator/map");
 var CommentProvider = (function () {
     function CommentProvider(http) {
         this.http = http;
@@ -76,11 +76,11 @@ var CommentProvider = (function () {
                 .subscribe(function (data) { resolve(data); });
         });
     };
-    CommentProvider = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], CommentProvider);
     return CommentProvider;
 }());
+CommentProvider = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], CommentProvider);
 exports.CommentProvider = CommentProvider;
 //# sourceMappingURL=comments.provider.js.map

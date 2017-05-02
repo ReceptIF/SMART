@@ -22,7 +22,7 @@ import { Cookie } from 'ng2-cookies/ng2-cookies';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
   pages: Array<{title: string, component: any}>;
 
   //connectedUser : User; TODO MAJ Interface to fit

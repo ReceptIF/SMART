@@ -20,15 +20,22 @@ export class AnnoncePage {
 	endTime: string;
 	estimatedTime: string;
 	createdAt: string;
-  acceptedTransaction : any;
+	acceptedTransaction : any;
   
-  connectedUser : any;
+	answer: boolean;
+	connectedUser : any;
 
 	constructor(public navCtrl: NavController, public params:NavParams, 
 			private userProvider : UserProvider, private events : Events, 
 			private transactionProvider : TransactionProvider) {
     
-		this.service= params.get("item");
+		this.service = params.get("item");
+		
+		if(params.get("answer") != null) {
+			this.answer = true;
+		} else {
+			this.answer = false;
+		}
     
 		this.userProvider.getConnectedUser().then(user => {
 			this.connectedUser = user;
@@ -93,22 +100,22 @@ export class AnnoncePage {
 		});
 	}
   
-  openProfile(event, service) {
-    this.navCtrl.push(ProfilePage, {
-		  profileId: service.author.id
+	openProfile(event, service) {
+		this.navCtrl.push(ProfilePage, {
+			profileId: service.author.id
 		});
 	}
 
 	checkTransaction(event, service) {
 		this.navCtrl.push(CheckTransactionPage, {
-		  service: service
+			service: service
 		});
 	}
 
 	goToPinCode(event, service) {
 		this.navCtrl.push(PinCodePage, {
-		  service: service,
-      answer : this.acceptedTransaction
+			service: service,
+		answer : this.acceptedTransaction
 		});
 	}
 }

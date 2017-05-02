@@ -36,16 +36,8 @@ export class AnswerPage {
           announceId: this.service.id,
           status: 1,
         };
-        
-        if(this.service.sale) {
-          this.answerTransaction.buyerId = this.connectedUser.id;
-          this.answerTransaction.sellerId = this.service.author.id;
-          this.answerTransaction.buyerOk = 1;
-        } else {
-          this.answerTransaction.sellerId = this.connectedUser.id;
-          this.answerTransaction.buyerId = this.service.author.id;
-          this.answerTransaction.sellerOk = 1;
-        }
+        this.answerTransaction.accepterId = this.connectedUser.id;
+		console.log(this.answerTransaction);
         
       }
     );
@@ -57,6 +49,7 @@ export class AnswerPage {
 			buttons: ['Ok']
 		});
 		alert.present();
+		console.log(this.answerTransaction);
 		this.transactionProvider.postTransaction(this.answerTransaction).then( response => {this.navCtrl.pop();}  );
 	}
 }

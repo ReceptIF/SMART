@@ -12,6 +12,15 @@ module.exports = function (server) {
         });
     });
 
+    server.get('/user/current', function (request, response) {
+        User.findById(request.decodedToken).then(function (data) {
+            console.log(request.decodedToken);
+            response.send(data ? data : {});
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
     server.get('/user/:id', function (request, response) {
         User.findById(request.params.id).then(function (data) {
             response.send(data ? data : {});

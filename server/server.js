@@ -27,7 +27,8 @@ apiRoutes.use(function(req, res, next) {
                 return res.json({ success: false, message: 'Failed to authenticate token.' });
             } else {
                 // if everything is good, save to request for use in other routes
-                req.tokenUserId = decoded;
+                req.decodedToken = decoded.user;
+                console.log(req.decodedToken);
                 next();
             }
         });
@@ -56,7 +57,7 @@ server.use('/notification', apiRoutes);
 server.use('/notifications', apiRoutes);
 server.use('/transaction', apiRoutes);
 server.use('/transactions', apiRoutes);
-server.use('/users', apiRoutes);
+server.use('/user', apiRoutes);
 server.use('/users', apiRoutes);
 
 require('./controller/userController')(server);

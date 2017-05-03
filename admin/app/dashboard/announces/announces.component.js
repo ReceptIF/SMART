@@ -14,7 +14,7 @@ var AnnouncesComponent = (function () {
     function AnnouncesComponent(announcesProvider) {
         var _this = this;
         this.announcesProvider = announcesProvider;
-        this.announcesProvider.getAnnounces().then(function (announces) { _this.announces = announces; });
+        this.announcesProvider.getAnnounces().then(function (announces) { _this.announces = announces; console.log(_this.announces); });
     }
     return AnnouncesComponent;
 }());

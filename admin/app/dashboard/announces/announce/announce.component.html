@@ -1,0 +1,107 @@
+<div class="main-content">
+    <div class="container-fluid" *ngIf="announce">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">Annonce</h4>
+                        <p class="category">Détails</p>
+                    </div>
+                    <div class="card-content">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Titre</label>
+                                        <input class="form-control" style="color:black;" value="{{announce.title}}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Auteur</label>
+                                        <input class="form-control" style="color:black;" value="{{announce.author.firstName}} {{announce.author.lastName}}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Description</label>
+                                        <textarea class="form-control" style="color:black;" rows="4" value="{{announce.description}}"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Début</label>
+                                        <input class="form-control" style="color:black;" value="{{announce.startTime}}"/>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="form-group form-black label-floating">
+                                        <label class="control-label">Fin</label>
+                                        <input class="form-control" style="color:black;" value="{{announce.endTime}}"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-default pull-right">Enregistrer les modifications</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="card" *ngIf="transactions">
+                    <div class="card-header" data-background-color="red">
+                        <h4 class="title">Transactions</h4>
+                        <p class="category">En rapport avec cette annonce</p>
+                    </div>
+                    <div class="card-content table-responsive">
+                        <table class="table">
+                            <thead class="text-danger">
+                            <th>Id</th>
+                            <th>Interlocuteur</th>
+                            <th>Email</th>
+                            <th>Numéro de téléphone</th>
+                            <th>Date</th>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let transaction of transactions">
+                                <td>{{transaction.id}}</td>
+                                <td>{{transaction.name}}</td>
+                                <td>{{transaction.email}}</td>
+                                <td>{{transaction.phoneNumber}}</td>
+                                <td>{{transaction.transactionDate}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <img class="img" src="../assets/img/ahPiece_big.png" />
+                    </div>
+
+                    <div class="content">
+                        <h6 class="category text-gray">Prix en AH !</h6>
+                        <h4 class="card-title">{{announce.price}}</h4>
+                        <a href="ModifyAh" class="btn btn-default btn-round">Modifier</a>
+                    </div>
+                </div>
+                <div class="card card-profile">
+                    <div class="card-avatar">
+                        <img class="img" src="../assets/img/Time.png" />
+                    </div>
+
+                    <div class="content">
+                        <h6 class="category text-gray">Temps estimé en minutes</h6>
+                        <h4 class="card-title">{{announce.estimatedTime}}</h4>
+                        <a href="ModifyAh" class="btn btn-default btn-round">Modifier</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

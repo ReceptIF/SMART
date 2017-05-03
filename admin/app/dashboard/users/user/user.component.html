@@ -52,6 +52,7 @@
                 <div class="card-content table-responsive">
                     <table class="table">
                         <thead class="text-danger">
+                        <th>Id</th>
                         <th>Nom</th>
                         <th>Adresse</th>
                         <th>Ville</th>
@@ -60,6 +61,7 @@
                         </thead>
                         <tbody>
                         <tr *ngFor="let address of addresses">
+                            <td>{{address.id}}</td>
                             <td>{{address.name}}</td>
                             <td>{{address.address}}</td>
                             <td>{{address.city.name}}</td>
@@ -82,6 +84,7 @@
                 <div class="card-content table-responsive">
                     <table class="table">
                         <thead class="text-danger">
+                        <th>Id</th>
                         <th>Titre</th>
                         <th>Prix</th>
                         <th>Temps estimé</th>
@@ -90,6 +93,7 @@
                         </thead>
                         <tbody>
                         <tr *ngFor="let announce of announces">
+                            <td>{{announce.id}}</td>
                             <td>{{announce.title}}</td>
                             <td>{{announce.price}}</td>
                             <td>{{announce.estimatedTime}}</td>

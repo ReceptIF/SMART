@@ -18,8 +18,7 @@
                                     <th>ID Auteur</th>
                                     <th>Prix</th>
                                     <th>Durée</th>
-                                    <th>Statut</th>
-                                    <th>Actions</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -27,13 +26,12 @@
                                     <td>{{announce.id}}</td>
                                     <td>{{announce.title}}</td>
                                     <td>{{announce.type.name}}</td>
-                                    <td>{{announce.address.district}}</td>
-                                    <td>{{announce.authorId}}</td>
+                                    <td>{{announce.address.name}}</td>
+                                    <td>{{announce.author.firstName}} {{announce.author.lastName}}</td>
                                     <td>{{announce.price}}</td>
                                     <td>{{announce.estimatedTime}}</td>
-                                    <td></td>
                                     <td>
-                                        <button class="btn btn-default" >
+                                        <button class="btn btn-default" [routerLink]="['/announce', announce.id]">
                                             <i class="material-icons">mode_edit</i>
                                         </button>
                                         <button class="btn btn-danger" >

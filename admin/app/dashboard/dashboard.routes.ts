@@ -12,12 +12,14 @@ import { TableComponent } from './table/table.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ConfirmModalComponent } from './announcesTypes/announcesTypes.component';
 import {AddressComponent} from "./address/address.component";
+import {AnnounceComponent} from "./announces/announce/announce.component";
 
 export const MODULE_ROUTES: Route[] =[
     { path: 'dashboard', component: HomeComponent },
     { path: 'login', component: LoginComponent },
     { path: 'users', component: UsersComponent },
     { path: 'announces', component: AnnouncesComponent },
+    { path: 'announce/:id', component: AnnounceComponent },
     { path: 'announcesTypes', component: AnnouncesTypesComponent },
     { path: 'announceType/:id', component: AnnounceTypeComponent },
     { path: 'cities', component: CitiesComponent },
@@ -34,6 +36,7 @@ export const MODULE_COMPONENTS = [
     HomeComponent,
     UsersComponent,
     AnnouncesComponent,
+    AnnounceComponent,
     AnnouncesTypesComponent,
     AnnounceTypeComponent,
     CitiesComponent,

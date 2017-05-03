@@ -22,25 +22,28 @@ export class PostAnnoncePage {
   categorie : number;
   price : number;
   address : number;
+  minStartAt : string;
   startAt : string;
   endAt : string;
   estimatedTime : number;
   addresses : any;
-  
+
   connectedUser : any;
 
-  constructor(public navCtrl: NavController, private announceTypeProvider : AnnounceTypeProvider, 
-  private userProvider : UserProvider, public toastCtrl: ToastController, private announceProvider : AnnounceProvider, 
+  constructor(public navCtrl: NavController, private announceTypeProvider : AnnounceTypeProvider,
+  private userProvider : UserProvider, public toastCtrl: ToastController, private announceProvider : AnnounceProvider,
   private alertCtrl: AlertController, private addressProvider : AddressProvider) {
 
     this.annonceType = false;
     this.addresses = [];
+    this.minStartAt = new Date().toISOString();
+    this.startAt = new Date().toISOString();
     this.announceTypeProvider.getAnnounceTypes().then( announceTypes => { this.announceTypes = announceTypes; console.log(this.announceTypes);});
-    this.userProvider.getConnectedUser().then( user => { 
-      
-      this.connectedUser = user; 
-      this.addressProvider.getAddressesByUser(this.connectedUser.id).then( addresses => { 
-        this.addresses = addresses; 
+    this.userProvider.getConnectedUser().then( user => {
+
+      this.connectedUser = user;
+      this.addressProvider.getAddressesByUser(this.connectedUser.id).then( addresses => {
+        this.addresses = addresses;
       });
     });
 
@@ -73,14 +76,14 @@ export class PostAnnoncePage {
                 };
 
                 this.announceProvider.postAnnounce(annonce).then(response => {console.log(response)});
-                
+
                 let alert = this.alertCtrl.create({
                   title: 'Votre annonce a bien été enregistrée. Vous pouvez la consulter dans la rubrique "Mes Annonces".',
                   buttons: ['Ok']
                 });
                 alert.present();
                 this.navCtrl.pop();
-                
+
                 console.log(annonce);
 
               } else { this.showToast("Vous devez indiquer à combien de temps vous estimez la réalisation de la tâche."); }

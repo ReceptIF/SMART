@@ -10,7 +10,7 @@
 <ion-content padding>
 
   <ion-list no-lines>
-    
+
     <ion-item>
       <ion-grid>
         <ion-row>
@@ -19,7 +19,7 @@
         </ion-row>
       </ion-grid>
     </ion-item>
-    
+
     <h2><ion-icon name="chatbubbles"></ion-icon> Description</h2>
     <ion-item>
       <ion-label stacked>Titre de l'annonce</ion-label>
@@ -29,7 +29,7 @@
       <ion-label stacked>Description de l'annonce</ion-label>
       <ion-textarea rows="5" [(ngModel)]="description"></ion-textarea>
     </ion-item>
-    
+
     <ion-item>
       <ion-label>Catégorie</ion-label>
       <ion-select [(ngModel)]="categorie">
@@ -38,13 +38,13 @@
         </ion-option>
       </ion-select>
     </ion-item>
-    
+
     <h2><ion-icon name="cash"></ion-icon> Tarification</h2>
     <ion-item>
       <ion-label>Nombre de AH! :</ion-label>
       <ion-input type="number" min="0" max="100" [(ngModel)]="price"></ion-input>
     </ion-item>
-    
+
     <h2><ion-icon name="home"></ion-icon> Adresse</h2>
     <ion-list radio-group [(ngModel)]="address">
       <ion-item *ngFor="let address of addresses">
@@ -52,22 +52,22 @@
         <ion-radio value="{{address.id}}"></ion-radio>
       </ion-item>
     </ion-list>
-    
+
     <h2><ion-icon name="time"></ion-icon> Période</h2>
     <ion-item>
       <ion-label>Date de début</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="startAt"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" [min]="minStartAt" [max]="endAt" [(ngModel)]="startAt"></ion-datetime>
     </ion-item>
-    
+
     <ion-item>
       <ion-label>Date de fin</ion-label>
-      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" [(ngModel)]="endAt"></ion-datetime>
+      <ion-datetime displayFormat="DD/MM/YYYY" pickerFormat="DD MM YYYY" [min]="startAt" [(ngModel)]="endAt"></ion-datetime>
     </ion-item>
     <ion-item>
       <ion-label>Durée estimée (min)</ion-label>
       <ion-input type="number" min="0" max="5000" [(ngModel)]="estimatedTime"></ion-input>
     </ion-item>
-    
+
   </ion-list>
 
   <button ion-button block (click)="sendAnnonce();">Poster l'annonce</button>

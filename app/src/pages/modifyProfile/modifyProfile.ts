@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { UserProvider } from '../../providers/users.provider';
-import { MyAddressesPage } from '../myAddresses/myAddresses';
 
 @Component({
   selector: 'page-modify-profile',

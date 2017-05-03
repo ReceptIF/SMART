@@ -8,33 +8,33 @@
                     <p class="category">Informations de l'utilisateur</p>
                 </div>
                 <div class="card-content">
-                    <form contenteditable="true">
+                    <form>
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group form-black is-empty">
+                                <div class="form-group form-black label-floating">
                                     <label class="control-label">Prénom</label>
-                                    <label class="contenteditable form-control" style="color:black;">{{user.firstName}}</label>
+                                    <input class="form-control" style="color:black;" value="{{user.firstName}}"/>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <div class="form-group form-black is-empty">
+                                <div class="form-group form-black label-floating">
                                     <label class="control-label">Nom de famille</label>
-                                    <label class="contenteditable form-control" style="color:black;">{{user.lastName}}</label>
+                                    <input class="form-control" style="color:black;" value="{{user.lastName}}"/>
                                 </div>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="col-md-3">
-                                <div class="form-group form-black is-empty">
+                                <div class="form-group form-black label-floating">
                                     <label class="control-label">Numéro de téléphone</label>
-                                    <label type="number" class="contenteditable form-control" style="color:black;">{{user.cellPhone}}</label>
+                                    <input class="form-control" style="color:black;" value="{{user.cellPhone}}"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group form-black is-empty">
+                                <div class="form-group form-black label-floating">
                                     <label class="control-label">Adresse email</label>
-                                    <label type="email" class="contenteditable form-control" style="color:black;">{{user.email}}</label>
+                                    <input class="form-control" style="color:black;" value="{{user.email}}"/>
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                     </form>
                 </div>
             </div>
-            <div class="card" *ngIf="addresses && cities">
+            <div class="card" *ngIf="addresses">
                 <div class="card-header" data-background-color="red">
                     <h4 class="title">Adresses</h4>
                     <p class="category">Utilisées par ce profil</p>
@@ -56,25 +56,31 @@
                         <th>Adresse</th>
                         <th>Ville</th>
                         <th>Complément</th>
+                        <th>Actions</th>
                         </thead>
-                        <tbody contenteditable="true">
+                        <tbody>
                         <tr *ngFor="let address of addresses">
-                            <td class="contenteditable">{{address.name}}</td>
-                            <td class="contenteditable">{{address.address}}</td>
+                            <td>{{address.name}}</td>
+                            <td>{{address.address}}</td>
                             <td class="dropdown">
-                                <a class="dropdown-toggle" data-toggle="dropdown">{{cities[address.cityId - 1].name}}</a>
+                                <a class="dropdown-toggle" data-toggle="dropdown">{{address.city.name}}</a>
                                 <ul class="dropdown-menu">
                                     <li *ngFor="let city of cities"><a>{{city.name}}</a></li>
                                 </ul>
                             </td>
-                            <td class="contenteditable">{{address.complement}}</td>
+                            <td>{{address.complement}}</td>
+                            <td>
+                                <button class="btn btn-default" [routerLink]="['/user', user.id]">
+                                    <i class="material-icons">mode_edit</i>
+                                </button>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
                     <button type="submit" class="btn btn-default pull-right">Enregistrer les modifications</button>
                 </div>
             </div>
-            <div class="card" *ngIf="announces && types">
+            <div class="card" *ngIf="announces">
                 <div class="card-header" data-background-color="red">
                     <h4 class="title">Annonces</h4>
                     <p class="category">Postées par ce profil</p>
@@ -93,8 +99,8 @@
                             <td>{{announce.title}}</td>
                             <td>{{announce.price}}</td>
                             <td>{{announce.estimatedTime}}</td>
-                            <td>{{types[announce.typeId - 1].name}}</td>
-                            <td class="btn btn-default">voir</td>
+                            <td>{{announce.type.name}}</td>
+                            <td class="btn btn-default">Voir</td>
                         </tr>
                         </tbody>
                     </table>

@@ -18,8 +18,6 @@ export class LoginComponent{
 
     constructor(private authentificationProvider : AuthentificationProvider, private router : Router){}
 
-    test(){console.log(this.email,this.pass)};
-
     connect() {
 
         var connect = {

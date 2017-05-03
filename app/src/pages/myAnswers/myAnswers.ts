@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import _ from "lodash";
 import { NavController, NavParams } from 'ionic-angular';
 import { AnnoncePage } from '../annonce/annonce';
 import { AnnounceProvider } from '../../providers/announces.provider';
@@ -24,7 +23,7 @@ export class MyAnswersPage {
 	constructor(public navCtrl: NavController, public navParams: NavParams, private announceProvider : AnnounceProvider,
               private userProvider: UserProvider, private transactionProvider: TransactionProvider) {
 
-		
+
 		this.transactions = [];
 		this.servicesClosed = [];
 		this.servicesOpen = [];
@@ -33,7 +32,7 @@ export class MyAnswersPage {
 
 		this.userProvider.getConnectedUser().then( user => {
 			this.connectedUser = user;
-			
+
 			this.transactionProvider.getTransactionByBuyer(this.connectedUser.id).then(
 				transactions => {
 					this.transactions = transactions;
@@ -81,7 +80,7 @@ export class MyAnswersPage {
 					}
 				}
 			);
-			
+
 			this.transactionProvider.getTransactionBySeller(this.connectedUser.id).then(
 				transactions => {
 					this.transactions = transactions;

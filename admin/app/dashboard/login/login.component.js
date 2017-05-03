@@ -17,8 +17,6 @@ var LoginComponent = (function () {
         this.authentificationProvider = authentificationProvider;
         this.router = router;
     }
-    LoginComponent.prototype.test = function () { console.log(this.email, this.pass); };
-    ;
     LoginComponent.prototype.connect = function () {
         var _this = this;
         var connect = {

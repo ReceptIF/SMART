@@ -99,13 +99,35 @@ module.exports = function (server) {
     //TODO: FINISH AND TEST FILTERS
     server.post('/temp/search', function (req, res) {
         var wherejson = {};
+
+        //Start tags
         if(req.body.tags)
         {
-            console.log(req.body.tags);
-            wherejson.title = {$like: {$any : req.body.tags.split(" ")}};
+            var tags =  req.body.tags.split(" ");
+            wherejson.title = {$like: '%'+tags[0]+'%'};
+            if(tags.length > 1)
+            {
+                delete wherejson.title;
+                var strWololo = "{\"$and\": [";
+                for(var i=0;i<tags.length;i++)
+                {
+                    strWololo += "{\"$like\" : \"%" + tags[i] +"%\"}";
+                    if((i+1) != tags.length)
+                        strWololo += " ,";
+                }
+                strWololo += "]}";
+                wherejson.title = JSON.parse(strWololo);
+                console.log(strWololo);
+            }
         }
+        //End tags
         console.log(JSON.stringify(wherejson.title));
-        res.send(wherejson);
+
+        //Request
+        Announce.findAll({where: wherejson}).then(function(announces)
+        {
+           res.send(announces);
+        });
     })
 
     // PUT

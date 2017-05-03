@@ -17,11 +17,14 @@
       </ion-avatar>
 
       <p>Vous avez choisi</p>
-      <h2 *ngIf="answer.announce.sale">{{answer.buyer.firstName}} {{answer.buyer.lastName}}</h2>
-      <h2 *ngIf="!answer.announce.sale">{{answer.seller.firstName}} {{answer.seller.lastName}}</h2>
-
-      <h3 *ngIf="!answer.announce.sale" id="pincode-profile"><ion-icon name="call"></ion-icon> {{answer.seller.cellPhone}}<br/><ion-icon name="mail"></ion-icon> {{answer.seller.email}}</h3>
-
+      <div *ngIf="!answer.announce.sale" (click)="openProfile($event, answer.seller.id)">
+        <h2>{{answer.seller.firstName}} {{answer.seller.lastName}}</h2>
+        <h3 id="pincode-profile"><ion-icon name="call"></ion-icon> {{answer.seller.cellPhone}}<br/><ion-icon name="mail"></ion-icon> {{answer.seller.email}}</h3>
+      </div>
+      <div *ngIf="answer.announce.sale" (click)="openProfile($event, answer.buyer.id)">
+        <h2 >{{answer.buyer.firstName}} {{answer.buyer.lastName}}</h2>
+        <h3 id="pincode-profile"><ion-icon name="call"></ion-icon> {{answer.buyer.cellPhone}}<br/><ion-icon name="mail"></ion-icon> {{answer.buyer.email}}</h3>
+      </div>
     </ion-item>
 
 

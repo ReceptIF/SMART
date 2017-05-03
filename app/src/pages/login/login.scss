@@ -1,6 +1,17 @@
 page-login {
   .img-background {
-    background: url(../../assets/background/lyon3.jpg) no-repeat center center fixed;
+    position: fixed;
+    left:   0;
+    right:  0;
+    top:    0;
+    z-index: -2;
+
+    display: block;
+    background-image: url('../../assets/background/lyon3.jpg');
+    width: 1200px;
+    height: 800px;
+
+    filter: blur(2px);
   }
   .img-logo {
     width: 160px;

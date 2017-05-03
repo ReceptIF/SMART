@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { AnswerPage } from '../answer/answer';
 
 @Component({
   selector: 'page-persoAnnounce',
   templateUrl: 'persoAnnounce.html'
 })
 export class PersoAnnouncePage {
-	
+
 	service: Service;
 	price: string;
 	startTime: string;
@@ -18,13 +17,13 @@ export class PersoAnnouncePage {
 	constructor(public navCtrl: NavController, public params:NavParams) {
 		this.service= params.get("item");
 		this.price = this.service.price + " AH !";
-		
+
 		if(this.service.startTime != null) {
-			this.startTime = "Date de début : "+this.service.startTime;			
+			this.startTime = "Date de début : "+this.service.startTime;
 		}
-		
+
 		if(this.service.endTime != null) {
-			this.endTime = "Date de fin : "+this.service.endTime;			
+			this.endTime = "Date de fin : "+this.service.endTime;
 		}
 
 		if(this.service.estimatedTime != null) {
@@ -58,11 +57,11 @@ export class PersoAnnouncePage {
 		}
 
 		if(this.service.createdAt != null) {
-			this.creationTime = "Date de publication : "+this.service.createdAt;			
+			this.creationTime = "Date de publication : "+this.service.createdAt;
 		}
 	}
 
 	answerPersoAnnounce(event, service) {
-		
+
 	}
 }

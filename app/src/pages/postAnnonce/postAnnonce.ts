@@ -75,16 +75,28 @@ export class PostAnnoncePage {
                   authorId : this.connectedUser.id
                 };
 
-                this.announceProvider.postAnnounce(annonce).then(response => {console.log(response)});
+                this.announceProvider.postAnnounce(annonce).then(
+                  response => { 
+                    
+                    var res : any;
+                    res = response;
+                    
+                    if(!res.error) {
 
-                let alert = this.alertCtrl.create({
-                  title: 'Votre annonce a bien été enregistrée. Vous pouvez la consulter dans la rubrique "Mes Annonces".',
-                  buttons: ['Ok']
+                      let alert = this.alertCtrl.create({
+                        title: 'Votre annonce a bien été enregistrée. Vous pouvez la consulter dans la rubrique "Mes Annonces".',
+                        buttons: ['Ok']
+                      });
+                      alert.present();
+                      this.navCtrl.pop();
+                    
+                    } else {
+                      
+                      this.showToast("Erreur serveur. Veuillez réessayer plus tard");
+                      
+                    }
+                  
                 });
-                alert.present();
-                this.navCtrl.pop();
-
-                console.log(annonce);
 
               } else { this.showToast("Vous devez indiquer à combien de temps vous estimez la réalisation de la tâche."); }
             } else { this.showToast("Vous devez choisir une de vos adresses pour indiquer où aura lieu le service."); }

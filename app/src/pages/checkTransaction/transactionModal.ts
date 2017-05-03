@@ -33,7 +33,8 @@ export class TransactionModal {
   validate() {
 		this.transactionProvider.acceptTransaction(this.answer.id).then(
       response => {
-        this.navCtrl.setRoot(MyAnnoncesPage);
+        this.navCtrl.pop();
+        this.events.publish('popCheckTransactionPage');
     });
   }
 

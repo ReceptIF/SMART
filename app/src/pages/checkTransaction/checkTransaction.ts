@@ -34,6 +34,10 @@ export class CheckTransactionPage {
      this.navCtrl.push(CheckTransactionPage, { service : this.service });
     });
 
+    this.events.subscribe('popCheckTransactionPage',() => {
+     this.navCtrl.pop();
+    });
+
 	}
 
   openModal(answer) {

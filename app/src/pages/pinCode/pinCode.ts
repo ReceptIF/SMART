@@ -41,14 +41,14 @@ export class PinCodePage {
       this.transactionProvider.endTransaction(this.answer.id,commentBody).then(
         transaction => {
           this.navCtrl.pop();
-          this.navCtrl.pop();
+          //this.events.publish('popAnnoncePage');
         }
       );
     } else if(this.connectedUser.id == this.answer.buyer.id) {
       this.transactionProvider.closeTransaction(this.answer.id,commentBody).then(
         transaction => {
           this.navCtrl.pop();
-          this.navCtrl.pop();
+          //this.events.publish('popAnnoncePage');
         }
       );
     }

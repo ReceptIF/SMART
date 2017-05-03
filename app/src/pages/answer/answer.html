@@ -18,18 +18,26 @@
       <h3>{{service.address.district}}</h3>
     </ion-item>
 
-  <ion-item text-wrap class="text-pincode">
+  <ion-item text-wrap class="text-pincode" *ngIf="postedAnswer && !postedAnswer.id">
       Vous allez répondre à l'annonce de {{service.author.firstName}}. Soyez convaincant pour qu'il
       vous choisisse parmis toutes les réponses qu'il va recevoir ! {{service.author.firstName}} aura accès
       à votre téléphone et votre mail pour vous contacter s'il vous choisit.
   </ion-item>
 
-	<ion-item>
+	<ion-item  *ngIf="postedAnswer && !postedAnswer.id">
 		<ion-label floating>Votre message</ion-label>
 		<ion-textarea rows=5 [(ngModel)]="answerTransaction.commentary"></ion-textarea>
 	</ion-item>
 
-	<ion-fab right bottom>
+	<ion-fab right bottom  *ngIf="postedAnswer && !postedAnswer.id">
 		<button ion-fab color="light" (click)="sendAnswer()"><ion-icon name="arrow-forward"></ion-icon></button>
 	</ion-fab>
+  
+
+  <ion-item text-wrap class="text-pincode" *ngIf="postedAnswer && postedAnswer.id">
+      <p>Vous avez répondu :</p>
+      {{postedAnswer.commentary}}
+  </ion-item>
+  
+  
 </ion-content>

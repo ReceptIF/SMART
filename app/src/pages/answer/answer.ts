@@ -14,6 +14,7 @@ export class AnswerPage {
 	service: Service;
   answerTransaction: any; //TODO better typing
 	connectedUser : any; //TODO better typing
+  postedAnswer : any;
 
 	constructor(public navCtrl: NavController, public params:NavParams, private alertCtrl: AlertController,
               private userProvider: UserProvider, private transactionProvider: TransactionProvider) {
@@ -37,8 +38,11 @@ export class AnswerPage {
           status: 1,
         };
         this.answerTransaction.accepterId = this.connectedUser.id;
-		console.log(this.answerTransaction);
+        console.log(this.answerTransaction);
         
+        this.transactionProvider.getTransactionByUserAndAnnounce(this.connectedUser.id, this.service.id).then(
+          transaction => { this.postedAnswer = transaction; }
+        );
       }
     );
 	}

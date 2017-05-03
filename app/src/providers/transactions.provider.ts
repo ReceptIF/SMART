@@ -32,6 +32,14 @@ export class TransactionProvider {
     });
   }
 
+  getTransactionByUserAndAnnounce(userId, announceId) {
+    return new Promise(resolve => {
+      this.http.get(GlobalConstants.urlServer + '/transaction/user/'+ userId +'/announce/'+ announceId + '?token='+Cookie.get('ahCookie'))
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
+
   getTransactionBySeller(sellerId) {
     return new Promise(resolve => {
       this.http.get(GlobalConstants.urlServer + '/transactions/seller/' + sellerId + '?token='+Cookie.get('ahCookie'))

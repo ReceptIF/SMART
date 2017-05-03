@@ -92,6 +92,10 @@ export class AnnoncePage {
      this.navCtrl.push(AnnoncePage, { service : this.service });
     });
     
+    this.events.subscribe('popAnnoncePage',() => {
+     this.navCtrl.pop();
+    });
+    
 	}
 
 	answerAnnonce(event, service) {

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, Events } from 'ionic-angular';
 import { UserProvider } from '../../providers/users.provider';
+import { ToastController } from 'ionic-angular';
 import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { HomePage } from '../home/home';
 
@@ -15,7 +16,8 @@ export class LoginPage {
   pass : string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private userProvider : UserProvider, private events:Events) {
+    private userProvider : UserProvider, private events:Events,
+    private toastCtrl:ToastController) {
     if(Cookie.get('ahCookie')){
       this.events.publish('reloadMenu');
       this.navCtrl.setRoot(HomePage);
@@ -44,7 +46,16 @@ export class LoginPage {
           Cookie.set('ahCookie', ret.token);
           this.events.publish('reloadMenu');
           this.navCtrl.setRoot(HomePage);
+        } else {
+          
+          let toast = this.toastCtrl.create({
+            message: 'Impossible de vous identifier. Vérifiez vos informations.',
+            duration: 3000
+          });
+          toast.present();
+          
         }
+        
     });
 
   }

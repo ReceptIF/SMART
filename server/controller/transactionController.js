@@ -105,21 +105,21 @@ module.exports = function (server) {
     server.post('/transaction', function (request, response) {
         var body = request.body;
         Announce.findById(body.announceId).then(function (announce) {
-            if (announce.authorId == body.accepterId) {
+            if (announce.authorId == request.decodedToken) {
                 response.send({ah: 'AH !', error: "Impossible d'accepter votre propre annonce !"});
                 return;
             }
             if (announce.sale) {
                 body.sellerId = announce.authorId;
                 // Temp
-                body.buyerId = body.accepterId;
+                body.buyerId = request.decodedToken;
 
                 body.buyerOk = true;
                 body.sellerOk = false;
             } else {
                 body.buyerId = announce.authorId;
                 //Temp
-                body.sellerId = body.accepterId;
+                body.sellerId = request.decodedToken;
 
                 body.sellerOk = true;
                 body.buyerOk = false;
@@ -195,7 +195,7 @@ module.exports = function (server) {
         Transaction.findById(request.params.id).then(function (transaction) {
             if (transaction.status != 1) {
                 response.send({ah: 'AH !', error: "Cette annonce ne peux pas être terminée !"});
-            } else if (request.body.accepterId != transaction.sellerId) {
+            } else if (request.decodedToken != transaction.sellerId) {
                 response.send({ah: 'AH !', error: "Cette annonce ne vous appartient pas !"});
             } else {
                 Notification.create(
@@ -239,7 +239,7 @@ module.exports = function (server) {
         }).then(function (transaction) {
             if (transaction.status != 2) {
                 response.send({ah: 'AH !', error: "Cette annonce ne peux pas être terminée !"});
-            } else if (request.body.accepterId != transaction.buyerId) {
+            } else if (request.decodedToken != transaction.buyerId) {
                 response.send({ah: 'AH !', error: "Cette annonce ne vous appartient pas !"});
             } else {
                 // Pay
@@ -283,7 +283,7 @@ module.exports = function (server) {
         Transaction.findById(request.params.id).then(function (transaction) {
             if (transaction.status == 3) {
                 response.send({ah: 'AH !', error: "Cette annonce ne peux plus être annulée !"});
-            } else if (request.body.accepterId != transaction.sellerId && request.body.accepterId != transaction.buyerId) {
+            } else if (request.decodedToken != transaction.sellerId && request.decodedToken != transaction.buyerId) {
                 response.send({ah: 'AH !', error: "Cette annonce ne vous appartient pas !"});
             } else {
                 Notification.create(

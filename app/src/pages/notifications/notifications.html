@@ -16,6 +16,7 @@
         <p class="notif-message" *ngIf="notif.type == 'accept'">Votre réponse à l'annonce "<strong>{{notif.announce.title}}</strong>" vient d'être acceptée. Vous pouvez désormais <strong>rentrer en contact</strong> avec le posteur de l'annonce.</p>
         <p class="notif-message" *ngIf="notif.type == 'end'">Le service <strong>{{notif.announce.title}}</strong> vient d'être marqué comme réalisé. Veuillez maintenant <strong>valider cette réalisation</strong> à votre tour pour effectuer le transfert des AH!.</p>
         <p class="notif-message" *ngIf="notif.type == 'close'">Le service <strong>{{notif.announce.title}}</strong> vient d'être marqué comme réalisé. Vous avez reçu <strong>{{notif.announce.price}} AH!</strong>.</p>
+        <p class="notif-message" *ngIf="notif.type == 'cancel'">L'annonce <strong>{{notif.announce.title}}</strong> vient d'être annulée.</p>
 
         <p class="notif-infos" *ngIf="notif.timeNb == 0"><ion-icon [name]="notif.icon"></ion-icon> aujourd'hui</p>
         <p class="notif-infos" *ngIf="notif.timeNb == 1"><ion-icon [name]="notif.icon"></ion-icon> hier</p>

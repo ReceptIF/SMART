@@ -97,7 +97,7 @@ module.exports = function (server) {
     });
 
     //TODO: FINISH AND TEST FILTERS
-    server.post('/temp/search', function (req, res) {
+    server.get('/temp/search', function (req, res) {
         var wherejson = {};
 
         //Start tags

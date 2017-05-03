@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import _ from 'lodash';
 import { NavController, NavParams } from 'ionic-angular';
 import { AnnoncePage } from '../annonce/annonce';
 import { PostAnnoncePage } from '../postAnnonce/postAnnonce';
@@ -27,16 +28,16 @@ export class SearchedAnnouncesPage {
               private userProvider: UserProvider) {
 		this.category= navParams.get("category");
 		this.searchedAnnounces = [];
-		
+
 		this.userProvider.getConnectedUser().then( user => {
 			this.connectedUser = user;
 			this.announceProvider.getAnnounces().then(
 				announces => {
-					this.searchedAnnounces = announces.filter(searchedAnnounce => {
+					this.searchedAnnounces = _.filter(announces, announce => {
 						if(this.category != null) {
-							return searchedAnnounce.type.id == this.category;
+							return announce.type.id == this.category;
 						}
-						return searchedAnnounce.type.id;
+						return announce.type.id;
 					});
 				}
 			);

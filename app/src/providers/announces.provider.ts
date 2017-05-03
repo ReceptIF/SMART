@@ -12,7 +12,7 @@ export class AnnounceProvider {
 
   constructor(private http: Http) {
     this.cachedAnnounces = this.getAnnounces();
-    this.headers = new Headers({ 
+    this.headers = new Headers({
       'Content-Type': 'application/x-www-form-urlencoded'
     });
     this.options = new RequestOptions({ headers: this.headers });

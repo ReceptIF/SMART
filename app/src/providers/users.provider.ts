@@ -7,9 +7,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UserProvider {
 
-  constructor(private http: Http) {
-
-  }
+  constructor(private http: Http) {}
 
   login(idents) {
     return new Promise(resolve => {

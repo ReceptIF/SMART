@@ -13,6 +13,8 @@ import { UserProvider } from '../providers/users.provider';
 import { AnnounceProvider } from '../providers/announces.provider';
 import { AnnounceTypeProvider } from '../providers/announceTypes.provider';
 import { CityProvider } from '../providers/city.provider';
+import { AuthentificationProvider } from '../providers/authentification.provider';
+
 import { MdDialogModule, MdButtonModule, MdCheckboxModule } from '@angular/material';
 
 @NgModule({
@@ -31,6 +33,7 @@ import { MdDialogModule, MdButtonModule, MdCheckboxModule } from '@angular/mater
         AnnounceProvider,
         AnnounceTypeProvider,
         CityProvider,
+        AuthentificationProvider
     ],
     entryComponents: [ConfirmModalComponent]
 })

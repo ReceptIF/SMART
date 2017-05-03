@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { GlobalConstants } from '../app.constants';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -17,7 +18,7 @@ export class AnnounceTypeProvider {
     }
 	
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announceTypes')
+      this.http.get(GlobalConstants.urlServer + '/announceTypes' + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {
           this.cachedAnnounceTypes = data;
@@ -26,17 +27,17 @@ export class AnnounceTypeProvider {
     });
   }
 
-  getAnnounceType(announceTypeId) {
+  getAnnounceType(announceId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/announceType/' + announceTypeId)
+      this.http.get(GlobalConstants.urlServer + '/announceType/' + announceId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
   }
 
-  deleteAnnounceType(announceTypeId) {
+  deleteAnnounceType(announceId) {
     return new Promise(resolve => {
-      this.http.delete(GlobalConstants.urlServer + '/announceType/' + announceTypeId)
+      this.http.delete(GlobalConstants.urlServer + '/announceType/' + announceId + '?token='+Cookie.get('ahCookie'))
           .map(res => res.json())
           .subscribe(data => {resolve(data);});
     });

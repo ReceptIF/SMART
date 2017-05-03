@@ -14,19 +14,30 @@ export class AnnouncesTypesComponent{
 
     dialogRef: MdDialogRef<any>;
     announcesTypes : any;
+    announceTypeProvider: AnnounceTypeProvider;
 
-    constructor(private announceTypeProvider : AnnounceTypeProvider, private dialog: MdDialog){
+    constructor(announceTypeProvider : AnnounceTypeProvider, private dialog: MdDialog){
+        this.announceTypeProvider = announceTypeProvider;
         this.announceTypeProvider.getAnnounceTypes().then( announcesTypes => {this.announcesTypes = announcesTypes;});
     }
 
     deleteAnnounceType(announceTypeId){
         this.dialogRef = this.dialog.open(ConfirmModalComponent);
 
-        this.dialogRef.afterClosed().subscribe(function(){
-            console.log(arguments);
+        this.dialogRef.afterClosed().subscribe( code => {
+            switch(code){
+                case 1:
+                    this.announceTypeProvider.deleteAnnounceType(announceTypeId).then(
+                        result => {
+                            this.announceTypeProvider.getAnnounceTypes().then(
+                                announcesTypes => {this.announcesTypes = announcesTypes;}
+                            );
+                        }
+                    );
+                    break;
+            }
             this.dialogRef = null;
         });
-        //this.announceTypeProvider.deleteAnnounceType(announceTypeId).then( response => console.log(response) );
     }
 }
 
@@ -34,8 +45,8 @@ export class AnnouncesTypesComponent{
     selector: 'confirm-modal',
     template: `
         <h2>Voulez-vous vraiment supprimer cet élément ?</h2>
-        <button class="btn btn-danger" md-raised-button (click)="dialogRef.close()">Supprimer</button>
-        <button class="btn btn-default" md-raised-button (click)="dialogRef.close()">Annuler</button>`
+        <button class="btn btn-danger" md-raised-button (click)="dialogRef.close(1)">Supprimer</button>
+        <button class="btn btn-default" md-raised-button (click)="dialogRef.close(2)">Annuler</button>`
 })
 export class ConfirmModalComponent {
     constructor(public dialogRef: MdDialogRef<any>) { }

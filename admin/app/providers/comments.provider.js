@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var app_constants_1 = require("../app.constants");
+var ng2_cookies_1 = require("ng2-cookies/ng2-cookies");
 require("rxjs/add/operator/map");
 var CommentProvider = (function () {
     function CommentProvider(http) {
@@ -21,7 +22,7 @@ var CommentProvider = (function () {
     CommentProvider.prototype.getComments = function () {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/comments')
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/comments' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
                 resolve(data);
@@ -31,7 +32,7 @@ var CommentProvider = (function () {
     CommentProvider.prototype.getCommentById = function (commentId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/comment/' + commentId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/comment/' + commentId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -39,7 +40,7 @@ var CommentProvider = (function () {
     CommentProvider.prototype.getCommentByAuthor = function (authorId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/comments/author/' + authorId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/comments/author/' + authorId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -47,7 +48,7 @@ var CommentProvider = (function () {
     CommentProvider.prototype.getCommentByTarget = function (targetId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/comments/target/' + targetId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/comments/target/' + targetId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -55,7 +56,7 @@ var CommentProvider = (function () {
     CommentProvider.prototype.postComment = function (comment) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.post(app_constants_1.GlobalConstants.urlServer + '/comment', comment)
+            _this.http.post(app_constants_1.GlobalConstants.urlServer + '/comment' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'), comment)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -63,7 +64,7 @@ var CommentProvider = (function () {
     CommentProvider.prototype.putComment = function (comment) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/comment', comment)
+            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/comment' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'), comment)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { return resolve(data); });
         });
@@ -71,7 +72,7 @@ var CommentProvider = (function () {
     CommentProvider.prototype.deleteComment = function (commentId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/comment/' + commentId)
+            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/comment/' + commentId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });

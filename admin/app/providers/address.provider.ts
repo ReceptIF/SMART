@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import { GlobalConstants } from '../app.constants';
 import 'rxjs/add/operator/map';
 
@@ -21,7 +22,7 @@ export class AddressProvider {
     }
 
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/addresses')
+      this.http.get(GlobalConstants.urlServer + '/addresses' + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {
           this.cachedAddresses = data;
@@ -32,7 +33,7 @@ export class AddressProvider {
 
   getAddress(addressId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/address/' + addressId)
+      this.http.get(GlobalConstants.urlServer + '/address/' + addressId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -40,7 +41,7 @@ export class AddressProvider {
 
   getAddressesByUser(userId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/addresses/user/' + userId)
+      this.http.get(GlobalConstants.urlServer + '/addresses/user/' + userId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -48,7 +49,7 @@ export class AddressProvider {
 
   postAddress(address) {
     return new Promise(resolve => {
-      this.http.post(GlobalConstants.urlServer + '/address', address)
+      this.http.post(GlobalConstants.urlServer + '/address' + '?token='+Cookie.get('ahCookie'), address)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -56,7 +57,7 @@ export class AddressProvider {
 
   putAddress(address) {
     return new Promise(resolve => {
-      this.http.put(GlobalConstants.urlServer + '/address', address)
+      this.http.put(GlobalConstants.urlServer + '/address' + '?token='+Cookie.get('ahCookie'), address)
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -64,7 +65,7 @@ export class AddressProvider {
 
   deleteAddress(addressId) {
     return new Promise(resolve => {
-      this.http.delete(GlobalConstants.urlServer + '/address/' + addressId)
+      this.http.delete(GlobalConstants.urlServer + '/address/' + addressId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

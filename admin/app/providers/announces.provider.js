@@ -11,12 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var app_constants_1 = require("../app.constants");
+var ng2_cookies_1 = require("ng2-cookies/ng2-cookies");
 require("rxjs/add/operator/map");
 var AnnounceProvider = (function () {
     function AnnounceProvider(http) {
         this.http = http;
         this.cachedAnnounces = this.getAnnounces();
-        this.headers = new http_1.Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
+        this.headers = new http_1.Headers({
+            'Content-Type': 'application/x-www-form-urlencoded'
+        });
         this.options = new http_1.RequestOptions({ headers: this.headers });
     }
     AnnounceProvider.prototype.getAnnounces = function () {
@@ -25,7 +28,7 @@ var AnnounceProvider = (function () {
             return Promise.resolve(this.cachedAnnounces);
         }
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/announces')
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/announces?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
                 _this.cachedAnnounces = data;
@@ -33,10 +36,20 @@ var AnnounceProvider = (function () {
             });
         });
     };
+    AnnounceProvider.prototype.getOpenAnnounces = function () {
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/announces/open?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
+                .map(function (res) { return res.json(); })
+                .subscribe(function (data) {
+                resolve(data);
+            });
+        });
+    };
     AnnounceProvider.prototype.getAnnounce = function (announceId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/announce/' + announceId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/announce/' + announceId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -44,7 +57,7 @@ var AnnounceProvider = (function () {
     AnnounceProvider.prototype.getAnnounceByUser = function (userId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/announces/by/' + userId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/announces/by/' + userId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -52,7 +65,7 @@ var AnnounceProvider = (function () {
     AnnounceProvider.prototype.postAnnounce = function (announce) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.post(app_constants_1.GlobalConstants.urlServer + '/announce', announce)
+            _this.http.post(app_constants_1.GlobalConstants.urlServer + '/announce?token=' + ng2_cookies_1.Cookie.get('ahCookie'), announce)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -60,7 +73,7 @@ var AnnounceProvider = (function () {
     AnnounceProvider.prototype.putAnnounce = function (announce) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/announce', announce)
+            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/announce?token=' + ng2_cookies_1.Cookie.get('ahCookie'), announce)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -68,7 +81,7 @@ var AnnounceProvider = (function () {
     AnnounceProvider.prototype.deleteAnnounce = function (announceId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/announce/' + announceId)
+            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/announce/' + announceId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });

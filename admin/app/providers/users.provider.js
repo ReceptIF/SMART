@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var app_constants_1 = require("../app.constants");
+var ng2_cookies_1 = require("ng2-cookies/ng2-cookies");
 require("rxjs/add/operator/map");
 var UserProvider = (function () {
     function UserProvider(http) {
@@ -19,7 +20,7 @@ var UserProvider = (function () {
     UserProvider.prototype.getUsers = function () {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/users')
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/users' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { return resolve(data); });
         });
@@ -27,18 +28,23 @@ var UserProvider = (function () {
     UserProvider.prototype.getUser = function (userId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/user/' + userId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/user/' + userId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { return resolve(data); });
         });
     };
     UserProvider.prototype.getConnectedUser = function () {
-        return this.getUser(1);
+        var _this = this;
+        return new Promise(function (resolve) {
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/user/current?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
+                .map(function (res) { return res.json(); })
+                .subscribe(function (data) { return resolve(data); });
+        });
     };
     UserProvider.prototype.postUser = function (user) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.post(app_constants_1.GlobalConstants.urlServer + '/user', user)
+            _this.http.post(app_constants_1.GlobalConstants.urlServer + '/user' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'), user)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { return resolve(data); });
         });
@@ -46,7 +52,7 @@ var UserProvider = (function () {
     UserProvider.prototype.putUser = function (user) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/user', user)
+            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/user' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'), user)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { return resolve(data); });
         });
@@ -54,7 +60,7 @@ var UserProvider = (function () {
     UserProvider.prototype.deleteUser = function (userId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/user/' + userId)
+            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/user/' + userId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { return resolve(data); });
         });

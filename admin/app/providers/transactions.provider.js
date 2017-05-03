@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var app_constants_1 = require("../app.constants");
+var ng2_cookies_1 = require("ng2-cookies/ng2-cookies");
 require("rxjs/add/operator/map");
 var TransactionProvider = (function () {
     function TransactionProvider(http) {
@@ -21,7 +22,7 @@ var TransactionProvider = (function () {
     TransactionProvider.prototype.getTransactions = function () {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transactions')
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transactions?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
                 resolve(data);
@@ -31,7 +32,7 @@ var TransactionProvider = (function () {
     TransactionProvider.prototype.getTransactionById = function (transactionId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -39,7 +40,7 @@ var TransactionProvider = (function () {
     TransactionProvider.prototype.getTransactionBySeller = function (sellerId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transactions/seller/' + sellerId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transactions/seller/' + sellerId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -47,7 +48,7 @@ var TransactionProvider = (function () {
     TransactionProvider.prototype.getTransactionByBuyer = function (buyerId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transactions/buyer/' + buyerId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transactions/buyer/' + buyerId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -55,7 +56,7 @@ var TransactionProvider = (function () {
     TransactionProvider.prototype.getTransactionsByAnnounce = function (announceId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transactions/announce/' + announceId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transactions/announce/' + announceId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -63,7 +64,7 @@ var TransactionProvider = (function () {
     TransactionProvider.prototype.getAcceptedTransaction = function (announceId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transaction/announce/' + announceId + '/accepted')
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/transaction/announce/' + announceId + '/accepted?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -71,7 +72,7 @@ var TransactionProvider = (function () {
     TransactionProvider.prototype.postTransaction = function (transaction) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.post(app_constants_1.GlobalConstants.urlServer + '/transaction', transaction)
+            _this.http.post(app_constants_1.GlobalConstants.urlServer + '/transaction?token=' + ng2_cookies_1.Cookie.get('ahCookie'), transaction)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -79,23 +80,23 @@ var TransactionProvider = (function () {
     TransactionProvider.prototype.acceptTransaction = function (transactionId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '/accept', { accepterId: 1 })
+            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '/accept?token=' + ng2_cookies_1.Cookie.get('ahCookie'), { accepterId: 1 })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
     };
-    TransactionProvider.prototype.endTransaction = function (transactionId) {
+    TransactionProvider.prototype.endTransaction = function (transactionId, comment) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '/end', {})
+            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '/end' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'), { accepterId: 1, comment: comment })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
     };
-    TransactionProvider.prototype.closeTransaction = function (transactionId) {
+    TransactionProvider.prototype.closeTransaction = function (transactionId, comment) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '/close', {})
+            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '/close' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'), { accepterId: 1, comment: comment })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -103,7 +104,7 @@ var TransactionProvider = (function () {
     TransactionProvider.prototype.cancelTransaction = function (transactionId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '/cancel', { accepterId: 1 })
+            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '/cancel' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'), { accepterId: 1 })
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -111,7 +112,7 @@ var TransactionProvider = (function () {
     TransactionProvider.prototype.deleteTransaction = function (transactionId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId)
+            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/transaction/' + transactionId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });

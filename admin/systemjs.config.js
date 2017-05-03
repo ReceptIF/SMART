@@ -29,6 +29,7 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'hammerjs':                  'npm:hammerjs/hammer.js',
+      'ng2-cookies/ng2-cookies':   'npm:ng2-cookies/src/services/cookie.js',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension

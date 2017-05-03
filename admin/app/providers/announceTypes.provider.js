@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var app_constants_1 = require("../app.constants");
+var ng2_cookies_1 = require("ng2-cookies/ng2-cookies");
 require("rxjs/add/operator/map");
 var AnnounceTypeProvider = (function () {
     function AnnounceTypeProvider(http) {
@@ -23,7 +24,7 @@ var AnnounceTypeProvider = (function () {
             return Promise.resolve(this.cachedAnnounceTypes);
         }
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/announceTypes')
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/announceTypes' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
                 _this.cachedAnnounceTypes = data;
@@ -31,18 +32,18 @@ var AnnounceTypeProvider = (function () {
             });
         });
     };
-    AnnounceTypeProvider.prototype.getAnnounceType = function (announceTypeId) {
+    AnnounceTypeProvider.prototype.getAnnounceType = function (announceId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/announceType/' + announceTypeId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/announceType/' + announceId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
     };
-    AnnounceTypeProvider.prototype.deleteAnnounceType = function (announceTypeId) {
+    AnnounceTypeProvider.prototype.deleteAnnounceType = function (announceId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/announceType/' + announceTypeId)
+            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/announceType/' + announceId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });

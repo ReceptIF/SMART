@@ -1,4 +1,5 @@
 "use strict";
+var login_component_1 = require("./login/login.component");
 var users_component_1 = require("./users/users.component");
 var home_component_1 = require("./home/home.component");
 var announces_component_1 = require("./announces/announces.component");
@@ -12,6 +13,7 @@ var notifications_component_1 = require("./notifications/notifications.component
 var announcesTypes_component_2 = require("./announcesTypes/announcesTypes.component");
 exports.MODULE_ROUTES = [
     { path: 'dashboard', component: home_component_1.HomeComponent },
+    { path: 'login', component: login_component_1.LoginComponent },
     { path: 'users', component: users_component_1.UsersComponent },
     { path: 'announces', component: announces_component_1.AnnouncesComponent },
     { path: 'announcesTypes', component: announcesTypes_component_1.AnnouncesTypesComponent },
@@ -24,6 +26,7 @@ exports.MODULE_ROUTES = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
 ];
 exports.MODULE_COMPONENTS = [
+    login_component_1.LoginComponent,
     home_component_1.HomeComponent,
     users_component_1.UsersComponent,
     announces_component_1.AnnouncesComponent,

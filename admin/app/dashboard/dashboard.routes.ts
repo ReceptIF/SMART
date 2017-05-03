@@ -1,5 +1,5 @@
 import { Route } from '@angular/router';
-import { DashboardComponent } from './dashboard.component';
+import { LoginComponent } from './login/login.component';
 import { UsersComponent } from './users/users.component';
 import { HomeComponent } from './home/home.component';
 import { AnnouncesComponent } from './announces/announces.component';
@@ -14,6 +14,7 @@ import { ConfirmModalComponent } from './announcesTypes/announcesTypes.component
 
 export const MODULE_ROUTES: Route[] =[
     { path: 'dashboard', component: HomeComponent },
+    { path: 'login', component: LoginComponent },
     { path: 'users', component: UsersComponent },
     { path: 'announces', component: AnnouncesComponent },
     { path: 'announcesTypes', component: AnnouncesTypesComponent },
@@ -24,9 +25,10 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'icons', component: IconsComponent },
     { path: 'notifications', component: NotificationsComponent },
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' }
-]
+];
 
 export const MODULE_COMPONENTS = [
+    LoginComponent,
     HomeComponent,
     UsersComponent,
     AnnouncesComponent,
@@ -39,4 +41,4 @@ export const MODULE_COMPONENTS = [
     NotificationsComponent,
 
     ConfirmModalComponent
-]
+];

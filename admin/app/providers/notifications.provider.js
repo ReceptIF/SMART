@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var app_constants_1 = require("../app.constants");
+var ng2_cookies_1 = require("ng2-cookies/ng2-cookies");
 require("rxjs/add/operator/map");
 var NotificationProvider = (function () {
     function NotificationProvider(http) {
@@ -21,7 +22,7 @@ var NotificationProvider = (function () {
     NotificationProvider.prototype.getNotifications = function () {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/notifications')
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/notifications' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
                 resolve(data);
@@ -31,7 +32,7 @@ var NotificationProvider = (function () {
     NotificationProvider.prototype.getNotificationById = function (notificationId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/notification/' + notificationId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/notification/' + notificationId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -39,7 +40,7 @@ var NotificationProvider = (function () {
     NotificationProvider.prototype.getNotificationsByUser = function (userId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/notifications/user/' + userId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/notifications/user/' + userId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -47,7 +48,7 @@ var NotificationProvider = (function () {
     NotificationProvider.prototype.getNotificationsByAnnounce = function (announceId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/notifications/announce/' + announceId + '/accepted')
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/notifications/announce/' + announceId + '/accepted' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -55,7 +56,7 @@ var NotificationProvider = (function () {
     NotificationProvider.prototype.deleteNotification = function (notificationId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/notification/' + notificationId)
+            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/notification/' + notificationId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });

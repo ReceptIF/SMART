@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { GlobalConstants } from '../app.constants';
+import { Cookie } from 'ng2-cookies/ng2-cookies';
 import 'rxjs/add/operator/map';
 
 @Injectable()
@@ -15,7 +16,7 @@ export class NotificationProvider {
 
   getNotifications() {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/notifications')
+      this.http.get(GlobalConstants.urlServer + '/notifications' + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {
           resolve(data);
@@ -25,7 +26,7 @@ export class NotificationProvider {
 
   getNotificationById(notificationId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/notification/' + notificationId)
+      this.http.get(GlobalConstants.urlServer + '/notification/' + notificationId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -33,7 +34,7 @@ export class NotificationProvider {
 
   getNotificationsByUser(userId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/notifications/user/' + userId)
+      this.http.get(GlobalConstants.urlServer + '/notifications/user/' + userId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -41,7 +42,7 @@ export class NotificationProvider {
 
   getNotificationsByAnnounce(announceId) {
     return new Promise(resolve => {
-      this.http.get(GlobalConstants.urlServer + '/notifications/announce/' + announceId + '/accepted')
+      this.http.get(GlobalConstants.urlServer + '/notifications/announce/' + announceId + '/accepted' + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });
@@ -49,7 +50,7 @@ export class NotificationProvider {
 
   deleteNotification(notificationId) {
     return new Promise(resolve => {
-      this.http.delete(GlobalConstants.urlServer + '/notification/' + notificationId)
+      this.http.delete(GlobalConstants.urlServer + '/notification/' + notificationId + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {resolve(data);});
     });

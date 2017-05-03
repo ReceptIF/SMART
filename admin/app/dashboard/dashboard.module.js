@@ -19,6 +19,7 @@ var users_provider_1 = require("../providers/users.provider");
 var announces_provider_1 = require("../providers/announces.provider");
 var announceTypes_provider_1 = require("../providers/announceTypes.provider");
 var city_provider_1 = require("../providers/city.provider");
+var authentification_provider_1 = require("../providers/authentification.provider");
 var material_1 = require("@angular/material");
 var DashboardModule = (function () {
     function DashboardModule() {
@@ -42,6 +43,7 @@ DashboardModule = __decorate([
             announces_provider_1.AnnounceProvider,
             announceTypes_provider_1.AnnounceTypeProvider,
             city_provider_1.CityProvider,
+            authentification_provider_1.AuthentificationProvider
         ],
         entryComponents: [announcesTypes_component_1.ConfirmModalComponent]
     }),

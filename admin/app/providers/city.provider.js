@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var app_constants_1 = require("../app.constants");
+var ng2_cookies_1 = require("ng2-cookies/ng2-cookies");
 require("rxjs/add/operator/map");
 var CityProvider = (function () {
     function CityProvider(http) {
@@ -25,7 +26,7 @@ var CityProvider = (function () {
             return Promise.resolve(this.cachedCities);
         }
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/cities')
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/cities' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) {
                 _this.cachedCities = data;
@@ -36,7 +37,7 @@ var CityProvider = (function () {
     CityProvider.prototype.getCity = function (cityId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/city/' + cityId)
+            _this.http.get(app_constants_1.GlobalConstants.urlServer + '/city/' + cityId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -44,7 +45,7 @@ var CityProvider = (function () {
     CityProvider.prototype.postCity = function (city) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.post(app_constants_1.GlobalConstants.urlServer + '/city', city)
+            _this.http.post(app_constants_1.GlobalConstants.urlServer + '/city' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'), city)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -52,7 +53,7 @@ var CityProvider = (function () {
     CityProvider.prototype.putCity = function (city) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/city', city)
+            _this.http.put(app_constants_1.GlobalConstants.urlServer + '/city' + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'), city)
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });
@@ -60,7 +61,7 @@ var CityProvider = (function () {
     CityProvider.prototype.deleteCity = function (cityId) {
         var _this = this;
         return new Promise(function (resolve) {
-            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/city/' + cityId)
+            _this.http.delete(app_constants_1.GlobalConstants.urlServer + '/city/' + cityId + '?token=' + ng2_cookies_1.Cookie.get('ahCookie'))
                 .map(function (res) { return res.json(); })
                 .subscribe(function (data) { resolve(data); });
         });

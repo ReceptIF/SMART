@@ -14,17 +14,23 @@ var announceTypes_provider_1 = require("../../providers/announceTypes.provider")
 var AnnouncesTypesComponent = (function () {
     function AnnouncesTypesComponent(announceTypeProvider, dialog) {
         var _this = this;
-        this.announceTypeProvider = announceTypeProvider;
         this.dialog = dialog;
+        this.announceTypeProvider = announceTypeProvider;
         this.announceTypeProvider.getAnnounceTypes().then(function (announcesTypes) { _this.announcesTypes = announcesTypes; });
     }
     AnnouncesTypesComponent.prototype.deleteAnnounceType = function (announceTypeId) {
+        var _this = this;
         this.dialogRef = this.dialog.open(ConfirmModalComponent);
-        this.dialogRef.afterClosed().subscribe(function () {
-            console.log(arguments);
-            this.dialogRef = null;
+        this.dialogRef.afterClosed().subscribe(function (code) {
+            switch (code) {
+                case 1:
+                    _this.announceTypeProvider.deleteAnnounceType(announceTypeId).then(function (result) {
+                        _this.announceTypeProvider.getAnnounceTypes().then(function (announcesTypes) { _this.announcesTypes = announcesTypes; });
+                    });
+                    break;
+            }
+            _this.dialogRef = null;
         });
-        //this.announceTypeProvider.deleteAnnounceType(announceTypeId).then( response => console.log(response) );
     };
     return AnnouncesTypesComponent;
 }());
@@ -47,7 +53,7 @@ var ConfirmModalComponent = (function () {
 ConfirmModalComponent = __decorate([
     core_1.Component({
         selector: 'confirm-modal',
-        template: "\n        <h2>Voulez-vous vraiment supprimer cet \u00E9l\u00E9ment ?</h2>\n        <button class=\"btn btn-danger\" md-raised-button (click)=\"dialogRef.close()\">Supprimer</button>\n        <button class=\"btn btn-default\" md-raised-button (click)=\"dialogRef.close()\">Annuler</button>"
+        template: "\n        <h2>Voulez-vous vraiment supprimer cet \u00E9l\u00E9ment ?</h2>\n        <button class=\"btn btn-danger\" md-raised-button (click)=\"dialogRef.close(1)\">Supprimer</button>\n        <button class=\"btn btn-default\" md-raised-button (click)=\"dialogRef.close(2)\">Annuler</button>"
     }),
     __metadata("design:paramtypes", [material_1.MdDialogRef])
 ], ConfirmModalComponent);

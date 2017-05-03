@@ -1,0 +1,26 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="card-content">
+            <form contenteditable="true">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group form-black is-empty">
+                            <label class="control-label">Nom de connexion</label>
+                            <label class="contenteditable form-control" style="color:black;" ngModel="email">{{email}}</label>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group form-black is-empty">
+                            <label class="control-label">Mot de Passe</label>
+                            <label class="contenteditable form-control" style="color:black;" ngModel="pass">{{pass}}</label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-default pull-right" (click)="test()">Connexion</button>
+                <div class="clearfix"></div>
+            </form>
+        </div>
+    </div>
+</div>

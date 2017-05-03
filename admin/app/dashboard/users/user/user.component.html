@@ -99,7 +99,7 @@
                             <td>{{announce.estimatedTime}}</td>
                             <td>{{announce.type.name}}</td>
                             <td>
-                                <button class="btn btn-primary">
+                                <button class="btn btn-primary" [routerLink]="['/announce', announce.id]">
                                     <i class="material-icons">visibility</i>
                                 </button>
                             </td>

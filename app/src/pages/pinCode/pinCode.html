@@ -17,10 +17,10 @@
       </ion-avatar>
 
       <p>Vous avez choisi</p>
-      <h2 *ngIf="answer.sale">{{answer.buyer.firstName}} {{answer.buyer.lastName}}</h2>
-      <h2 *ngIf="!answer.sale">{{answer.seller.firstName}} {{answer.seller.lastName}}</h2>
+      <h2 *ngIf="answer.announce.sale">{{answer.buyer.firstName}} {{answer.buyer.lastName}}</h2>
+      <h2 *ngIf="!answer.announce.sale">{{answer.seller.firstName}} {{answer.seller.lastName}}</h2>
 
-      <h3 *ngIf="!answer.sale" id="pincode-profile"><ion-icon name="call"></ion-icon> {{answer.seller.cellPhone}}<br/><ion-icon name="mail"></ion-icon> {{answer.seller.email}}</h3>
+      <h3 *ngIf="!answer.announce.sale" id="pincode-profile"><ion-icon name="call"></ion-icon> {{answer.seller.cellPhone}}<br/><ion-icon name="mail"></ion-icon> {{answer.seller.email}}</h3>
 
     </ion-item>
 
@@ -31,10 +31,10 @@
       </ion-avatar>
 
       <p>Vous avez été choisi par</p>
-      <h2 *ngIf="answer.sale">{{service.author.firstName}} {{service.author.lastName}}</h2>
-      <h2 *ngIf="!answer.sale">{{service.author.firstName}} {{service.author.lastName}}</h2>
+      <h2 *ngIf="answer.announce.sale">{{service.author.firstName}} {{service.author.lastName}}</h2>
+      <h2 *ngIf="!answer.announce.sale">{{service.author.firstName}} {{service.author.lastName}}</h2>
 
-      <h3 *ngIf="!answer.sale" id="pincode-profile"><ion-icon name="call"></ion-icon> {{service.author.cellPhone}}<br/><ion-icon name="mail"></ion-icon> {{service.author.email}}</h3>
+      <h3 *ngIf="!answer.announce.sale" id="pincode-profile"><ion-icon name="call"></ion-icon> {{service.author.cellPhone}}<br/><ion-icon name="mail"></ion-icon> {{service.author.email}}</h3>
 
     </ion-item>
 

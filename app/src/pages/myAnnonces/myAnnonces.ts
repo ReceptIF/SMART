@@ -5,6 +5,7 @@ import { AnnoncePage } from '../annonce/annonce';
 import { AnnounceProvider } from '../../providers/announces.provider';
 import { UserProvider } from '../../providers/users.provider';
 import { TransactionProvider } from '../../providers/transactions.provider';
+import { PostAnnoncePage } from '../postAnnonce/postAnnonce';
 
 @Component({
   selector: 'page-myAnnonces',
@@ -41,10 +42,10 @@ export class MyAnnoncesPage {
                     return transaction.status >= 0;
                 });
                 item.nbTransactions = item.transactions.length;
-                
+
                 item.answered = false;
                 _.forEach(item.transactions, trans => { if(trans.status > 0) { item.answered = true; } });
-              
+
               });
             } else this.itemsClosed.push(item);
           });
@@ -58,6 +59,10 @@ export class MyAnnoncesPage {
     this.navCtrl.push(AnnoncePage, {
       item: item
     });
+  }
+
+  goToPost(event) {
+    this.navCtrl.push(PostAnnoncePage);
   }
 
 }

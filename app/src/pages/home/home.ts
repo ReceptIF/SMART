@@ -25,8 +25,8 @@ export class HomePage {
 			this.connectedUser = user;
 			this.announceProvider.getOpenAnnounces().then(
 				announces => {
+				  console.log(announces);
           this.items = _.filter(announces, announce => { return announce.author.id != this.connectedUser.id; });
-          console.log(_.filter(announces, announce => { return announce.author.id != this.connectedUser.id; }));
 				}
 			);
 		});

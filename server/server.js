@@ -15,6 +15,7 @@ server.use('/resources', express.static(path.resolve('../ihm/resources')));
 
 
 server.set('tokenSecret', 'LicorneMabelPULLReceptif');
+
 var apiRoutes = express.Router();
 apiRoutes.use(function(req, res, next) {
     // check header or url parameters or post parameters for token
@@ -28,6 +29,7 @@ apiRoutes.use(function(req, res, next) {
             } else {
                 // if everything is good, save to request for use in other routes
                 req.decodedToken = decoded.user;
+                req.decodedLevel = decoded.level;
                 console.log(req.decodedToken);
                 next();
             }
@@ -68,7 +70,6 @@ require('./controller/cityController')(server);
 require('./controller/commentController')(server);
 require('./controller/addressController')(server);
 require('./controller/notificationController')(server);
-
 
 
 

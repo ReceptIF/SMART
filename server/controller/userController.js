@@ -21,6 +21,10 @@ module.exports = function (server) {
         });
     });
 
+    server.get('/user/current/level', function (request, response) {
+        response.send({level: request.decodedLevel});
+    });
+
     server.get('/user/:id', function (request, response) {
         User.findById(request.params.id).then(function (data) {
             response.send(data ? data : {});
@@ -55,7 +59,11 @@ module.exports = function (server) {
                 else //User + pass ok => go token !
                 {
                     // create a token
-                    var token = jwt.sign({user: user.id}, server.get('tokenSecret'));
+                    //Set security Level
+                    var securityLevel = 'user';
+                    if(user.id === 1) //TODO: IMPROVE BUT NOT TODAY
+                        securityLevel = 'admin';
+                    var token = jwt.sign({user: user.id, level: securityLevel}, server.get('tokenSecret'));
                     res.json({ success: true, token: token });
                 }
             },
@@ -77,11 +85,19 @@ module.exports = function (server) {
 
     // DELETE
     server.delete('/user/:id', function (request, response) {
-        User.destroy({where: {id: request.params.id}}).then(function (data) {
-            response.send({status: data});
-        }, function (data) {
-            response.send({ah: 'AH !', error: data});
-        });
+        if(request.decodedLevel == "admin")
+        {
+            User.destroy({where: {id: request.params.id}}).then(function (data) {
+                response.send({status: data});
+            }, function (data) {
+                response.send({ah: 'AH !', error: data});
+            });
+        }
+        else
+        {
+            response.status(403).send({
+                success: false,
+                message: 'Must Be Admin To Do This.'});
+        }
     });
-
 };

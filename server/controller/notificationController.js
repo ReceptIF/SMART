@@ -41,7 +41,8 @@ module.exports = function (server) {
                 {model: User, as: 'user'},
                 {model: Transaction, as: 'transaction'},
                 {model: Comment, as: 'comment'}
-            ], where: {userId: request.params.id}
+            ], where: {userId: request.params.id},
+            order: [['createdAt', 'DESC']]
         }).then(function (data) {
             response.send(data ? data : {});
         }, function (data) {

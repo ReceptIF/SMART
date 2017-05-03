@@ -96,6 +96,18 @@ module.exports = function (server) {
         });
     });
 
+    //TODO: FINISH AND TEST FILTERS
+    server.post('/temp/search', function (req, res) {
+        var wherejson = {};
+        if(req.body.tags)
+        {
+            console.log(req.body.tags);
+            wherejson.title = {$like: {$any : req.body.tags.split(" ")}};
+        }
+        console.log(JSON.stringify(wherejson.title));
+        res.send(wherejson);
+    })
+
     // PUT
     server.put('/announce', function (request, response) {
         Announce.update(request.body, {where: {id: request.body.id}}).then(function (data) {

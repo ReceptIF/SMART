@@ -13,7 +13,7 @@ server.use(bodyParser.json());                          // to support JSON-encod
 server.use(bodyParser.urlencoded({extended: true}));       // to support URL-encoded bodies
 server.use('/resources', express.static(path.resolve('../ihm/resources')));
 
-
+//Secret used for generate token
 server.set('tokenSecret', 'LicorneMabelPULLReceptif');
 
 var apiRoutes = express.Router();
@@ -70,7 +70,6 @@ require('./controller/cityController')(server);
 require('./controller/commentController')(server);
 require('./controller/addressController')(server);
 require('./controller/notificationController')(server);
-
 
 
 server.get('/', function (request, response) {

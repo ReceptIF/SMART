@@ -55,16 +55,16 @@ module.exports = function (server) {
     // POST
     server.post('/address', function (request, response) {
         var body = request.body;
-        City.findById(body.cityId).then(function (city) {
-            GoogleAPIService.getAddressCoordinates(body.address, city.name, city.postCode).then(function (data) {
-                body.coordX = data.coordX;
-                body.coordY = data.coordY;
-                Address.create(body).then(function (data) {
-                    response.send(data);
-                }, function (data) {
-                    response.send({ah: 'AH !', error: data});
-                });
+        City.findById(body.cityId).then(function (city) { //TODO : CHECK GOOGLE API
+            body.coordX = 69.69;
+            body.coordY = 69.42;
+            Address.create(body).then(function (data) {
+                response.send(data);
+            }, function (data) {
+                response.send({ah: 'AH !', error: data});
             });
+            //GoogleAPIService.getAddressCoordinates(body.address, city.name, city.postCode).then(function (data) {
+            // });
         });
     });
 

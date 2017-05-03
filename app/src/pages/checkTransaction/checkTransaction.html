@@ -24,8 +24,8 @@
         <img src="assets/jm.png">
       </ion-avatar>
 
-      <h2 *ngIf="answer.sale">{{answer.buyer.firstName}} {{answer.buyer.lastName}}</h2>
-      <h2 *ngIf="!answer.sale">{{answer.seller.firstName}} {{answer.seller.lastName}}</h2>
+      <h2 *ngIf="answer.announce.sale">{{answer.buyer.firstName}} {{answer.buyer.lastName}}</h2>
+      <h2 *ngIf="!answer.announce.sale">{{answer.seller.firstName}} {{answer.seller.lastName}}</h2>
 
       <p>{{answer.commentary}}</p>
     </ion-item>

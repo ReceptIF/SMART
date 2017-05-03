@@ -15,7 +15,7 @@
         <img [src]="'assets/icon/service-type/'+item.type.icon+'.png'">
       </ion-avatar>
       <h1>{{item.title}}</h1>
-      <h2><img [src]="'assets/ahPiece_small.png'" class="ah-icon" />  {{item.price}} AH!</h2>
+      <h2><img [src]="'assets/ahPiece_small.png'" class="ah-icon" />  {{item.price}} AH! - {{item.sale ? 'Vente' : 'Achat'}}</h2>
       <h3>{{item.address.district}}</h3>
 		</ion-item>
 	</ion-list>

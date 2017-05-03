@@ -48,6 +48,14 @@ export class NotificationProvider {
     });
   }
 
+  readNotifications(userId) {
+    return new Promise(resolve => {
+      this.http.put(GlobalConstants.urlServer + '/notifications/user/' + userId + '/read?token='+Cookie.get('ahCookie'), {})
+        .map(res => res.json())
+        .subscribe(data => resolve(data));
+    });
+  }
+
   deleteNotification(notificationId) {
     return new Promise(resolve => {
       this.http.delete(GlobalConstants.urlServer + '/notification/' + notificationId + '?token='+Cookie.get('ahCookie'))

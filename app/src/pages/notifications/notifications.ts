@@ -26,8 +26,8 @@ export class NotificationsPage {
         user => { this.connectedUser = user;
           this.notificationProvider.getNotificationsByUser(this.connectedUser.id).then(
             notifs => {
-              console.log(notifs);
               this.notifications = this.addAnnounces(notifs);
+              this.notificationProvider.readNotifications(this.connectedUser.id);
             }
           );
         }

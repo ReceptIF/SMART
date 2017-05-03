@@ -97,7 +97,7 @@ module.exports = function (server) {
     });
 
     //TODO: FINISH AND TEST FILTERS
-    server.get('/announces/search', function (req, res) {
+    server.post('/announces/search', function (req, res) {
         var wherejson = {};
 
         //Start tags

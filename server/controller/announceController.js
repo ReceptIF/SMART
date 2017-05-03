@@ -19,7 +19,7 @@ module.exports = function (server) {
 
     server.get('/announces/open', function (request, response) {
         Announce.findAll({
-            where: {status: 0},
+            where: {closed: false},
             include: [{model: AnnounceType, as: 'type'}, {model: User, as: 'author'}, {model: Address, as: 'address'}]
         }).then(function (data) {
             response.send(data);

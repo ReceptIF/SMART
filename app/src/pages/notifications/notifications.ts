@@ -38,24 +38,24 @@ export class NotificationsPage {
 
     var newNotifs = [];
 
-   _.forEach(notifs, notif => {
-      if(notif.transaction) {
-        this.announceProvider.getAnnounce(notif.transaction.announceId).then(
-          announce => {
-            notif.announce = announce;
+     _.forEach(notifs, notif => {
+        if(notif.transaction) {
+          this.announceProvider.getAnnounce(notif.transaction.announceId).then(
+            announce => {
+              notif.announce = announce;
 
-            var postDate = this.parseDate(notif.createdAt);
-            var today = new Date();
+              var postDate = this.parseDate(notif.createdAt);
+              var today = new Date();
 
-            notif.timeNb = Math.round((today.getTime()-postDate.getTime())/(1000*60*60*24)) - 1;
+              notif.timeNb = Math.round((today.getTime()-postDate.getTime())/(1000*60*60*24)) - 1;
 
-            newNotifs.push(notif);
-          }
-        );
-      }
-    });
+              newNotifs.push(notif);
+            }
+          );
+        }
+      });
 
-    return newNotifs;
+      return newNotifs;
   }
 
   parseDate(str) {

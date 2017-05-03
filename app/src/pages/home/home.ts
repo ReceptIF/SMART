@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import _ from 'lodash';
 import { NavController, NavParams } from 'ionic-angular';
 import { AnnoncePage } from '../annonce/annonce';
 import { PostAnnoncePage } from '../postAnnonce/postAnnonce';
@@ -24,11 +25,8 @@ export class HomePage {
 			this.connectedUser = user;
 			this.announceProvider.getOpenAnnounces().then(
 				announces => {
-          console.log(this.items);
-          this.items = announces;
-					this.items = this.items.filter( announce => {
-						return announce.author.id != this.connectedUser.id;
-					});
+          this.items = _.filter(announces, announce => { return announce.author.id != this.connectedUser.id; });
+          console.log(_.filter(announces, announce => { return announce.author.id != this.connectedUser.id; }));
 				}
 			);
 		});

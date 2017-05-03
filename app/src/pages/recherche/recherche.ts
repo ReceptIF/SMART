@@ -9,17 +9,17 @@ import { SearchedAnnouncesPage } from '../searchedAnnounces/searchedAnnounces';
   providers: [AnnounceTypeProvider]
 })
 export class RecherchePage {
-	
+
   announceTypes: Array<ServiceType>;
   category: ServiceType;
 
   fromDate : any;
   constructor(public navCtrl: NavController, private announceTypeProvider : AnnounceTypeProvider) {
     this.fromDate = new Date().toISOString();
-	this.announceTypeProvider.getAnnounceTypes().then( announceTypes => { this.announceTypes = announceTypes; console.log(this.announceTypes);});
-	
+	  this.announceTypeProvider.getAnnounceTypes().then( announceTypes => { this.announceTypes = announceTypes; console.log(this.announceTypes);});
+
   }
-  
+
 	buttonClicked(event) {
 		this.navCtrl.push(SearchedAnnouncesPage, {
 		  category: this.category

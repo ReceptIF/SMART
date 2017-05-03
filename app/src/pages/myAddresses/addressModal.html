@@ -13,22 +13,22 @@
 
 <ion-content>
   <ion-list>
-    
+
     <ion-item>
       <ion-label stacked>Titre de l'adresse</ion-label>
       <ion-input type="text" [(ngModel)]="name"></ion-input>
     </ion-item>
-    
+
     <ion-item>
-      <ion-label stacked>Addresse</ion-label>
+      <ion-label stacked>Adresse</ion-label>
       <ion-input type="text" [(ngModel)]="address"></ion-input>
     </ion-item>
-    
+
     <ion-item>
       <ion-label stacked>Complément d'adresse</ion-label>
       <ion-input type="text" [(ngModel)]="complement"></ion-input>
     </ion-item>
-    
+
     <ion-item>
       <ion-label>Ville</ion-label>
       <ion-select [(ngModel)]="city">
@@ -37,11 +37,11 @@
       </ion-option>
       </ion-select>
     </ion-item>
-    
+
     <button ion-button full icon-left class="address-modalButton" (click)="createAddress()">
       <ion-icon name="create"></ion-icon>
       Enregistrer cette adresse
     </button>
-    
+
   </ion-list>
 </ion-content>

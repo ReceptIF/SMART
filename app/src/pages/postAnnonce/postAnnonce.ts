@@ -15,7 +15,7 @@ import { AlertController } from 'ionic-angular';
 export class PostAnnoncePage {
 
   annonceType : boolean;
-  announceTypes: Array<ServiceType>;
+  announceTypes: any;
 
   title : string;
   description : string;

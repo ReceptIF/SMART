@@ -15,7 +15,7 @@
           <img [src]="'assets/icon/service-type/'+item.type.icon+'.png'">
         </ion-avatar>
         <h1>{{item.title}}</h1>
-        <h2>{{item.price}} AH!</h2>
+        <h2><img [src]="'../../assets/ahPiece_small.png'" class="ah-icon" />  {{item.price}} AH!</h2>
         <h3>En cours</h3>
         <p class="anwser-nb" *ngIf="item.nbTransactions != undefined && !item.answered"><ion-icon name="chatbubbles"></ion-icon> {{item.nbTransactions}}</p>
         <p class="anwser-valid" *ngIf="item.answered"><ion-icon name="checkmark"></ion-icon></p>
@@ -29,7 +29,7 @@
         <img [src]="'assets/icon/service-type/'+item.type.icon+'.png'">
       </ion-avatar>
       <h1>{{item.title}}</h1>
-      <h2>{{item.price}} AH!</h2>
+      <h2><img [src]="'../../assets/ahPiece_small.png'" class="ah-icon" />  {{item.price}} AH!</h2>
       <h3>Terminée</h3>
     </ion-item>
   </ion-list>

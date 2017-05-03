@@ -10,7 +10,7 @@ import { SearchedAnnouncesPage } from '../searchedAnnounces/searchedAnnounces';
 })
 export class RecherchePage {
 
-  announceTypes: Array<ServiceType>;
+  announceTypes: any;
   category: ServiceType;
 
   fromDate : any;

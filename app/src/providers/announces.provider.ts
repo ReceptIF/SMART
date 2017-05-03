@@ -6,12 +6,10 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AnnounceProvider {
-  cachedAnnounces : any;
   headers : Headers;
   options : RequestOptions;
 
   constructor(private http: Http) {
-    this.cachedAnnounces = this.getAnnounces();
     this.headers = new Headers({
       'Content-Type': 'application/x-www-form-urlencoded'
     });
@@ -19,16 +17,11 @@ export class AnnounceProvider {
   }
 
   getAnnounces() {
-    if (this.cachedAnnounces) {
-      return Promise.resolve(this.cachedAnnounces);
-    }
-
     return new Promise(resolve => {
       this.http.get(GlobalConstants.urlServer + '/announces?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {
-          this.cachedAnnounces = data;
-          resolve(this.cachedAnnounces);
+          resolve(data);
         });
     });
   }

@@ -12,13 +12,16 @@
   <ion-list>
     <ion-item>
       <ion-label color="primary">Tags</ion-label>
-      <ion-input placeholder="Entrez ici des mots-clés"></ion-input>
+      <ion-input placeholder="Entrez ici des mots-clés" [(ngModel)]="tags"></ion-input>
     </ion-item>
-	
+
     <ion-item>
 		<ion-label color="primary" stacked>Categorie</ion-label>
 		<ion-select okText="OK" cancelText="Annuler" [(ngModel)]="category">
-			<ion-option value={{serviceType.id}} *ngFor="let serviceType of announceTypes">
+      <ion-option value="-1">
+        <h1>Toutes</h1>
+      </ion-option>
+      <ion-option value={{serviceType.id}} *ngFor="let serviceType of announceTypes">
 				<h1>{{serviceType.name}}</h1>
 			</ion-option>
 		</ion-select>

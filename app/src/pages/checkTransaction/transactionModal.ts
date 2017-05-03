@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Platform, ViewController, Events } from 'ionic-angular';
-import { MyAnnoncesPage } from '../myAnnonces/myAnnonces';
 import { TransactionProvider } from '../../providers/transactions.provider';
 
 @Component({

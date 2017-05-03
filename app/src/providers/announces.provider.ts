@@ -60,6 +60,14 @@ export class AnnounceProvider {
     });
   }
 
+  searchAnnounces(search) {
+    return new Promise(resolve => {
+      this.http.post(GlobalConstants.urlServer + '/announces/search?token='+Cookie.get('ahCookie'), search)
+        .map(res => res.json())
+        .subscribe(data => {resolve(data);});
+    });
+  }
+
   putAnnounce(announce) {
     return new Promise(resolve => {
       this.http.put(GlobalConstants.urlServer + '/announce?token='+Cookie.get('ahCookie'), announce)

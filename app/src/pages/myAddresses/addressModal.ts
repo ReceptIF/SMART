@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { Platform, ViewController } from 'ionic-angular';
+import { Platform, ViewController, Events } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { AddressProvider } from '../../providers/address.provider';
 import { UserProvider } from '../../providers/users.provider';
@@ -22,7 +22,8 @@ export class AddressModal {
 	ownerId: number;
 
 	constructor(private platform: Platform,	public navParams: NavParams, private viewCtrl: ViewController,	public navCtrl: NavController,
-		private alertCtrl: AlertController, private addressProvider: AddressProvider, private userProvider: UserProvider, private cityProvider: CityProvider) {
+		          private alertCtrl: AlertController, private addressProvider: AddressProvider, private userProvider: UserProvider,
+              private cityProvider: CityProvider, private events:Events) {
 		//this.cities = [{id:1, name: 'Lyon'}, {id:2, name: 'Villeurbanne'}];
 		this.cityProvider.getCities().then( cities => { this.cities = cities; console.log(this.cities);});
 
@@ -68,9 +69,9 @@ export class AddressModal {
           buttons: ['Ok']
         });
         this.addressProvider.putAddress(addressToPut).then(response => {
-          console.log(response);
           alert.present();
-          this.viewCtrl.dismiss().then( result => {console.log(result)});
+          this.events.publish('reloadMyAddresses');
+          this.viewCtrl.dismiss();
         });
       }
 
@@ -90,7 +91,8 @@ export class AddressModal {
 
         this.addressProvider.postAddress(addressToPost).then(response => {
           alert.present();
-          this.viewCtrl.dismiss().then( result => {console.log(result)});
+          this.events.publish('reloadMyAddresses');
+          this.viewCtrl.dismiss();
         });
       }
     } else {

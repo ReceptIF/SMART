@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ViewController } from 'ionic-angular';
+import { NavController, NavParams, ViewController, Events } from 'ionic-angular';
 import { AddressModal } from './addressModal';
 import { ModalController } from 'ionic-angular';
 import { AddressProvider } from '../../providers/address.provider';
@@ -18,7 +18,9 @@ export class MyAddressesPage {
 
 	addresses : any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController, private modalCtrl : ModalController, private addressProvider: AddressProvider, private userProvider: UserProvider) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController,
+              private modalCtrl : ModalController, private addressProvider: AddressProvider,
+              private userProvider: UserProvider, private events:Events) {
 
 	  if(navParams.get("profileId")) {
 			this.profileId = navParams.get("profileId");
@@ -30,6 +32,10 @@ export class MyAddressesPage {
 		this.connectedUser = {};
 
     this.getAllAddresses();
+
+    this.events.subscribe('reloadMyAddresses',() => {
+      this.getAllAddresses();
+    });
 	}
 
 	getAllAddresses(){

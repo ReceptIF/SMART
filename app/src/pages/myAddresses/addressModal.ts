@@ -19,6 +19,7 @@ export class AddressModal {
 	profileId : number;
 	cityId: number;
 	addressId: number;
+	ownerId: number;
 
 	constructor(private platform: Platform,	public navParams: NavParams, private viewCtrl: ViewController,	public navCtrl: NavController,
 		private alertCtrl: AlertController, private addressProvider: AddressProvider, private userProvider: UserProvider, private cityProvider: CityProvider) {
@@ -30,8 +31,8 @@ export class AddressModal {
 		} else {
 			this.profileId = -1;
 		}
-		
-		
+
+
 		if(navParams.get("address")) {
 			var address = navParams.get("address");
 			this.complement = address.complement;
@@ -39,6 +40,7 @@ export class AddressModal {
 			this.name = address.name;
 			this.cityId = address.cityId;
 			this.addressId = address.id;
+			this.ownerId = address.ownerId;
 		} else {
 			this.addressId = -1;
 		}
@@ -47,51 +49,56 @@ export class AddressModal {
 	dismiss() {
 		this.viewCtrl.dismiss();
 	}
-  
+
 	createAddress() {
-		
-		if(this.addressId >= 0) {
-			var addressToPut = {
-				name : this.name,
-				complement : this.complement,
-				address : this.address,
-				cityId : 1, //TODO
-				ownerId : 1,
-				id: this.addressId
-			};
-		
-			console.log(addressToPut);
-			
-			let alert = this.alertCtrl.create({
-				title: 'Adresse modifiée',
-				buttons: ['Ok']
-			});
-			alert.present();
-			this.addressProvider.putAddress(addressToPut).then(response => {
-				this.viewCtrl.dismiss();
-			});
-		} 
-		
-		else {
-			var addressToPost = {
-				name : this.name,
-				complement : this.complement,
-				address : this.address,
-				cityId : 1, //TODO
-				ownerId : 1
-			};
-			
-			console.log(addressToPost);
-			
-			let alert = this.alertCtrl.create({
-				title: 'Adresse ajoutée',
-				buttons: ['Ok']
-			});
-			alert.present();
-		
-			this.addressProvider.postAddress(addressToPost).then(response => {
-				this.viewCtrl.dismiss();
-			});
-		}
+
+	  if(this.address && this.name) {
+      if (this.addressId >= 0) {
+        var addressToPut = {
+          name: this.name,
+          complement: this.complement ? this.complement : "",
+          address: this.address,
+          cityId: 1, //TODO
+          ownerId: this.ownerId,
+          id: this.addressId
+        };
+
+        let alert = this.alertCtrl.create({
+          title: 'Adresse modifiée',
+          buttons: ['Ok']
+        });
+        this.addressProvider.putAddress(addressToPut).then(response => {
+          console.log(response);
+          alert.present();
+          this.viewCtrl.dismiss().then( result => {console.log(result)});
+        });
+      }
+
+      else {
+        var addressToPost = {
+          name: this.name,
+          complement: this.complement ? this.complement : "",
+          address: this.address,
+          cityId: 1, //TODO
+          ownerId: this.profileId
+        };
+
+        let alert = this.alertCtrl.create({
+          title: 'Adresse ajoutée',
+          buttons: ['Ok']
+        });
+
+        this.addressProvider.postAddress(addressToPost).then(response => {
+          alert.present();
+          this.viewCtrl.dismiss().then( result => {console.log(result)});
+        });
+      }
+    } else {
+      let alert = this.alertCtrl.create({
+        title: 'Données non valide.',
+        buttons: ['Ok']
+      });
+      alert.present();
+    }
 	}
 }

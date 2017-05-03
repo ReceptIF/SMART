@@ -11,6 +11,7 @@ import { IconsComponent } from './icons/icons.component';
 import { TableComponent } from './table/table.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { ConfirmModalComponent } from './announcesTypes/announcesTypes.component';
+import {AddressComponent} from "./address/address.component";
 
 export const MODULE_ROUTES: Route[] =[
     { path: 'dashboard', component: HomeComponent },
@@ -21,6 +22,7 @@ export const MODULE_ROUTES: Route[] =[
     { path: 'announceType/:id', component: AnnounceTypeComponent },
     { path: 'cities', component: CitiesComponent },
     { path: 'user/:id', component: UserComponent },
+    { path: 'address/:id', component: AddressComponent },
     { path: 'table', component: TableComponent },
     { path: 'icons', component: IconsComponent },
     { path: 'notifications', component: NotificationsComponent },
@@ -39,6 +41,6 @@ export const MODULE_COMPONENTS = [
     TableComponent,
     IconsComponent,
     NotificationsComponent,
-
+    AddressComponent,
     ConfirmModalComponent
 ];

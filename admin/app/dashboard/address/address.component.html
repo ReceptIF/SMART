@@ -1,0 +1,62 @@
+<div class="main-content">
+<div class="container-fluid" *ngIf="address && cities">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header" data-background-color="red">
+                    <h4 class="title">Adresse</h4>
+                    <p class="category">Détails</p>
+                </div>
+                <div class="card-content">
+                    <form>
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group form-black label-floating">
+                                    <label class="control-label">Nom</label>
+                                    <input class="form-control" style="color:black;" value="{{address.name}}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-10">
+                                <div class="form-group form-black label-floating">
+                                    <label class="control-label">Adresse exacte</label>
+                                    <input class="form-control" style="color:black;" value="{{address.address}}"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="form-group form-black label-floating">
+                                    <label class="control-label">Code postal</label>
+                                    <input class="form-control" disabled style="color:black;" value="{{address.city.postCode}}"/>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-black label-floating dropdown">
+                                    <label class="control-label">Ville</label>
+                                    <a class="dropdown-toggle" data-toggle="dropdown">{{address.city.name}}</a>
+                                    <ul class="dropdown-menu">
+                                        <li *ngFor="let city of cities"><a>{{city.name}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group form-black label-floating">
+                                    <label class="control-label">Complément</label>
+                                    <input class="form-control" style="color:black;" value="{{address.complement}}"/>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-default pull-right">Enregistrer les modifications</button>
+                        <div class="clearfix"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

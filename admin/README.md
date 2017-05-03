@@ -88,8 +88,8 @@ material-dashboard-angular
 │   │   │   └── typography.component.ts
 │   │   └── user
 │   │       ├── user.component.html
-│   │       ├── user.component.js
-│   │       └── user.component.ts
+│   │       ├── address.component.js
+│   │       └── address.component.ts
 │   ├── main.js
 │   ├── main.ts
 │   ├── shared

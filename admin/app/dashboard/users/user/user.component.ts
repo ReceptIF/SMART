@@ -27,9 +27,9 @@ export class UserComponent implements OnInit{
     ngOnInit() {
         this.sub = this.route.params.subscribe(params => {
             this.id = +params['id'];
-            this.userProvider.getUser(this.id).then( user => {this.user = user; console.log(this.user)} );
-            this.addressProvider.getAddressesByUser(this.id).then( addresses => {this.addresses = addresses; console.log(this.addresses)} );
-            this.announceProvider.getAnnounceByUser(this.id).then( announces => {this.announces = announces; console.log(this.announces)});
+            this.userProvider.getUser(this.id).then( user => {this.user = user} );
+            this.addressProvider.getAddressesByUser(this.id).then( addresses => {this.addresses = addresses} );
+            this.announceProvider.getAnnounceByUser(this.id).then( announces => {this.announces = announces} );
         });
     }
 }

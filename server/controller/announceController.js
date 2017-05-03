@@ -121,6 +121,15 @@ module.exports = function (server) {
             }
         }
         //End tags
+
+        //Start Category
+        if(req.body.category)
+        {
+            wherejson.typeId = {$eq: req.body.category};
+        }
+
+        //End Category
+
         console.log(JSON.stringify(wherejson.title));
 
         //Request

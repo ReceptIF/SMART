@@ -57,7 +57,7 @@ export class PostAnnoncePage {
     if(this.title != null) {
       if(this.description != null) {
         if(this.categorie != null) {
-          if(this.price != null) {
+          if(this.price != null && this.connectedUser && ((this.connectedUser.ahAmount>=this.price && !this.annonceType) || this.annonceType)) {
             if(this.address != null) {
               if(this.estimatedTime != null) {
 
@@ -88,7 +88,7 @@ export class PostAnnoncePage {
 
               } else { this.showToast("Vous devez indiquer à combien de temps vous estimez la réalisation de la tâche."); }
             } else { this.showToast("Vous devez choisir une de vos adresses pour indiquer où aura lieu le service."); }
-          } else { this.showToast("Vous devez indiquer le prix de la prestation que vous demandez ou offrez."); }
+          } else { this.showToast("Vous devez indiquer un prix valide de la prestation que vous demandez ou offrez."); }
         } else { this.showToast("Vous devez indiquer une catégorie pour que votre annonce soit plus facilement trouvée."); }
       } else { this.showToast("Vous devez entrer une description pour donner un peu plus de détails."); }
     } else { this.showToast("Vous devez entrer un titre pour valider votre annonce."); }
@@ -97,7 +97,7 @@ export class PostAnnoncePage {
   showToast(message : string) {
     let toast = this.toastCtrl.create({
       message: message,
-      duration: 2000,
+      duration: 4000,
       position: 'bottom'
     });
 

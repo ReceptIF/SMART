@@ -12,7 +12,7 @@ import { CityProvider } from '../../providers/city.provider';
 })
 export class AddressModal {
 	character;
-	cities : Array<any>;
+	cities : any;
 	name: String;
 	complement: String;
 	address: String;

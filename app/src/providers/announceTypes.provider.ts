@@ -6,23 +6,15 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AnnounceTypeProvider {
-  cachedAnnounceTypes : any;
 
-  constructor(private http: Http) {
-    this.cachedAnnounceTypes = this.getAnnounceTypes();
-  }
+  constructor(private http: Http) {}
 
   getAnnounceTypes() {
-    if (this.cachedAnnounceTypes) {
-      return Promise.resolve(this.cachedAnnounceTypes);
-    }
-	
     return new Promise(resolve => {
       this.http.get(GlobalConstants.urlServer + '/announceTypes' + '?token='+Cookie.get('ahCookie'))
         .map(res => res.json())
         .subscribe(data => {
-          this.cachedAnnounceTypes = data;
-          resolve(this.cachedAnnounceTypes);
+          resolve(data);
         });
     });
   }

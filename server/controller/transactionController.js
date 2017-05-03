@@ -65,6 +65,24 @@ module.exports = function (server) {
         });
     });
 
+    server.get('/transactions/user/:id/announce/:announceId', function (request, response) {
+        Transaction.find({
+            where: {
+                $or: [{sellerId: request.params.id}, {buyerId: request.params.id}],
+                announceId: request.params.announceId
+            },
+            include: [
+                {model: Announce, as: 'announce'},
+                {model: User, as: 'seller'},
+                {model: User, as: 'buyer'}
+            ]
+        }).then(function (data) {
+            response.send(data ? data : {});
+        }, function (data) {
+            response.send({ah: 'AH !', error: data});
+        });
+    });
+
     server.get('/transactions/announce/:id', function (request, response) {
         Transaction.findAll({
             where: {

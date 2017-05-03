@@ -20,7 +20,7 @@ module.exports = function (server) {
     });
 
     server.get('/address/:id', function (request, response) {
-        Address.findById(request.params.id).then(function (data) {
+        Address.findById(request.params.id, {include: [{model: City, as: 'city'}, {model: User, as: 'owner'}]}).then(function (data) {
             response.send(data ? data : {});
         }, function (data) {
             response.send({ah: 'AH !', error: data});
@@ -29,6 +29,7 @@ module.exports = function (server) {
 
     server.get('/addresses/user/:id', function (request, response) {
         Address.findAll({
+            include: [{model: City, as: 'city'}],
             where: {
                 ownerId: request.params.id
             }

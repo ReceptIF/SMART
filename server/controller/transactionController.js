@@ -143,7 +143,7 @@ module.exports = function (server) {
     // PUT
     server.put('/transaction/:id/accept', function (request, response) {
         // Temp
-        var id = request.body.accepterId;
+        var id = request.decodedToken;
 
         var body = {};
 

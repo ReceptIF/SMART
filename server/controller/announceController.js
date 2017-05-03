@@ -127,9 +127,19 @@ module.exports = function (server) {
         {
             wherejson.typeId = {$eq: req.body.category};
         }
-
         //End Category
+        //---
+        //start place
 
+        //end place
+        //---
+        //start from
+
+        //end from
+        //---
+        //start end
+
+        //end end
         console.log(JSON.stringify(wherejson.title));
 
         //Request

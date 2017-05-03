@@ -143,11 +143,15 @@ module.exports = function (server) {
         console.log(JSON.stringify(wherejson.title));
 
         //Request
-        Announce.findAll({where: wherejson}).then(function(announces)
+        Announce.findAll(
+            {
+                where: wherejson,
+                include: [{model: AnnounceType, as: 'type'}, {model: User, as: 'author'}, {model: Address, as: 'address'}]
+            }).then(function(announces)
         {
            res.send(announces);
         });
-    })
+    });
 
     // PUT
     server.put('/announce', function (request, response) {

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import _ from "lodash";
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Events } from 'ionic-angular';
 import { AnnoncePage } from '../annonce/annonce';
 import { NotificationProvider } from '../../providers/notifications.provider';
 import { UserProvider } from '../../providers/users.provider';
@@ -18,7 +18,7 @@ export class NotificationsPage {
 
 	constructor(public navCtrl: NavController, public navParams: NavParams,
       private userProvider : UserProvider, private notificationProvider : NotificationProvider,
-      private announceProvider : AnnounceProvider) {
+      private announceProvider : AnnounceProvider, private events:Events) {
 
       this.notifications = [];
 
@@ -28,6 +28,7 @@ export class NotificationsPage {
             notifs => {
               this.notifications = this.addAnnounces(notifs);
               this.notificationProvider.readNotifications(this.connectedUser.id);
+              this.events.publish('reloadMenu');
             }
           );
         }

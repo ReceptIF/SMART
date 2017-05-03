@@ -30,24 +30,13 @@ export class MyApp {
   notifNumber : any;
   notifications : any;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, 
+  constructor(public platform: Platform, public statusBar: StatusBar,
         public splashScreen: SplashScreen, private userProvider : UserProvider,
         private notificationProvider : NotificationProvider, private events:Events) {
     this.initializeApp();
     this.notifications = [];
-    
-    this.userProvider.getConnectedUser().then(user => {
-      
-      this.connectedUser = user;
-      this.notificationProvider.getNotificationsByUser(this.connectedUser.id).then(
-        notifs => { 
-          this.notifications = notifs;
-          this.notifications = this.notifications.filter( notif => {
-              return !notif.read;
-          });
-          this.notifNumber = this.notifications.length;
-      });
-    });
+
+    this.loadNotifications();
 
     // used for an example of ngFor and navigation
     this.pages = [
@@ -56,20 +45,36 @@ export class MyApp {
       { title: 'Poster une annonce', component: PostAnnoncePage },
 	    { title: 'Recherche', component: RecherchePage }
     ];
-    
+
     this.events.subscribe('reloadMenu',() => {
       this.loadUser();
+      this.loadNotifications();
     });
 
   }
-  
-  loadUser() {
-  
+
+  loadNotifications(){
     this.userProvider.getConnectedUser().then(user => {
-      
+
       this.connectedUser = user;
       this.notificationProvider.getNotificationsByUser(this.connectedUser.id).then(
-        notifs => { 
+        notifs => {
+          this.notifications = notifs;
+          this.notifications = this.notifications.filter( notif => {
+            return !notif.read;
+          });
+          this.notifNumber = this.notifications.length;
+        });
+    });
+  }
+
+  loadUser() {
+
+    this.userProvider.getConnectedUser().then(user => {
+
+      this.connectedUser = user;
+      this.notificationProvider.getNotificationsByUser(this.connectedUser.id).then(
+        notifs => {
           this.notifications = notifs;
           this.notifications = this.notifications.filter( notif => {
               return !notif.read;
@@ -77,21 +82,21 @@ export class MyApp {
           this.notifNumber = this.notifications.length;
       });
     });
-  
+
   }
-  
+
   goToPersonalProfile() {
     this.nav.setRoot(ProfilePage);
   }
-  
+
   goToSearch() {
     this.nav.setRoot(RecherchePage);
   }
-  
+
   goToNotif() {
     this.nav.setRoot(NotificationsPage);
   }
-  
+
   logout() {
     Cookie.delete("ahCookie");
     this.nav.setRoot(LoginPage);

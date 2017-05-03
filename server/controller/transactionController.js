@@ -65,7 +65,7 @@ module.exports = function (server) {
         });
     });
 
-    server.get('/transactions/user/:id/announce/:announceId', function (request, response) {
+    server.get('/transaction/user/:id/announce/:announceId', function (request, response) {
         Transaction.find({
             where: {
                 $or: [{sellerId: request.params.id}, {buyerId: request.params.id}],

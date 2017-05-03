@@ -11,26 +11,26 @@
 
 	<ion-item>
       <ion-avatar item-left>
-        <img [src]="'../../assets/icon/service-type/'+service.type.icon+'.png'">
+        <img [src]="'assets/icon/service-type/'+service.type.icon+'.png'">
       </ion-avatar>
       <h1>{{service.title}}</h1>
       <h2>{{service.price}} AH !</h2>
       <h3>{{service.address.district}}</h3>
   </ion-item>
-	
+
   <ion-list>
     <ion-item *ngFor="let answer of answers" (click)="openModal(answer)">
       <ion-avatar item-left>
-        <img src="../../assets/jm.png">
+        <img src="assets/jm.png">
       </ion-avatar>
-      
+
       <h2 *ngIf="answer.sale">{{answer.buyer.firstName}} {{answer.buyer.lastName}}</h2>
       <h2 *ngIf="!answer.sale">{{answer.seller.firstName}} {{answer.seller.lastName}}</h2>
-      
+
       <p>{{answer.commentary}}</p>
     </ion-item>
   </ion-list>
-  
+
   <ion-list *ngIf="answers.length == 0">
     <ion-item id="empty-message">
       <img [src]="'../../assets/empty-set.png'">
@@ -38,5 +38,5 @@
     </ion-item>
   </ion-list>
 
-  
+
 </ion-content>

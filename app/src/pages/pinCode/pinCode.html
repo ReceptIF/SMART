@@ -8,61 +8,61 @@
 </ion-header>
 
 <ion-content padding>
-	
+
   <ion-list>
-    
+
     <ion-item *ngIf="connectedUser && service.author.id == connectedUser.id">
       <ion-avatar item-left>
-        <img src="../../assets/jm.png">
+        <img src="assets/jm.png">
       </ion-avatar>
-      
+
       <p>Vous avez choisi</p>
       <h2 *ngIf="answer.sale">{{answer.buyer.firstName}} {{answer.buyer.lastName}}</h2>
       <h2 *ngIf="!answer.sale">{{answer.seller.firstName}} {{answer.seller.lastName}}</h2>
-      
+
       <h3 *ngIf="!answer.sale" id="pincode-profile"><ion-icon name="call"></ion-icon> {{answer.seller.cellPhone}}<br/><ion-icon name="mail"></ion-icon> {{answer.seller.email}}</h3>
-      
+
     </ion-item>
-    
-    
+
+
     <ion-item *ngIf="connectedUser && service.author.id != connectedUser.id">
       <ion-avatar item-left>
         <img src="../../assets/jm.png">
       </ion-avatar>
-      
+
       <p>Vous avez été choisi par</p>
       <h2 *ngIf="answer.sale">{{service.author.firstName}} {{service.author.lastName}}</h2>
       <h2 *ngIf="!answer.sale">{{service.author.firstName}} {{service.author.lastName}}</h2>
-      
+
       <h3 *ngIf="!answer.sale" id="pincode-profile"><ion-icon name="call"></ion-icon> {{service.author.cellPhone}}<br/><ion-icon name="mail"></ion-icon> {{service.author.email}}</h3>
-      
+
     </ion-item>
-    
+
     <ion-item text-wrap class="text-pincode">
         <p *ngIf="connectedUser && service.author.id == connectedUser.id">{{answer.name}} a répondu :</p>
         <p *ngIf="connectedUser && service.author.id != connectedUser.id">Votre réponse :</p>
         {{answer.commentary}}
     </ion-item>
-    
+
     <ion-item text-wrap class="text-pincode" *ngIf="connectedUser && answer.seller.id == connectedUser.id && answer.status == 1">
           Une fois que vous avez réalisé ce service, cliquez sur le bouton ci-dessous pour valider la transaction.
           Pensez à donner votre avis sur {{answer.buyer.firstName}} pour les prochains utilisateurs !
           <button class="modalButton" ion-button block icon-left (click)="validSeller()" ><ion-icon name="checkmark"></ion-icon> Valider la transaction</button>
     </ion-item>
-    
+
     <ion-item text-wrap class="text-pincode" *ngIf="connectedUser && answer.buyer.id == connectedUser.id && answer.status == 1">
           {{answer.seller.firstName}} doit confirmer qu'il a réalisé le service avant que vous puissiez à votre tour confirmer la transaction.
     </ion-item>
-    
+
     <ion-item text-wrap class="text-pincode" *ngIf="connectedUser && answer.seller.id == connectedUser.id && answer.status == 2">
           Vous avez validé la transaction. C'est désormais au tour {{answer.buyer.firstName}} de valider que votre service a bien été effectué.
     </ion-item>
-    
+
     <ion-item text-wrap class="text-pincode" *ngIf="connectedUser && answer.buyer.id == connectedUser.id && answer.status == 2">
           {{answer.seller.firstName}} a marqué ce service comme effectué. Cliquez sur le bouton ci-dessous pour valider la transaction et effectuer le paiement.
           Pensez à donner votre avis sur {{answer.seller.firstName}} pour les prochains utilisateurs !
     </ion-item>
-    
+
     <ion-item *ngIf="connectedUser && ((answer.buyer.id == connectedUser.id && answer.status == 2) || (answer.seller.id == connectedUser.id && answer.status == 1))">
       <ion-label><ion-icon name="star"></ion-icon> Note :</ion-label>
       <ion-input type="number" min="1" max="5" [(ngModel)]="note"></ion-input>
@@ -77,9 +77,9 @@
       <ion-label floating><ion-icon name="chatboxes"></ion-icon> Votre commentaire</ion-label>
       <ion-textarea rows=3 [(ngModel)]="comment"></ion-textarea>
     </ion-item>
-    
+
     <button ion-button block (click)="valid();"  *ngIf="connectedUser && ((answer.buyer.id == connectedUser.id && answer.status == 2) || (answer.seller.id == connectedUser.id && answer.status == 1))">Valider la transaction</button>
-    
+
   </ion-list>
 
 </ion-content>
